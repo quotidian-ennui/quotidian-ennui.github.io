@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<!DOCTYPE adapter
+[
+  <!ENTITY ADAPTER_UNIQUE_ID 'adp-sap'>
+  <!ENTITY ADAPTER_FS_ROOT 'file:./fs'>
+  <!ENTITY FS_CONSUME_DIR  'fs-consume'>
+  <!ENTITY FS_PRODUCE_DIR  'fs-produce'>
+  <!ENTITY FS_BAD_DIR  'fs-bad'>
+]>
+<adapter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <unique-id>&ADAPTER_UNIQUE_ID;</unique-id>
+  <heartbeat-interval>600000</heartbeat-interval>
+  <channel-list>
+    <channel>
+      <consume-connection xsi:type="java:com.adaptris.core.NullConnection" />
+      <produce-connection xsi:type="java:com.adaptris.core.NullConnection" />
+      <workflow-list>
+        <workflow xsi:type="java:com.adaptris.core.StandardWorkflow">
+          <consumer xsi:type="java:com.adaptris.core.fs.FsConsumer">
+            <destination xsi:type="java:com.adaptris.core.ConfiguredConsumeDestination">
+              <configured-thread-name>(FS-SAP)</configured-thread-name>
+              <destination>&ADAPTER_FS_ROOT;/&ADAPTER_UNIQUE_ID;/&FS_CONSUME_DIR;</destination>
+            </destination>
+            <create-dirs>true</create-dirs>
+            <poller xsi:type="java:com.adaptris.core.QuartzCronPoller">
+              <cron-expression>*/5 * * * * ?</cron-expression>
+            </poller>
+            <reset-wip-files>true</reset-wip-files>
+          </consumer>
+          <service-collection xsi:type="java:com.adaptris.core.ServiceList">
+            <service xsi:type="java:com.adaptris.core.StandaloneRequestor">
+              <rfc-connection xsi:type="java:com.adaptris.core.sap.jco3.rfc.RfcConnection">
+                <destination-provider-info>
+                  <connection-properties>
+                    <!-- This is the language, you probably want to what you type into the sapgui when you logon -->
+                    <key-value-pair>
+                      <key>jco.client.lang</key>
+                      <value>EN</value>
+                    </key-value-pair>
+                    <!-- Your username; use what you type into the sapgui when you logon -->
+                    <key-value-pair>
+                      <key>jco.client.user</key>
+                      <value>ADAPTRIS</value>
+                    </key-value-pair>
+                    <!-- Your password; use what you type into the sapgui when you logon -->
+                    <key-value-pair>
+                      <key>jco.client.passwd</key>
+                      <value>ADAPTRIS</value>
+                    </key-value-pair>
+                    <!-- The client number; use what you type into the sapgui when you logon -->
+                    <key-value-pair>
+                      <key>jco.client.client</key>
+                      <value>810</value>
+                    </key-value-pair>
+                    <!-- The system number; this will depend on your environment, generally it's 00 -->
+                    <key-value-pair>
+                      <key>jco.client.sysnr</key>
+                      <value>00</value>
+                    </key-value-pair>
+                    <!-- The application host; this will depend on your environment, generally
+                       it's the hostname/IP address of the machine where SAP is installed.
+                    -->
+                    <key-value-pair>
+                      <key>jco.client.ashost</key>
+                      <value>10.1.2.3</value>
+                    </key-value-pair>
+                    <!-- Trace mode (set to 0 to disable, or remove it entirely)
+                       Note that trace mode will create a bunch of files in the local directory which
+                       will actually be deleted by AutomaticTraceFileDelete after 1 day.
+                    -->
+                    <key-value-pair>
+                      <key>jco.client.trace</key>
+                      <value>1</value>
+                    </key-value-pair>
+                  </connection-properties>
+                  <!-- This is just the connection-id you want to assign to it, it could be omitted entirely,
+                     in which case one a unique-one is derived -->
+                  <connection-id>IDESVR</connection-id>
+                </destination-provider-info>
+                <trace-file-handler xsi:type="java:com.adaptris.core.sap.jco3.AutomaticTraceFileDelete">
+                  <purge-older-than-days>1</purge-older-than-days>
+                </trace-file-handler>
+              </rfc-connection>
+              <producer xsi:type="java:com.adaptris.core.sap.jco3.rfc.bapi.BapiProducer">
+                <destination xsi:type="java:com.adaptris.core.ConfiguredProduceDestination">
+                  <destination>BAPI_FLIGHT_GETLIST</destination>
+                </destination>
+                <import-parameter xsi:type="java:com.adaptris.core.sap.jco3.rfc.params.XpathString">
+                  <parameter-name>AIRLINE</parameter-name>
+                  <xpath>/BAPI_FLIGHT_GETLIST/INPUT/AIRLINE</xpath>
+                </import-parameter>
+                <import-parameter xsi:type="java:com.adaptris.core.sap.jco3.rfc.params.XpathToStructure">
+                  <parameter-name>DESTINATION_FROM</parameter-name>
+                  <xpath>/BAPI_FLIGHT_GETLIST/INPUT/DESTINATION_FROM</xpath>
+                </import-parameter>
+                <import-parameter xsi:type="java:com.adaptris.core.sap.jco3.rfc.params.XpathToTable">
+                  <additional-debug>true</additional-debug>
+                  <parameter-name>DATE_RANGE</parameter-name>
+                  <xpath>/BAPI_FLIGHT_GETLIST/INPUT/TABLES/DATE_RANGE/item</xpath>
+                </import-parameter>
+                <export-parameter xsi:type="java:com.adaptris.core.sap.jco3.rfc.params.TableToXmlPayload">
+                  <parameter-name>FLIGHT_LIST</parameter-name>
+                  <xml-handler xsi:type="java:com.adaptris.util.text.xml.InsertNode">
+                    <xpath-to-parent-node>/BAPI_FLIGHT_GETLIST/OUTPUT/TABLES</xpath-to-parent-node>
+                  </xml-handler>
+                </export-parameter>
+                <export-parameter xsi:type="java:com.adaptris.core.sap.jco3.rfc.params.TableToXmlPayload">
+                  <parameter-name>RETURN</parameter-name>
+                  <xml-handler xsi:type="java:com.adaptris.util.text.xml.InsertNode">
+                    <xpath-to-parent-node>/BAPI_FLIGHT_GETLIST/OUTPUT/TABLES</xpath-to-parent-node>
+                  </xml-handler>
+                </export-parameter>
+              </producer>
+            </service>
+          </service-collection>
+          <producer xsi:type="java:com.adaptris.core.fs.FsProducer">
+            <destination xsi:type="java:com.adaptris.core.ConfiguredProduceDestination">
+              <destination>&ADAPTER_FS_ROOT;/&ADAPTER_UNIQUE_ID;/&FS_PRODUCE_DIR;</destination>
+            </destination>
+            <create-dirs>true</create-dirs>
+            <encoder xsi:type="java:com.adaptris.core.MimeEncoder" />
+          </producer>
+        </workflow>
+      </workflow-list>
+    </channel>
+  </channel-list>
+</adapter>
