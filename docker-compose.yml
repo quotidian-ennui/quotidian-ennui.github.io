@@ -1,0 +1,11 @@
+version: '3'
+services:
+  quotidian-ennui.github.io:
+    image: ricalo/jekyll
+    container_name: quotidian-ennui.github.io
+    hostname: quotidian-ennui
+    ports:
+      - '4000:4000'
+    volumes:
+      - .:/usr/src/app
+    command: [ "serve", "--config", "_config.yml,_config_dev.yml", "--watch", "--force_polling" , "--drafts"]
