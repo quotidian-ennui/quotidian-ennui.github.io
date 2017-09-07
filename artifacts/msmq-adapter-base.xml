@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE adapter [
+  <!ENTITY ADAPTER_UNIQUE_ID 'adp-msmq'>
+  <!ENTITY MSMQ_QUEUE_LOCAL 'DIRECT=OS:.\private$\zzlc'>
+]>
+              
+<adapter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <unique-id>&ADAPTER_UNIQUE_ID;</unique-id>
+  <channel-list>
+    <channel>
+      <unique-id>TO_MSMQ</unique-id>
+      <produce-connection  xsi:type="java:com.adaptris.core.msmq.MsmqConnection"/>
+      <workflow-list>
+        <workflow  xsi:type="java:com.adaptris.core.StandardWorkflow">
+          <consumer xsi:type="java:com.adaptris.core.PollingTrigger">
+            <destination xsi:type="java:com.adaptris.core.ConfiguredConsumeDestination">
+              <configured-thread-name>TO_MSMQ</configured-thread-name>
+            </destination>
+            <poller xsi:type="java:com.adaptris.core.QuartzCronPoller">
+              <cron-expression>*/5 * * * * ?</cron-expression>
+            </poller>
+            <template><![CDATA[
+Pack my box with five dozen liquor jugs
+]]></template>
+          </consumer>
+          <producer xsi:type="java:com.adaptris.core.msmq.StandardMsmqProducer">
+            <destination xsi:type="java:com.adaptris.core.ConfiguredProduceDestination">
+              <destination>&MSMQ_QUEUE_LOCAL;</destination>
+            </destination>
+            <share-mode>MQ_DENY_NONE</share-mode>
+            <transaction-mode>MQ_NO_TRANSACTION</transaction-mode>
+          </producer>
+        </workflow>
+      </workflow-list>
+    </channel>
+    <channel>
+      <unique-id>FROM_MSMQ</unique-id>
+      <consume-connection  xsi:type="java:com.adaptris.core.msmq.MsmqConnection"/>
+      <workflow-list>
+        <workflow  xsi:type="java:com.adaptris.core.StandardWorkflow">
+          <consumer xsi:type="java:com.adaptris.core.msmq.MsmqPollingConsumer">
+            <poller xsi:type="java:com.adaptris.core.QuartzCronPoller">
+              <cron-expression>*/5 * * * * ?</cron-expression>
+            </poller>
+            <destination xsi:type="java:com.adaptris.core.ConfiguredConsumeDestination">
+              <configured-thread-name>FROM_MSMQ</configured-thread-name>
+              <destination>&MSMQ_QUEUE_LOCAL;</destination>
+            </destination>
+            <receive-timeout-ms>200</receive-timeout-ms>
+            <share-mode>MQ_DENY_NONE</share-mode>
+            <transaction-mode>MQ_NO_TRANSACTION</transaction-mode>
+          </consumer>
+          <service-collection xsi:type="java:com.adaptris.core.ServiceList">
+            <service xsi:type="java:com.adaptris.core.services.LogMessageService"/>
+          </service-collection>
+        </workflow>
+      </workflow-list>
+    </channel>
+  </channel-list>
+</adapter>
