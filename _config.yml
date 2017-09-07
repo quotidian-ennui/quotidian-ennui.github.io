@@ -1,0 +1,38 @@
+# Site settings
+title: Specialising Generalist
+description: "Integration isn't always easy but it's never hard"
+url: 'https://quotidian-ennui.github.io'
+baseurl: ''
+
+author:
+  name: 'Lewin Chan'
+  # email: josh@joshgerdes.com
+  # twitter_username: joshgerdes
+  # facebook_username: joshgerdes
+  github_username:  quotidian-ennui
+  linkedin_username: lewinchan
+  gravatar: 5eebc8c1e6fcabfc72e329c08df7bf84
+
+defaults:
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+        layout: 'post'
+
+# Build settings
+destination: _site
+paginate: 5
+permalink: /blog/:year/:month/:day/:title/
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  # use Github Flavored Markdown
+  input: GFM
+  # do not replace newlines by <br>s
+  hard_wrap: false
+
+gems: ['jekyll-paginate']
+exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png', 'LICENSE', 'clean.sh', 'docker-compose.yml']
