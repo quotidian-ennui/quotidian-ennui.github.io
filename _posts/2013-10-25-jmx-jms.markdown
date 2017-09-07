@@ -1,0 +1,79 @@
+---
+layout: post
+title: "Controlling the adapter via JMX"
+date: 2013-10-25 17:00
+comments: false
+categories: adapter interlok java
+tags: [adapter, interlok, java]
+published: true
+description: "How we control our adapters within the Cirrus community"
+keywords: "JMS, JMX, java"
+
+---
+
+The adapter has supported remote JMX via JMXMP for a while; which means you can connect to an adapter via jconsole, or other tools. The only problem with the reference implementation (e.g. `service:jmx:jmxmp://localhost:5555`) that people tend to use is that it isn't terribly useful if you're managing a community, where the various IT policies aren't going to let unfettered access through their firewall to the adapter; some of our smaller customers they don't even have an IT dept., and talking the business admin through how they need to modify inbound NAT on whatever router it is they're using is not for the faint-hearted (and basically you end up being their IT dept. which is another sorry state of affairs).
+
+<!-- more -->
+
+There is obviously support for different protocols (e.g. Hessian/Burlap via [MX4J][], JSON+HTTP via [Jolokia][]), but they tend to suffer from the same problem. You're physically starting a server on the adapter, against which remote JMX operations are invoked. That gives us the same problem as before, how to traverse NAT/firewall when you're outside it, and security considerations (I have previously used something like MX4J + Hessian + an Embedded jetty instance but you still have to open up ports through the router).
+
+Most of our communities interact using JMS, and the adapter initiates the outbound connection to our broker (so the NAT/Firewall issue goes away; after all they're successfully connected to our hub), so one of the things that we're able to do is to interact with the adapter via JMX over JMS. Under the covers, it uses spring-remoting; some changes were made to make their JMS invoker beans support JMS topics. Out of the box, we have enabled support for ActiveMQ and SonicMQ which are our two most popular community JMS implementations. It's quite a naive implementation, single threaded, not as performant as we would like it; it doesn't exactly fulfil all the requirements of JSR160. In fact we proxy the underlying `javax.jms.ConnectionFactory`, so calls to ConnectionFactory#createConnection() block until the JMS broker is available (this in itself, is mainly to work around some of Spring's own error handling naivety).
+
+Adaptris are moving towards having a formal repository where artefacts can be downloaded by our more technically minded customers (along with any publicly available dependencies). This makes installing this component quite easy, you just have to declare a runtime dependency on it in your dependency manager of choice; make sure it knows about our SNAPSHOT repository which is `http://development.adaptris.net/nexus/content/repositories/snapshots` and download the artefacts. As long time [Apache ANT][] users, we use [Apache Ivy][] to manage our dependencies for basic java projects.
+
+{% highlight xml %}
+<ivysettings>
+  <settings defaultResolver="chain-resolver"/>
+  <resolvers>
+    <chain name="chain-resolver">
+      <ibiblio name="nexus-snapshots" m2compatible="true" root="http://development.adaptris.net/nexus/content/repositories/snapshots" checkmodified="true" changingPattern=".*-SNAPSHOT"/>
+    </chain>
+  </resolvers>
+</ivysettings>
+{% endhighlight %}
+
+{% highlight xml %}
+<ivy-module version="2.0">
+  <dependencies>
+    <dependency org="com.adaptris" name="adp-jmx-jms" conf="runtime->runtime" rev="3.0-SNAPSHOT" changing="true"/>
+    <exclude org="commons-logging"/>
+  </dependencies>
+</ivy-module>
+{% endhighlight %}
+
+{% highlight xml %}
+
+<target name="download" depends="get-ivy">
+  <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+  <ivy:settings file="ivy-settings.xml" />
+  <ivy:resolve file="ivy.xml" refresh="true" conf="*" showprogress="false"/>
+  <ivy:retrieve pattern="${target.lib.dir}/[artifact].[ext]" conf="runtime" type="jar,zip,bundle"/>
+</target>
+
+{% endhighlight %}
+
+Perhaps you're using [Apache Maven][]; if you're cool then perhaps your tool of choice is [Gradle][]. I default to using [Apache ANT][] for builds because it's freeform; [Gradle][] would be my second choice. You just need to make sure your dependency manager understands a Maven 2.x repository. Once you've declared your dependency and downloaded the required artefacts and dependencies then you're ready to configure the adapter's `bootstrap.properties` file to enable JMX over JMS. We use `activemq` and `sonicmq` to differentiate between the two different JMS providers.
+
+{% highlight properties %}
+
+adapterConfigUrl=file://localhost//path/to/my/adapter.xml
+jmxserviceurl=service:jmx:sonicmq:///tcp://SonicMQ_BrokerHost:2506?type=Topic&destination=MyAdapterTopic&brokerUser=Administrator&brokerPassword=Administrator
+#jmxserviceurl=service:jmx:activemq:///tcp://ActiveMQ_BrokerHost:61616?type=Queue&destination=MyAdapterQueue
+#jmxserviceurl.env.brokerUser=Administrator
+#jmxserviceurl.env.brokerPassword=Administrator
+#jmxserviceurl.env.backupBrokers=tcp://BackupCAABroker:2506,tcp://A_BrokerInACluster:2506
+#jmxserviceurl.env.type=Topic
+#jmxserviceurl.env.destination=MyAdapterTopic
+
+{% endhighlight %}
+
+As well as specifying all the possible options in the query-portion of the JMXServiceURL, you can specify them as part of the the initial environment for the JMXConnectorServer implementation; The only caveat is that if the environment property `JMXConnector#CREDENTIALS` is set, then that takes precedence (this means that the username / password combination you type into jconsole is acknowledged and used). Various tuning parameters are available such as timeout, and for SonicMQ backup brokers and the like (the javadocs are a separate artefact that can be downloaded, and always worth a read).
+
+You do need to be aware that any client that is permitted to connect to the JMS provider and send data to the appropriate JMS Destination will be able to interact with the adapter, there is no additional security; for the security conscious make sure there is a ACL/security policy configured so that untrusted clients cannot send requests to JMX enabled adapters. Finally, the code was compiled for Java6, so this is the minimum version of Java that is supported.
+
+[gradle]: http://www.gradle.org/
+[MX4J]: http://mx4j.sourceforge.net/
+[Jolokia]: http://www.jolokia.org/
+[Apache Ivy]: http://ant.apache.org/ivy/
+[Apache ANT]: http://ant.apache.org/
+[Apache Maven]: http://maven.apache.org/
