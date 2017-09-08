@@ -73,7 +73,7 @@ paginate_path:       '/page-:num/'
 # disable_push_state:  true
 
 # Uncomment this line if want to disable the touch drawer on mobile
-disable_drawer: true
+# disable_drawer: true
 
 # -----------------------------------------------------------------------------
 #  Collections
