@@ -85,3 +85,4 @@ With an example JSON response of :
 
 
 [EmbeddedScriptingService]: https://development.adaptris.net/javadocs/v3-snapshot/Interlok-API/com/adaptris/core/EmbeddedScriptingService.html
+[adp-json]: https://development.adaptris.net/nexus/content/groups/public/com/adaptris/adp-json/

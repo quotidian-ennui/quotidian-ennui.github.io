@@ -1,0 +1,32 @@
+230a231,233
+>
+>               local msg=$(gitflow_render_merge_message "$BRANCH" "$MASTER_BRANCH")
+>
+232,234c235,242
+<                       git merge --no-ff "$BRANCH" || \
+<                               die "There were merge conflicts."
+<                               # TODO: What do we do now?
+---
+>                       if [ "$msg" != "" ]; then
+>                               git merge --no-ff -m "$msg" "$BRANCH" || \
+>                                       die "There were merge conflicts."
+>                       else
+>                               git merge --no-ff "$BRANCH" || \
+>                                       die "There were merge conflicts."
+>               fi
+>                       # TODO: What do we do now?
+264a273
+>               local msg=$(gitflow_render_merge_message "$BRANCH" "$DEVELOP_BRANCH")
+268,270c277,284
+<                       git merge --no-ff "$BRANCH" || \
+<                               die "There were merge conflicts."
+<                               # TODO: What do we do now?
+---
+>                       if [ "$msg" != "" ]; then
+>                               git merge --no-ff -m "$msg" "$BRANCH" || \
+>                                       die "There were merge conflicts."
+>                       else
+>                               git merge --no-ff "$BRANCH" || \
+>                                       die "There were merge conflicts."
+>                       fi
+>                       # TODO: What do we do now?
