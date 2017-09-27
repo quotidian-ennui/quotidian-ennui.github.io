@@ -10,7 +10,7 @@ description: "Sometimes you don't want to hide the stacktrace"
 keywords: "interlok"
 ---
 
-Let's suppose that you have an Interlok instance service HTTP requests and the data being transferred around is JSON messages. In the event that an exception happens what would normally happen is an exception is printed in the log file and a HTTP 500 error returned back to the client. What if we want to send more information such as the stack trace back to the caller as a JSON message.
+Let's suppose that you have an Interlok instance servicing HTTP requests and the data being transferred around is JSON messages. In the event that an exception happens what would normally happen is an exception is printed in the log file and a HTTP 500 error returned back to the client. What if we want to send more information such as the stack trace back to the caller as a JSON message.
 
 When an exception is thrown during processing; then 3 things happen
 
@@ -18,7 +18,7 @@ When an exception is thrown during processing; then 3 things happen
 1. The location of the exception is stored as part of object metadata (against the key `java.lang.Exception_Cause`)
 1. The workflow where the exception happened is recorded as normal metadata against the key `workflowId`
 
-We can use [EmbeddedScriptingService][] to build up an exception report that can be rendered as JSON by the Jackson JSON streaming API classes. If you are already depending on the [adp-json][] optional package then you'll already have these classes available to you.
+We can use [EmbeddedScriptingService][] to build up an exception report that can be rendered as JSON by the Jackson JSON streaming API classes[^1]. If you are already depending on the [adp-json][] optional package then you'll already have these classes available to you.
 
 {% highlight xml %}
 
@@ -83,6 +83,10 @@ With an example JSON response of :
 
 {% endhighlight %}
 
+[^1]: Since 3.6.4 we have [exception-as-json][] or [exception-as-json-with-stacktrace][] to obviate the need for the scripting service.
+
 
 [EmbeddedScriptingService]: https://development.adaptris.net/javadocs/v3-snapshot/Interlok-API/com/adaptris/core/EmbeddedScriptingService.html
 [adp-json]: https://development.adaptris.net/nexus/content/groups/public/com/adaptris/adp-json/
+[exception-as-json]: https://development.adaptris.net/javadocs/v3-snapshot/optional/json/com/adaptris/core/json/exception/ExceptionAsJson.html
+[exception-as-json-with-stacktrace]: https://development.adaptris.net/javadocs/v3-snapshot/optional/json/com/adaptris/core/json/exception/ExceptionWithStacktrace.html
