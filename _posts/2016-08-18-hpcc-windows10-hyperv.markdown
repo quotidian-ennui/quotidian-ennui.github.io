@@ -27,6 +27,23 @@ vboxmanage clonehd .\box-disk1.vmdk .\hpcc-6.0.4.vhd -format VHD
 
 {% endhighlight %}
 
+Alternatively if you don't have virtual box installed anywhere then you could use [https://cloudbase.it/qemu-img-windows/](https://cloudbase.it/qemu-img-windows/)
+
+{% highlight text %}
+
+qemu-img.exe convert .\box-disk1.vmdk -O vhdx .\hpcc-6.0.4.vhd
+
+{% endhighlight %}
+
+I personally didn't have much luck with the [Microsoft VMWare Machine Converter](https://www.microsoft.com/en-us/download/details.aspx?id=42497) as it complained about disk database entry descriptor; but YMMV.
+
+{% highlight text %}
+
+Import-Module 'C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.psd1'
+ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath ".\box-disk1.vmdk" -VhdType DynamicHardDisk -VhdFormat vhdx -DestinationLiteralPath ".\hpcc-6.4.2.vhdx"
+
+{% endhighlight %}
+
 ## Create the Hyper-V virtual machine
 
 Create the virtual machine in Hyper-V; binding it to the disk that you've just migrated. The virtal machine details are pretty simple; you'll need to add 2 standard network cards, the second one needs to be bound to the `NAT network` where your new dhcp server is running. You can remove the legacy network cards and/or DVD drives as you wish.
