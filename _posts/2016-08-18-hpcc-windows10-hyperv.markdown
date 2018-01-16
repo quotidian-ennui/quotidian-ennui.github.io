@@ -15,7 +15,7 @@ Now that I don't have VirtualBox installed, I have to migrate my [HPCC Systems][
 
 <!-- more -->
 
-Previously, you'll have created a NAT switch in Hyper-V; now would be a good time to install a quick and dirty DHCP server; you could opt for [http://www.dhcpserver.de](http://www.dhcpdserver.de) which works with minimal fuss. Remember to bind it to only the network cards you want to assign it to. Download a new fresh version of the OVA file, and open it up using your preferred archiver and grab the `box-disk1.vmdk` out of there. If you wish to port an already existing VMDK file (because you've done some prototyping in ECL or whatnot); then you will need to make sure that the assigned IP address that the new virtual machine gets is the same as what was assigned by VirtualBox (it just saves extra configuration work later).
+Previously, you'll have created a NAT switch in Hyper-V; now would be a good time to install a quick and dirty DHCP server; you could opt for [http://www.dhcpserver.de](http://www.dhcpserver.de) which works with minimal fuss. Remember to bind it to only the network cards you want to assign it to. Download a new fresh version of the OVA file, and open it up using your preferred archiver and grab the `box-disk1.vmdk` out of there. If you wish to port an already existing VMDK file (because you've done some prototyping in ECL or whatnot); then you will need to make sure that the assigned IP address that the new virtual machine gets is the same as what was assigned by VirtualBox (it just saves extra configuration work later).
 
 ## Convert VMDK to VHD
 
