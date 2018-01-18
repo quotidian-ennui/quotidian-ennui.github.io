@@ -110,6 +110,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - docker-compose.yml
+  - Dockerfile
 
 kramdown:
   footnote_backlink: '&#x21a9;&#xfe0e;'
