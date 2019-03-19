@@ -10,7 +10,7 @@ keywords: "macos, windows"
 excerpt_separator: <!-- more -->
 ---
 
-I'm a long time Microsoft DOS/WFW/95/NT/2000/XP/Vista/7/10 user on the desktop; I can make it sing and dance exactly to my tune. Where other people complain about Windows, or get frustrated by it; I never have a problem. Now, Windows isn't perfect, far from it, but it's a basically a tool that causes me minimal friction, letting me get on and solve interesting problems; I don't use it in production, just for my desktop. Last summer, I got so annoyed with the corporate build of Windows 10 that I submitted a requisition for a Macbook Pro; I'm not actually sure which model it is, but it has a touch bar and 16Gb of RAM. Now that I've been using it for about 5 months I thought I'd jot down my thouts about the transition. My last long-term experience of the Mac was back in 2007/2008; does it create more or less friction a decade later?
+I'm a long time Microsoft DOS/WFW/95/NT/2000/XP/Vista/7/10 user on the desktop; I can make it sing and dance exactly to my tune. Where other people complain about Windows, or get frustrated by it; I never have a problem. Now, Windows isn't perfect, far from it, but it's a basically a tool that causes me minimal friction, letting me get on and solve interesting problems; I don't use it in production, just for my desktop. Last summer, I got so annoyed with the corporate build of Windows 10 that I submitted a requisition for a Macbook Pro; I'm not actually sure which model it is, but it has a touch bar and 16Gb of RAM. Now that I've been using it for about 5 months I thought I'd jot down my thoughts about the transition. My last long-term experience of the Mac was back in 2007/2008; does it create more or less friction a decade later?
 
 <!-- more -->
 
@@ -64,7 +64,7 @@ The dock seems like a bit of an afterthought, espcially with the menu bar at the
 
 The ugly is all down to how the Macs are managed within our corporate environment; corporate IT seems to be quite Windows centric, so perhaps this is unsurprising; I'm sure there are fixes and workarounds, but life is too short to spend my time trying to fix _problems which shouldn't really be problems if people actually did their fucking job_.
 
-I Can't use Skype for Business / Teams / Outlook without being on the VPN; everything gets horribly confused and breaks. I could never use Outlook on Windows without the VPN, but I could certainly use Teams and Skype.
+I can't use Skype for Business / Teams / Outlook without being on the VPN; everything gets horribly confused and breaks. I could never use Outlook on Windows without the VPN, but I could certainly use Teams and Skype.
 
 Even though I have administrative access, my administrative access _doesn't work well_ unless I'm on the VPN.
 
