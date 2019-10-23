@@ -25,7 +25,7 @@ This is just my own preferences; there's nothing that's terribly interesting her
 
 ### Make sure the mountpoints are the same
 
-This was because I wanted my mount points in WSL to be exactly the same as that for WinGit. I didn't know it at the time, but doing this had the happy side-effect of making docker work nicely. In WSL make sure that your `/etc/wls.conf` contains (this will make all your drives be mounted as _/c_, _/d_ rather than _/mnt/c_)
+This was because I wanted my mount points in WSL to be exactly the same as that for WinGit. I didn't know it at the time, but doing this had the happy side-effect of making docker work nicely. In WSL make sure that your `/etc/wsl.conf` contains (this will make all your drives be mounted as _/c_, _/d_ rather than _/mnt/c_)
 
 ```
 [automount]
