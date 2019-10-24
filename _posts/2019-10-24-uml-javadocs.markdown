@@ -52,7 +52,7 @@ dependencies {
 
 ## Create UML javadocs if graphviz is available
 
-We want the javadoc task to create some javadocs regardless of whether the developer actually has graphviz installed or not[^1]; so we patch the bundled javadoc task so it doesn't execute if graphviz is available, _umlJavadoc_ executes instead when we run `./gradlew javadoc`
+We want the javadoc task to create some javadocs regardless of whether the developer actually has graphviz installed or not[^1]; so we patch the bundled javadoc task so it doesn't execute if graphviz is available, _umlJavadoc_ executes instead when we run `./gradlew javadoc`.
 
 
 ```
@@ -102,7 +102,7 @@ javadoc.dependsOn umlJavadoc
 
 ## Modify your package-info.java
 
-The options detailed above will create a diagram for the package as well as some other things; you probably want to refer to it in your package-info.java
+The options detailed above will create a diagram for the package as well as some other things so you probably want to refer to it in your package-info.java
 
 ```
 /**
@@ -124,7 +124,7 @@ source = sourceSets.main.extensions.delombokTask
 
 #### CircleCI
 
-If you're using [circleCI][][^2] then you can make sure that graphviz is available during your publish, so that your javadocs with the UML built in.
+If you're using [circleCI][][^2] then you can make sure that graphviz is available during your publish, so that your javadocs are published with the UML built in.
 
 ```
   publish:
@@ -171,4 +171,4 @@ If you're using [circleCI][][^2] then you can make sure that graphviz is availab
 [circleCI]: https://circleci.com
 
 [^1]: I always try to make things work without forcing specific directory structures / installed software on other people.
-[^2]: Other CI tools are available; is just happen to use circleci because it was the easiest to build with both java8 & java11
+[^2]: Other CI tools are available; I just happen to use circleci because it's easy to build with both java8 & java11
