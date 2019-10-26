@@ -102,7 +102,7 @@ javadoc.dependsOn umlJavadoc
 
 ## Modify your package-info.java
 
-The options detailed above will create a diagram for the package as well as some other things so you probably want to refer to it in your package-info.java
+Depending on the version of umldoclet; you may have to modify your package-info.java to refer to your lovely pic. In later versions, it actually generates `object` refs that do that for you in the package summary, so you don't need to. If you do need to, then it's as simple as
 
 ```
 /**
