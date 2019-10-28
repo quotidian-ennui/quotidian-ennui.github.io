@@ -89,5 +89,5 @@ You can see the result of the scan on one of the [Interlok](https://interlok.ada
 
 [^1]: Other code analysis tools are available, like scrutinizr, PMD, etc
 [^2]: You can argue this is a style thing; but this is absolutely a false positive.
-[^3]: I'm not ashamed to say that I turned the air turned blue.
+[^3]: I'm not ashamed to say that I turned the air blue.
 [^4]: Our travis/circleci configuration may install database instances for test purposes into the test image with the passwords in plain text, but since we don't use either to publish anything...
