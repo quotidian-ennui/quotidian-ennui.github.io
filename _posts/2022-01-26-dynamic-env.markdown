@@ -41,20 +41,15 @@ function windows_hostip() {
 
 function wsl_hostip() {
   # WSL1 has multiple addresses
-  # WS2 only has one...
+  # WSl2 only has one...
   local ipAddrs=$(expr "$(hostname -I)" : '[[:space:]]*\(.*\)[[:space:]]*$')
   local ipAddrArray=($ipAddrs)
   if [ "${#ipAddrArray[@]}" -eq 1 ]; then
     echo ${ipAddrArray[-1]}
   else
-    ## has to be a better way.
-    local ipPrefix=$(ip route show default | cut -d ' ' -f 4 | cut -d '.' -f 1,2,3 --output-delimiter=".")
-    for ip in "${ipAddrArray[@]}"; do
-      if [[ $ip == $ipPrefix* ]]; then
-        echo $ip
-        break
-      fi
-    done
+    local nw_card=$(ip route show default | cut -d' ' -f 6)
+    local ipAddress=$(ip -4 -br addr show $nw_card | awk -F' ' '{print $2}' | awk -F'/' '{print $1}' )
+    echo $ipAddress
   fi
 }
 
