@@ -12,13 +12,15 @@ excerpt_separator: <!-- more -->
 
 I've been making my first foray into deploying some things into K8S. I've never really used it in anger to deploy something that I have a personal relationship with. My trusted peers tell me that [kind](https://kind.sigs.k8s.io/) is probably one of the better ways to start with K8S; I've also got a use case where I'm intending to build a cluster at home (via a bunch of RPIs) and since microk8s touts itself has being zero-ops and it has a KEDA add on I thought I'd give it a spin.
 
-This is 2 days worth of fun, mostly wrestling with my search engine of choice for the right terms to narrow down to my specific problem. In many respects nothing that I'm doing is new or special and should have been painless; but once you get past the _most trivial of examples_ you're in a world of search pain or stack overflow noise if you aren't already an Kubernetes expert. So, this is a blog post that tries to save you pain with a non-trivial trivial example of deploying something you could use in the real world.
+This is 2 days worth of fun, mostly wrestling with my search engine of choice for the right terms to narrow down to my specific problem (with microk8s). In many respects nothing that I'm doing is new or special and should have been painless; but once you get past the _most trivial of examples_ you're in a world of search pain or stack overflow noise if you aren't already an Kubernetes expert. So, this is a blog post that tries to save you pain with a non-trivial trivial example of deploying something into kubernetes via MicroK8S
 
-I'm going to bootstrap a single kubernetes node with an ingress controller running ActiveMQ, Elasticsearch and Kibana. This is easy to do if you were using docker compose, and that's what I would usually do, but I wanted to play with KEDA since I have an interest in understanding how to autoscale workers that are attached to JMS, and what gotcha's I need to think about.
+I'm going to bootstrap a single kubernetes node with an ingress controller running ActiveMQ, Elasticsearch and Kibana. This is easy to do if you were using docker compose, and that's what I would usually do, but I wanted to play with KEDA since I have more than a passing interest in understanding how to autoscale workers that are attached to JMS, and what gotcha's I need to think about.
 
 <!-- more -->
 
 ## Things that I wish I knew before I started.
+
+> I would use MicroK8S in my personal 'production' environment I'm confident that it would work across my cluster of Raspberry PIs; however, on a windows based machine, running a single sandbox environment, I'm not so keen. I probably _wouldn't trust the addons_ that much since Canonical have clearly put their own spin on things and I'm interested to see how the differences in opinion evolve.
 
 This is just an assorted list of things that I wish I knew but still blundered my way through via a combination of brute force and ignorance.
 
@@ -33,7 +35,9 @@ This is just an assorted list of things that I wish I knew but still blundered m
 
 # Bootstrap MicroK8S
 
-- Install it, and afterwards follow [https://microk8s.io/docs/dockerhub-limits] for your preferred method to handling rate limiting.
+The gists used here are all [public on github](https://gist.github.com/quotidian-ennui/575546ba89ea0f4dfe8276fb7a845ef8); they're not that clever, but you can use it as a jumping off point.
+
+- Install it, and afterwards follow [https://microk8s.io/docs/dockerhub-limits](https://microk8s.io/docs/dockerhub-limits) for your preferred method to handling rate limiting.
     - I opted for `microk8s kubectl create secret docker-registry dockerhub --docker-server=https://index.docker.io/v1/ --docker-username=myUsername --docker-password=XXXXXXX --docker-email=myemail@example.com` because this seems like the _right thing to do_, the various yaml files reflect that my image secrets are in a secrets called `dockerhub`
 - `microk8s enable ingress dashboard dns registry helm3`
 - `microk8s kubectl apply -f https://github.com/kedacore/keda/releases/download/v2.6.1/keda-2.6.1.yaml`
@@ -59,6 +63,8 @@ You should switch to using DNS Names rather than the derived IP Addresses with k
 
 I live in the wingit+bash shell but I appear to have some trouble typing _micro_ repeatedly so here's a bunch of aliases to make my life easier. I know that I'm going to us an ingress controller and I want to be able to start my browser with _http://activemq.microk8s.local_ and hit the admin interface for activemq so I am modifying the hosts file _whenever I start microk8s_[^1].
 
+This is what I put into my [~/.bash_profile](https://gist.github.com/quotidian-ennui/575546ba89ea0f4dfe8276fb7a845ef8#file-bash_profile_aliases)
+
 ```bash
 mk8s() {
   local action=$1
@@ -78,6 +84,7 @@ mk8s() {
       mk8s_host=$(multipass info microk8s-vm | grep IPv4 | awk '{ print $2}')
       # This does mean we get the secure desktop yes/no prompt.
       sudo $HOME/bin/microk8s-hosts.ps1 -ip "$mk8s_host"
+      ;;
     token )
       # Gives you the token for the dashboard
       ## using get secret + go template would be better but falls foul of blog templating...
@@ -125,7 +132,7 @@ kubernetes-dashboard        NodePort    10.152.183.247   <none>        443:31635
 
 ## Bootstrap the namespace
 
-If you're going to use helm3 with local files (i.e. you want to modify my gists) then We need to mount _a directory_ on the multipass VM; on Windows I had set privileged-mounts to be true (`multipass set local.privileged-mounts=true`). Note that when you pass in the filename via wingit+bash you need to do a `//` otherwise it will try and do some kind of local path resolution, so `helm3 -f //mnt/quotidian-ennui/xxx.yml`.
+If you're going to use helm3 with local files (i.e. you want to modify my gists) then we need to mount _a directory_ on the multipass VM; on Windows I had set privileged-mounts to be true (`multipass set local.privileged-mounts=true`). Note that when you pass in the filename via wingit+bash you need to do a `//` otherwise it will try and do some kind of local path resolution, so `helm3 XXX -f //mnt/quotidian-ennui/xxx.yml`.
 
 - `multipass mount . microk8s-vm:/mnt/quotidian-ennui`
 - `mkctl create namespace quotidian-ennui`
@@ -159,7 +166,7 @@ Note that the `lewinc/activemq:latest-liberica-alpine` referenced in the activem
 
 # Elasticsearch
 
-Well, elasticsearch has a helm chart so we can just use `microk8s helm3` to install it once we've figured out precisely what we want. I want a single node elastic search instance, it's a sandbox and I don't really care about resilience.
+Well, elasticsearch has a helm chart so we can just use `microk8s helm3` to install it once we've figured out precisely what we want. I want a single node elastic search instance, it's a sandbox and I don't really care about resilience. I shamelessly copied their examples from their helm chart repo.
 
 ```console
 $ mk8s helm3 repo add elastic https://helm.elastic.co
