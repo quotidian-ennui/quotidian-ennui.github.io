@@ -10,7 +10,7 @@ keywords: ""
 excerpt_separator: <!-- more -->
 ---
 
-You know what they they say, you can always run Linux on your old hardware. I have a Mac Mini, more specifically a `Apple Inc. Macmini7,1/Mac` c. 2015/2016 whose usefulness is now at an end. It's worth pointing out here that I don't think this particular Mac was actually ever any good as a long term piece of kit; soldered RAM and having to break out my torx screw driver set never equates to fun times in my book. Still, it should be fine with Linux running on it, being a spare Kubernetes node in my homelab...
+You know what they say, you can always run Linux on your old hardware to make it useful again. I have a Mac Mini, more specifically a `Apple Inc. Macmini7,1/Mac` circa 2015/2016 whose usefulness is now at an end. It's worth pointing out here that I don't think this particular Mac was actually ever any good as a long term piece of kit; soldered RAM and having to break out my torx screw driver set never equates to fun times in my book. Still, it should be fine with Linux running on it, being a spare Kubernetes node in my homelab...
 
 <!-- more -->
 
