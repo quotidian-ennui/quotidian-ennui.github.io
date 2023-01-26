@@ -1,24 +1,33 @@
 # The primary author of this blog.
 # Must be the same as `author` in `_config.yml`.
-# Change `qwtel` to your shortname (used in the front matter to set a page's author, e.g. `author: qwtel`).
+# Change `author1` to your shortname.
 lewinc:
   name:              Lewin Chan
   # email:             <mail@domain.tld>
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
-  # about:             |
+#  about:             |
+#     "Because great acts are all made up of small deeds, the wise man attempts nothing very big." -- The narrator of Monkey!
 
   # This photo will be used in the about section
   picture:
     src:             https://gravatar.com/avatar/5eebc8c1e6fcabfc72e329c08df7bf84?size=140
+    # srcset is optional, but can be used to provide higher res versions for retina displays
+    # srcset:
+      # 1x:            https://via.placeholder.com/128x128
+      # 2x:            https://via.placeholder.com/256x256
 
   # Social media icons in sidebar
   # Comment/uncommet to show/hide
-  # Icons appear in order, can be rearranged:
+  # Rearrange to change the order in which they appear
   social:
+    github:          quotidian-ennui
+    linkedin:        lewinchan
+    rss:             https://quotidian-ennui.github.io/feed.xml
+    # email:           <mail@domain.tld>
+    # rss:             https://<url>/feed.xml
     # facebook:        <username>
-    # twitter:         <username>
     # google:          <number>
     # vk:              <username>
     # youtube:         <string_string_string>
@@ -41,16 +50,15 @@ lewinc:
     # pinterest:       <username>
     # foursquare:      <number>
     # yelp:            <string>
-    github:          quotidian-ennui
     # stackoverflow:   <number/username>
     # npm:             <username>
     # hackernews:      <username>
     # trello:          <firstnamelastname>
-    linkedin:        lewinchan
+    # linkedin:        <firstname-lastname-string>
     # xing:            <firstname_lastname_counter>
     # blogger:         <number>
     # delicious:       <username>
     # stumbleupon:     <username>
     # paypal:          <username>
-    # email:           mailto:<mail@domain.tld>
-    rss:             https://quotidian-ennui.github.io/feed.xml
+    # download:        <url>
+    # keybase          <username>
