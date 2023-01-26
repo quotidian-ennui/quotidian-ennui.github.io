@@ -3,7 +3,7 @@ layout: post
 title: "HTTPS Jetty error"
 date: 2012-09-28 13:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Figuring out an obscure jetty error in the adapter"
@@ -16,7 +16,7 @@ Recently our integrations team have been deploying some HTTPS enabled adapters t
 <!-- more -->
 
 The error message was a continual stack trace along these lines being logged to the adapter log file, the adapter was still working and happily processing requests from other partners:
-{% highlight text %}
+```text
 2012-09-25 13:22:03,576 DEBUG [qtp4349625-31] [log] EXCEPTION
 javax.net.ssl.SSLException: Connection has been shutdown: javax.net.ssl.SSLException: java.net.SocketException: Connection reset
         at com.sun.net.ssl.internal.ssl.SSLSocketImpl.checkEOF(SSLSocketImpl.java:1255)
@@ -60,7 +60,7 @@ javax.net.ssl.SSLException: Connection has been shutdown: javax.net.ssl.SSLExcep
         at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:214)
         at org.eclipse.jetty.server.HttpConnection.handle(HttpConnection.java:411)
         at org.eclipse.jetty.server.bio.SocketConnector$ConnectorEndPoint.run(SocketConnector.java:241)
-{% endhighlight %}
+```
 
 They verified the problem running on a local adapter, and it didn't take me too long to figure out what the problem was. Basically they were using a self-signed certificate and what our customer had done was to try and connect to the adapter using his browser; and once he'd done that it started generating all the spurious logging. The root cause is the termination of the SSL negotiation while the browser comes up with the _This connection is untrusted because we can't verify the sites identity; do you want to continue?_ page. Easy to fix once you know what the problem is.
 
@@ -70,11 +70,11 @@ There are two solutions to the problem, and we used both in the end.
     - Once we imported the self-signed certificate into Firefox, the stack trace logging went away
 - Second and most expedient, change log4j.xml to simply not output the logging because it's not terribly relevant and can be safely ignored (it's logging @ DEBUG level, and it's information that you don't care about).
 
-{% highlight xml%}
+```xml
 <logger name="org">
   <level value="FATAL"/>
 </logger>
-{% endhighlight %}
+```
 
 ## Actually using a real certificate
 
@@ -88,7 +88,7 @@ We ended up going with the instructions from [http://www.agentbob.info/agentbob/
     * Change line 147 from <code>certs = (Certificate[])c.toArray();</code> to <code>certs = (Certificate[])c.toArray(new Certificate[0]);</code>
 * Compile and execute ImportKey.java
 
-{% highlight console%}
+```console
 [lchan@acheron ~]$ # Here our files are mycert.pem (the signed cert from the CA), mykey.pem (our private key file),
 [lchan@acheron ~]$ # intermediate.pem (the intermediate certificates for the chain).
 
@@ -111,7 +111,7 @@ Certificate chain length: 2
 Key and certificate stored.
 Alias:importkey  Password:importkey
 
-{% endhighlight %}
+```
 
 Afterwards you can use keytool/portecle to modify the keystore alias/passwords and whatnot as desired and start using them in jetty.
 

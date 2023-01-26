@@ -3,7 +3,7 @@ layout: post
 title: "Decentralised Autonomy vs Centralised Control"
 date: 2017-09-27 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: ""
@@ -19,4 +19,4 @@ You can get economies of scale if you centralise, but you become less responsive
 
 This kind of friction will often become apparent when an acquisition happens. The acquired company is used to doing things a certain way, sometimes their local knowledge and expertise will run rings around your centralised function. In situations like that it's better to have a loose framework in which things can get done than it is to try and centralise everything. Eventually centralisation will happen, but first you'll need to build trust and work with them to make sure the centralised function is fit for purpose and that will take time and commitment from both sides.
 
-Whether something is going to be a tactical piece of work or strategic is generally my guide for whether you need to be centralise or not. Tactical things can easily done in a decentralised manner using local development teams, perhaps packaging up for outsourcing. Strategic solutions are going to underpin your business, so you will need to drive different behaviours. Of course tactical solutions may become strategic, you still need to keep an eye on them and review them; if they become strategic, you can centralise then to make sure that development is aligned with the business strategy. 
+Whether something is going to be a tactical piece of work or strategic is generally my guide for whether you need to be centralise or not. Tactical things can easily done in a decentralised manner using local development teams, perhaps packaging up for outsourcing. Strategic solutions are going to underpin your business, so you will need to drive different behaviours. Of course tactical solutions may become strategic, you still need to keep an eye on them and review them; if they become strategic, you can centralise then to make sure that development is aligned with the business strategy.

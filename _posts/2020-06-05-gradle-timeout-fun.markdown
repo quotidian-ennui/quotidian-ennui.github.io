@@ -3,7 +3,7 @@ layout: post
 title: "Gradle timeout fun"
 comments: false
 tags: [development,java]
-categories: [development,java]
+#categories: [development,java]
 published: true
 description: "Corporate transparent proxies are always fun"
 keywords: ""

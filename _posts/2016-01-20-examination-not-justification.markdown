@@ -3,7 +3,7 @@ layout: post
 title: "Examination not justification"
 date: 2016-01-20 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: "The unexamined life is not worth living - Socrates via Plato."

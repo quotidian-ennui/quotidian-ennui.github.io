@@ -3,7 +3,7 @@ layout: post
 date: 2016-12-09 11:00
 comments: false
 tags: [adapter, interlok]
-categories: [adapter, interlok]
+#categories: [adapter, interlok]
 published: true
 title: "Using Exceptions for Flow Control"
 description: "GOTOs are back, or perhaps they never went away."
@@ -19,7 +19,7 @@ We recently had to integrate with an API that would provide us with all the new 
 
 One of our consultants decided to use [BranchingServiceCollection][] as a loop. This has always been possible, though not explicitly documented; if any service in a [BranchingServiceCollection][] returns `true` for _isBranching()_ then it is allowed to dictate the id of the next _Service_ that will be executed by the collection. Most of the time, only the `first-service-id` does that which means that it effectively becomes a if/else construct.
 
-{% highlight xml %}
+```xml
 
 <service-list>
   <services>
@@ -99,7 +99,7 @@ One of our consultants decided to use [BranchingServiceCollection][] as a loop. 
   </services>
 </service-list>
 
-{% endhighlight %}
+```
 
 Since 3.4.1 we've had [BranchingServiceEnabler][] which wraps any other service which returns `true` for _isBranching()_ and allows you to control the behaviour of [BranchingServiceCollection][] without additional work. Put simply, if the wrapped service throws an exception, then the `fail-id` is used as the next service, otherwise `success-id` is used. With this in mind what he's done is quite elegant. Essentially we flip-flop between two services until we no longer have a `next_page_url`. Actual errors processing calls to the API are rethrown and result in a failure. When we have read all the documents and `next_page_url` no longer exists in the JSON (we fail to json-path it out); we throw an exception that is handled as a loop termination marker and we finally fall out of the self-imposed loop.
 

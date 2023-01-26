@@ -3,7 +3,7 @@ layout: post
 title: "Legacy EDI to a cloud enabled platform"
 date: 2013-04-02 09:00
 comments: false
-categories: adapter integration interlok
+#categories: [adapter, integration, interlok]
 tags: [adapter, interlok, integration]
 published: true
 description: "We replaced an entire mainframe with a couple of adapters; here's what happened."

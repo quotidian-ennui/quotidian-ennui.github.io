@@ -3,7 +3,7 @@ layout: post
 title: "Web proxy using Squid"
 date: 2013-06-25 10:00
 comments: false
-categories: tech
+#categories: [tech]
 tags: [tech]
 published: true
 description: "My daughter going to bypass my safety filters; that doesn't mean I shouldn't at least try."
@@ -29,7 +29,7 @@ I created a ``wpad`` A record in bind so that wpad.chan.net resolves to an actua
 
 My changes from the example are shown below with enough of the context to show you where I added them.
 
-{% highlight text %}
+```text
 
 acl SSL_ports port 443
 acl mail_ports port 993         # imaps
@@ -47,13 +47,13 @@ http_access deny CONNECT !SSL_ports
 # ... rest of the squid file.
 # At the bottom of the file.
 url_rewrite_program /usr/bin/squidguard -c /etc/squid/squidguard.conf
-{% endhighlight %}
+```
 
 I've basically added definitions for _mail_ports_ and _im_ports_; these are then available for the various IM clients to use the proxy CONNECT directive to connect to. Port 993 is the standard port for IMAPS which because I've configured gmail in the Windows 8 Mail application; it will try to access via the proxy (according to the squid logs). Then we're denying all other CONNECT requests to anything other than the standard SSL port.
 
 Squidguard is next, and I've used a very minimal configuration (/etc/squid/squidguard.conf); you can blacklist what you want based on the squidguard-blacklists.conf example. After configuration I rebuilt the squidguard database (it might not have been done yet) using ``squidguard -C all`` and then restarted squid.
 
-{% highlight text %}
+```text
 
 #
 # CONFIG FILE FOR SQUIDGUARD
@@ -85,7 +85,7 @@ acl {
                 redirect        http://proxy.chan.net/blocked.html
         }
 }
-{% endhighlight %}
+```
 
 
 I now have a proxy configured and tested it (I went to one of the domains listed in /var/lib/squidguard/gambling/domains); if you've been successful, then you will see your blocked.html page (or a 404 error saying blocked.html couldn't be found). With the proxy running I now needed to notify all the clients to use the proxy; we can do that via WPAD (Web Proxy Auto Discovery) and DHCP.
@@ -94,7 +94,7 @@ I now have a proxy configured and tested it (I went to one of the domains listed
 
 The history behind option-252 is long and varied; it's only interesting in the sense that we can use it to send information back to our clients with the proxy URL.
 
-{% highlight text %}
+```text
 
 option wpad code 252 = text;
 option wpad "http://proxy.chan.net/proxy.pac ";
@@ -105,22 +105,22 @@ class "MSFT" {
   option dhcp-parameter-request-list = concat(option dhcp-parameter-request-list, fc);
 }
 
-{% endhighlight %}
+```
 
-There's one thing that is of note here; I have put a space at the end of my proxy URL; this is to work-around some instances where an Microsoft client will strip off the last character due to trying to NUL terminate the string (I suspect by now this is resolved, as the last reference to it that I've found is around 2009); this in itself leads to some odd behaviour described later on. 
+There's one thing that is of note here; I have put a space at the end of my proxy URL; this is to work-around some instances where an Microsoft client will strip off the last character due to trying to NUL terminate the string (I suspect by now this is resolved, as the last reference to it that I've found is around 2009); this in itself leads to some odd behaviour described later on.
 
 ### The proxy.pac file ###
 
 The simplest possible proxy.pac file is as follows; more complicated examples abound on the net; some good notes can be found at the [ProxyPacFiles][] website.
 
-{% highlight javascript %}
+```javascript
 
 function FindProxyForURL(url, host)
 {
   return "PROXY 172.16.0.1:3128";
 }
 
-{% endhighlight %}
+```
 
 I added this file into my virtual hosts document root as ``proxy.pac`` and made 3 symbolic links to it, their names were "``proxy.pac ``" (there is a trailing space), "``proxy.pac%20``", "``wpad.dat``" for reasons that will become clear. Generally speaking the two files that should be called into action will be proxy.pac (for those clients that work with dhcpd option 252), and wpad.dat for those clients that have tried to auto-configure using a DNS name along the lines of ``http://wpad/wpad.dat``.
 
@@ -132,14 +132,14 @@ Here's a list of changes that I had to do to cope with various client configurat
 
 With the iPhone I needed to specifically configure the HTTP proxy to be AUTO for the wireless network (it defaults to NONE); even after that the iPhone had a problem with the proxy auto configuration file; it can't find it. The access_log for httpd has
 
-{% highlight text %}
+```text
 
 172.16.2.2 - - [17/Jun/2013:20:45:16 +0100] "GET /proxy.pac%20 HTTP/1.1" 404 296 "-" "Chrome/27.0.1453.10 CFNetwork/609.1.4 Darwin/13.0.0"
 172.16.2.2 - - [17/Jun/2013:20:45:16 +0100] "GET /proxy.pac%20 HTTP/1.1" 404 296 "-" "Chrome/27.0.1453.10 CFNetwork/609.1.4 Darwin/13.0.0"
 172.16.2.2 - - [17/Jun/2013:21:12:23 +0100] "GET /proxy.pac%2520 HTTP/1.1" 404 298 "-" "MobileSafari/8536.25 CFNetwork/609.1.4 Darwin/13.0.0"
 172.16.2.2 - - [17/Jun/2013:21:12:25 +0100] "GET /proxy.pac%2520 HTTP/1.1" 404 298 "-" "syncdefaultsd (unknown version) CFNetwork/609.1.4 Darwin/13.0.0"
 
-{% endhighlight %}
+```
 
 It's looking for the wrong file entirely; ``%25`` is the encoded form for ``%``; which isn't as crazy as it seems (but is in fact utterly wrong); that's the reason for the symlink "``proxy.pac%20``". Using Chrome on iOS, then you get the correct behaviour; it looks for the actual file specified in dhcpd.conf option which is "``proxy.pac ``" (with a space).
 

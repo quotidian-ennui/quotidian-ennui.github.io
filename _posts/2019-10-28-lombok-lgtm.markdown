@@ -3,7 +3,7 @@ layout: post
 title: "Using LGTM when using lombok in java"
 comments: false
 tags: [development,java,interlok]
-categories: [development,java,interlok]
+#categories: [development,java,interlok]
 published: true
 description: "Code analysis is good; some code analyzers are closer to my definition of useful"
 keywords: ""

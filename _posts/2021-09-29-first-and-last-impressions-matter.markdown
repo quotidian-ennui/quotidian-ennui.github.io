@@ -3,7 +3,7 @@ layout: post
 title: "First and last impressions matter"
 comments: false
 tags: [general]
-categories: [general]
+#categories: [general]
 published: true
 description: "It's a truism; but is it that self-evident to people?"
 keywords: ""

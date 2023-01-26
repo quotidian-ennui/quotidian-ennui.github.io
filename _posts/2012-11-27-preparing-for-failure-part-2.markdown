@@ -3,7 +3,7 @@ layout: post
 title: "Preparing for failure; part 2"
 date: 2012-11-27 10:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: "Setting the foundations for project success"

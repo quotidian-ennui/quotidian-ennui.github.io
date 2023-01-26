@@ -3,7 +3,7 @@ layout: post
 date: 2017-03-29 09:00
 comments: false
 tags: [adapter, interlok]
-categories: [adapter, interlok]
+#categories: [adapter, interlok]
 published: true
 title: "e.printStackTrace() as JSON"
 description: "Sometimes you don't want to hide the stacktrace"
@@ -20,7 +20,7 @@ When an exception is thrown during processing; then 3 things happen
 
 We can use [EmbeddedScriptingService][] to build up an exception report that can be rendered as JSON by the Jackson JSON streaming API classes[^1]. If you are already depending on the [adp-json][] optional package then you'll already have these classes available to you.
 
-{% highlight xml %}
+```xml
 
   <message-error-handler class="standard-processing-exception-handler">
     <processing-exception-service class="service-list">
@@ -59,7 +59,7 @@ We can use [EmbeddedScriptingService][] to build up an exception report that can
     </processing-exception-service>
   </message-error-handler>
 
-{% endhighlight %}
+```
 
 So our exception handling chain becomes :
 
@@ -72,7 +72,7 @@ So our exception handling chain becomes :
 
 With an example JSON response of :
 
-{% highlight json %}
+```json
 
 {
   "workflow" : "rectangle@schema-validator",
@@ -81,7 +81,7 @@ With an example JSON response of :
   "exception" : "...skipped for brevity"
 }
 
-{% endhighlight %}
+```
 
 [^1]: Since 3.6.4 we have [exception-as-json][] or [exception-as-json-with-stacktrace][] to obviate the need for the scripting service.
 

@@ -3,7 +3,7 @@ layout: post
 title: "So your backend system isn't cloud ready"
 date: 2013-03-28 09:00
 comments: false
-categories: adapter integration interlok
+#categories: [adapter, integration, interlok]
 tags: [adapter, interlok, integration]
 published: true
 description: "Your backend system isn't cloud-ready, that's not a big deal if you have an adapter."
@@ -19,7 +19,7 @@ In our brave new cloud-based world a lot of integration happens over the web via
 
 The Adapter comes with Jetty built in and configurable as a connection type and consumer. It's very easy to build a very simple HTTP workflow that receives some data, and just does some stuff, and send a reply back to the client request. So, one of the very simplest workflows you could have is one that takes in some data, applies a transformation to it, and gives the response back to the client.
 
-{% highlight xml %}
+```xml
 
 <channel>
   <unique-id>receive-via-http</unique-id>
@@ -52,7 +52,7 @@ The Adapter comes with Jetty built in and configurable as a connection type and 
     </workflow>
   </workflow-list>
 </channel>
-{% endhighlight %}
+```
 
 You can compose complicated behaviour based on this example, the services you want to apply could be anything, a database lookup, a SAP BAPI invocation; all you need to do is to remember to have a [ResponseProducer](http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/http/jetty/ResponseProducer.html) as the registered producer; that will write the reply back to the client. You could have workflows that map to different resources that do a multitude of different things.
 

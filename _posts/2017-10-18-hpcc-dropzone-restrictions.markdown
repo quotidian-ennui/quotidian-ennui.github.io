@@ -4,7 +4,7 @@ title: "HPCC 6.4.2: dfuplus fails to spray files"
 date: 2017-10-18 13:00
 comments: false
 tags: [tech, hyper-v]
-categories: [tech, hyper-v]
+#categories: [tech, hyper-v]
 published: true
 description: ""
 keywords: "hyper-v, hpcc, dfuplus"

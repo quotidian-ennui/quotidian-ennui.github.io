@@ -3,7 +3,7 @@ layout: post
 title: "FIPS certified algorithms"
 date: 2014-05-29 17:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Using FIPS certified algorithms with Interlok"
@@ -31,7 +31,7 @@ If you install Websphere MQ Explorer / Websphere MQ client then you will get a b
 
 Supposing you want to keep using your existing JVM, but you want to use the _IBMJSSE2/IBMJCEFIPS_ providers, then provided that you have access to an IBM JRE, then you can manually copy some jars from the IBM JRE into your own JVM instance (I tend to use the `$JAVA_HOME/jre/lib/ext` directory)[^3]. The list of jars that I find sufficient for FIPS SSL can be found below, note that this is not a definitive list, this is just a list that has worked for me; your mileage may vary.
 
-{% highlight text %}
+```text
 
 24/04/2013  15:45           214,151 ibmcmsprovider.jar
 24/04/2013  15:45           372,479 ibmjcefips.jar
@@ -41,11 +41,11 @@ Supposing you want to keep using your existing JVM, but you want to use the _IBM
 24/04/2013  15:45         1,147,135 ibmpkcs.jar
 24/04/2013  15:45           361,080 ibmpkcs11impl.jar
 
-{% endhighlight %}
+```
 
 After that you need to patch `$JAVA_HOME/jre/lib/security/java.security` to add in the IBMJSSE providers before the default SunJSSE provider, or make sure to use an override java.security file every time you start the JVM (using the `java.security.properties` system property).
 
-{% highlight properties %}
+```properties
 
 security.provider.1=sun.security.provider.Sun
 security.provider.2=sun.security.rsa.SunRsaSign
@@ -56,7 +56,7 @@ security.provider.6=com.sun.net.ssl.internal.ssl.Provider
 security.provider.7=com.sun.crypto.provider.SunJCE
 .. Rest of the providers below.
 
-{% endhighlight %}
+```
 
 
 [Oracle Docs]: http://docs.oracle.com/javase/7/docs/technotes/guides/security/jsse/FIPS.html

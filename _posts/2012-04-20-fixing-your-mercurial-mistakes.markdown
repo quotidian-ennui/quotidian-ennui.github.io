@@ -3,7 +3,7 @@ layout: post
 title: "Fixing your mercurial mistakes after the fact"
 date: 2012-04-20 13:00
 comments: false
-categories: tech development scm
+#categories: [tech, development, scm]
 tags: [tech, development, scm]
 published: true
 description: "Tidying up after yourself when you screw things up in mercurial"
@@ -25,7 +25,7 @@ Ok; so the scenario is, Alice and Bob are writing code, and sharing it via a cen
 
 You can revert the last transaction by using the _rollback_ command which allows you to rollback the last transaction; a fetch or pull treats all the changesets that were pulled as a single transaction so it's quite easy to rollback all the changes that you've pulled.
 
-{% highlight console %}
+```console
 lchan@atom /work/code
 $ hg fetch
 pulling from /work/staging_code
@@ -40,7 +40,7 @@ lchan@atom /work/code
 $ hg rollback
 repository tip rolled back to revision 1703 (undo pull)
 working directory now based on revision 1703
-{% endhighlight %}
+```
 
 If you are using the _fetch_ extension then this will leave some files that have been _merged_ but not checked in. You almost *certainly* want to do _hg update --clean_ to get rid of all the evidence now.
 
@@ -58,7 +58,7 @@ Ok; You've been happily checking your code into your local repository; your code
 
 This is where the _backout_ command comes in. It won't delete the change you've made, but what it will do is create a new change that _reverses_ the change that you made (you've kept the history, and if you had to, you can revert back to the reverted back code). For example, I need to back out change 1704 and get rid of those _now not so awesome_ changes.
 
-{% highlight console %}
+```console
 $ hg log
 changeset:   1705:b05f76acb193
 tag:         tip
@@ -86,7 +86,7 @@ merging build.xml
 3 files to edit
 0 files updated, 1 files merged, 0 files removed, 0 files unresolved
 (branch merge, don't forget to commit)
-{% endhighlight %}
+```
 
 
 

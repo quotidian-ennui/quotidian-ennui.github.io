@@ -4,7 +4,7 @@ title: "Advanced Adapter Error Handling"
 date: 2012-02-24 17:00
 published: true
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Setting up the adapter for multiple ways of handling errors"
@@ -26,7 +26,7 @@ Of course; behaviour like this is not without associated cost. If the services t
 
 Let's see an example configuration that does stuff.
 
-{% highlight xml %}
+```xml
 <message-error-handler xsi:type="java:com.adaptris.core.StandardProcessingExceptionHandler">
   <processing-exception-service xsi:type="java:com.adaptris.core.ServiceList">
     <!-- First of all; let's write the message out to an errors directory.
@@ -79,7 +79,7 @@ Let's see an example configuration that does stuff.
     </service>
   </processing-exception-service>
 </message-error-handler>
-{% endhighlight %}
+```
 
 So what does message-error-handler do?
 
@@ -93,7 +93,7 @@ So what does message-error-handler do?
 
 If we configure a workflow like this, we can see what happens quite easily.
 
-{% highlight xml %}
+```xml
 <workflow xsi:type="java:com.adaptris.core.StandardWorkflow">
   <unique-id>AlwaysFails</unique-id>
   <consumer xsi:type="java:com.adaptris.core.fs.FsConsumer">
@@ -110,13 +110,13 @@ If we configure a workflow like this, we can see what happens quite easily.
     </service>
   </service-collection>
 </workflow>
-{% endhighlight %}
+```
 
 ### Testing our config
 
 Right then, we can start it up and copy a test message in to *messages-adapter-in*. For our purposes the document is a very simple XML document that looks like
 
-{% highlight xml %}
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Envelope>
   <Palindrome>Pack My Box With A Dozen Liqour Jugs</Palindrome>
@@ -125,11 +125,11 @@ Right then, we can start it up and copy a test message in to *messages-adapter-i
     <a2>A2</a2>
   </debug>
 </Envelope>
-{% endhighlight %}
+```
 
 After 20 seconds or so, we can see that eventually a couple of new directories are created *messages/errors* and *messages/error-reports*; which is exactly what we expected. message/errors just contains the original file, along with the stacktrace in a MIME encoded file, but messages/error-reports contains a nicely formatted XML document that contains both the original message and the stacktrace in the XML.
 
-{% highlight xml %}
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Root>
   <Envelope>
@@ -157,7 +157,7 @@ com.adaptris.core.ServiceException: Oh Boy, ThrowExceptionService threw an Excep
 ]]>
 </Exception>
 </Root>
-{% endhighlight %}
+```
 
 Of course this usage scenario is fairly redundant as both files as written have stacktraces in them; but if we were having to return information to a calling process via a JMSReplyTo destination, then having the stacktrace available in XML would be pretty useful; perhaps you want to email someone that there's been an error. If you wanted specific behaviour from your exception report, then all you need to do is make your own concrete implementation of [ExceptionReportGenerator][] and configure it.
 

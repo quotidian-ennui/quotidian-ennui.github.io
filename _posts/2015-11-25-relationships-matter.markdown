@@ -3,7 +3,7 @@ layout: post
 title: "Relationships not transactions"
 date: 2015-11-25 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: ""

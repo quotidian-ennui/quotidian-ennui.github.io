@@ -4,7 +4,7 @@ title: "Windows Scripting Host as an Administrator"
 date: 2011-09-30 08:58
 comments: false
 published: true
-categories: tech
+#categories: [tech]
 tags: [tech]
 description: "Starting WSH scripts with elevated credentials"
 keywords: "windows7, vmware, wsh, uac"
@@ -21,7 +21,7 @@ First of all name your network interfaces something clear; I'm going to use "VMW
 
 Then, you'll need a script to toggle the interfaces on and off which is what this does, if it's enabled, it'll disable it,  and vice versa. I'm going to call it vmnet-toggler.vbs (the .vbs will associate it with the wscript exe by default)
 
-{% highlight vbnet %}
+```vbnet
 strComputer = "."
 Set objWMIService = GetObject("winmgmts:\\" & strComputer & "\root\CIMV2")
 Set colItems = objWMIService.ExecQuery("SELECT * FROM Win32_NetworkAdapter Where NetConnectionID='VMWare-1' OR NetConnectionID='VMWare-2'")
@@ -34,13 +34,13 @@ For Each objItem in colItems
       objItem.Disable
   End Select
 Next
-{% endhighlight %}
+```
 
 If you just run this, it won't work of course, unless of course you're an Administrator and UAC is disabled. Only those with weak minds disable UAC, so it won't have worked.
 
 What you need is a script to call this script with admin rights; that's all you need to do, we're looking for the admin script in the same directory as this script.
 
-{% highlight vbnet %}
+```vbnet
 Set objShell = CreateObject("Shell.Application")
 Set FSO = CreateObject("Scripting.FileSystemObject")
 strPath = FSO.GetParentFolderName (WScript.ScriptFullName)
@@ -49,7 +49,7 @@ scriptName = strPath & "\vmnet-toggler.vbs"
 If FSO.FileExists(scriptName) Then
      objShell.ShellExecute "wscript.exe", _
         Chr(34) & scriptName & Chr(34), "", "runas", 1
-{% endhighlight %}
+```
 
 You can put a shortcut to the second script in the start menu or whatever, you will be asked to type in your password on the secure desktop prompt, but that's only the once for all the network interfaces you want to disable.
 

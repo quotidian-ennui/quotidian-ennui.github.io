@@ -4,7 +4,7 @@ title: "Mercurial / HTTPS with Password Authentication"
 date: 2011-11-11 08:58
 comments: false
 published: true
-categories: tech development scm
+#categories: [tech, development, scm]
 tags: [tech, development, scm]
 description: "Setting up mercurial with apache https"
 keywords: "mercurial, https, dvcs, apache, linux"
@@ -23,7 +23,7 @@ None of that matters, we have established that we only care that the traffic is 
 
 First of all we need to generate some certificates, openssl is probably installed if it's a standard CentOS 5.6 - there are other ways of generating certificates, but openssl is pretty quick and simple.
 
-{% highlight console %}
+```console
 # Generate private key
 openssl genrsa -out myserver.key 1024
 # Generate CSR
@@ -34,11 +34,11 @@ openssl x509 -req -days 3650 -in myserver.csr -signkey myserver.key -out myserve
 cp myserver.crt /etc/pki/tls/certs/myserver.crt
 cp myserver.key /etc/pki/tls/private/myserver.key
 cp myserver.csr /etc/pki/tls/private/myserver.csr
-{% endhighlight %}
+```
 
 Once all that's done you can create your SSL Virtual host.
 
-{% highlight apache %}
+```apache
 <VirtualHost 172.16.1.1:443>
   ServerName classified:443
   ServerAdmin webmaster
@@ -72,11 +72,11 @@ Once all that's done you can create your SSL Virtual host.
   </Location>
 </VirtualHost>
 
-{% endhighlight %}
+```
 
 Snap! you're now able to clone the self same repository as last time, only use a HTTPS URL. Of course, you know that you're using a self-signed certificate, and nothing will trust it by default...
 
-{% highlight console %}
+```console
 $ hg clone --insecure https://172.16.1.1/hg-web/awesome_code
 warning: 172.16.1.1 certificate with fingerprint c1:34:89:f9:2b:4f:c0:e3:77:7e:5b:21:17:86:2c:ad:56:05:23:a7 not verified (check hostfingerprints or web.cacerts config setting)
 http authorization required
@@ -88,7 +88,7 @@ adding changesets
 adding manifests
 adding file changes
 added 39 changesets with 428 changes to 389 files
-{% endhighlight %}
+```
 
 Nevertheless, your traffic is now encrypted yet still insecure.
 

@@ -3,7 +3,7 @@ layout: post
 title: "Integrating with SAP BAPI function modules"
 date: 2013-01-18 17:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Bridging between SAP and other systems using the adapter framework; Part 1"
@@ -23,7 +23,7 @@ For the purposes of this example, we're going to use BAPI_FLIGHT_GET_LIST which 
 
 Download [this Adapter XML]({{ site.baseurl }}/artifacts/sap-adapter-bapi-base.xml) as a baseline adapter.xml. There are a couple of things that you will need to change, mainly around the connection properties in the destination-provider-info element; as configured, the following properties are used to connect to SAP; your environment definitely won't be the same as our lab, so you'll need to modify these properties (at the very minimum).
 
-{% highlight xml %}
+```xml
 <destination-provider-info>
   <connection-properties>
     <!-- This is the language, you probably want to what you type into the sapgui when you logon
@@ -77,11 +77,11 @@ Download [this Adapter XML]({{ site.baseurl }}/artifacts/sap-adapter-bapi-base.x
        in which case one a unique-one is derived -->
   <connection-id>IDESVR</connection-id>
 </destination-provider-info>
-{% endhighlight %}
+```
 
 As you can see, the example adapter simply reads a file from the filesystem, and then executes *BAPI_FLIGHT_GET_LIST* (which is configured statically as the produce destination) passing in some parameters extracted from the input file. The input file is shown below, and has a remarkable similarity to what you might see when you use transaction SE37 to test BAPI_FLIGHT_GETLIST in the sapgui; this is of course intentional; it keeps the example nice and easy to correlate.
 
-{% highlight xml %}
+```xml
 <?xml version="1.0"?>
 <BAPI_FLIGHT_GETLIST>
   <INPUT>
@@ -111,7 +111,7 @@ As you can see, the example adapter simply reads a file from the filesystem, and
   </INPUT>
   <OUTPUT/>
 </BAPI_FLIGHT_GETLIST>
-{% endhighlight %}
+```
 
 ## Parameters ##
 

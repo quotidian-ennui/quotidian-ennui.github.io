@@ -3,7 +3,7 @@ layout: post
 title: "No Big Bangs"
 date: 2015-02-19 13:00
 comments: false
-categories: integration
+#categories: [integration]
 tags: [integration]
 published: true
 description: "Integration isn't a big bang deployment exercise."

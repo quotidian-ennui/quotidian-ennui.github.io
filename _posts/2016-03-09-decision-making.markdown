@@ -3,7 +3,7 @@ layout: post
 title: "The battlefield of decision making"
 date: 2016-03-09 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: ""

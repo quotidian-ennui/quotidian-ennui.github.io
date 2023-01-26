@@ -3,7 +3,7 @@ layout: post
 title: "JMS Connections in the adapter"
 date: 2012-06-29 17:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "JMS Connections, error handling and their variations"
@@ -17,7 +17,7 @@ JMS is the messaging platform that the adapter is _almost always_ deployed again
 
 The base type for any JMS connection is either [PtpConnection][] or [PasConnection][] depending on whether you want to handle JMS Queues or Topics. There are two other types of connection that are interesting; the first can be used as either a produce or consume connection in a channel;  [UseExistingJmsConnection][] means that the adapter re-uses the existing connection endpoint as the other side of the channel. Of course it's going to be pretty meaningless where both the consume and produce connection are [UseExistingJmsConnection][]; it also wouldn't work.
 
-{% highlight xml %}
+```xml
 <channel>
     <consume-connection xsi:type="java:com.adaptris.core.jms.PtpConnection">
     </consume-connection>
@@ -26,7 +26,7 @@ The base type for any JMS connection is either [PtpConnection][] or [PasConnecti
     -->
     <produce-connection xsi:type="java:com.adaptris.core.jms.UseExistingJmsConnection"/>
 </channel>
-{% endhighlight %}
+```
 
 The other type of connection is [FailoverJmsConnection][] which is actually a proxy for one or more [PtpConnection][] or [PasConnection][] instances. The rationale behind [FailoverJmsConnection] was to transparently support failover for those JMS providers whose APIs don't support seamless failover to backup brokers (WebsphereMQ, I'm looking at you). In most cases now, it's of marginal benefit; but when you are faced with a particularly recalcitrant JMS provider that won't give you the failover that you need it is definitely one to look at.
 
@@ -42,7 +42,7 @@ There is one situation where you can't have a [JmsConnectionErrorHandler][] conf
 
 It may just be that you're getting the error erroneously; if one of the connections is a JNDI connection, then the broker-url may not be configured; if you're a copy-and-paster then you might have a broker-url copied over from your paste buffer; just make sure to put in a unique value into the broker-url field for JNDI connections.
 
-{% highlight xml %}
+```xml
 <channel>
     <consume-connection xsi:type="java:com.adaptris.core.jms.PtpConnection">
       <broker-url>SomeDummyValue</broker-url>
@@ -77,7 +77,7 @@ It may just be that you're getting the error erroneously; if one of the connecti
       <broker-url>tcp://localhost:61616</broker-url>
     </produce-connection>
 </channel>
-{% endhighlight %}
+```
 
 If you have a perfect network, with little or no latency, and you know that you will only have 6.05 seconds downtime a week; then error handling might be moot. Congratulations on your five nines reliability.
 

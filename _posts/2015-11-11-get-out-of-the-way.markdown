@@ -3,7 +3,7 @@ layout: post
 title: "Stop getting in your own way"
 # date: 2015-11-11 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: ""

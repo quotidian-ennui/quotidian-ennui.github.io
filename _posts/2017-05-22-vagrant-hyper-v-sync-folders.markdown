@@ -3,7 +3,7 @@ layout: post
 title: "Vagrant + Hyper-V sync folders"
 date: 2017-05-22 17:00
 comments: false
-categories: tech hyper-v
+#categories: [tech, hyper-v]
 tags: [tech, hyper-v]
 published: true
 description: "Issues mounting local folders in vagrant"
@@ -17,11 +17,11 @@ One of the things that [Vagrant][] (in Hyper-V mode) does if you sync folders wi
 
 If you have two Hyper-V network interfaces installed; then vagrant might have a bit of trouble working out which one is the correct one to attempt to connect to via cifs. This is often the case if you also have [Docker for Windows][] installed in Windows 10. Vagrant eventually complains about not being able to mount any of your sync folders and helpfully outputs the command it was trying to execute. Check that the IP Address is the correct one; if it isn't then you need to change your `Vagrantfile` so that you specify the `smb_host`
 
-{% highlight text %}
+```text
 
   config.vm.synced_folder ".", "/home/vagrant/sync", type:"smb", smb_host:"172.21.21.1"
 
-{% endhighlight %}
+```
 
 ## Public/Private networking
 
@@ -31,26 +31,26 @@ Similar to the problem with VMWare network interfaces, your Hyper-V switch is pr
 
 Well, what with Wannacrypt and all of that monkey business; you may have disabled the SMBv1 Protocol. Great idea, but you'll have to mount the drives now using a specific SMB version...
 
-{% highlight text %}
+```text
 
   config.vm.synced_folder ".", "/home/vagrant/sync", type:"smb", smb_host:"172.21.21.1", mount_options: ["vers=2.1"]
 
-{% endhighlight %}
+```
 
 ## Deleting "old" shares
 
 Each time you attempt to mount the drives a new share is created. Each shares are named a random 32 character string (I'm sure it means something, life is sometimes a bit too short). These shares can persist which can be a little annoying. What we want to do is to delete them periodically; this is quite easy, as you're probably already using an admin powershell to run vagrant (well you have to have admin, and who uses cmd.exe anyway?), so this is a simple case of using (I called the script __vagrant-smb-cleanup.ps1__) a couple of powershell commands to delete shares you don't want anymore (make sure the vagrant machine is halted first).
 
-{% highlight powershell %}
+```powershell
 
 $shares=net view . | select-string "[\w]{32}" -AllMatches
 $shares | forEach-Object { net share $_.toString().split(" ")[0] /delete }
 
-{% endhighlight %}
+```
 
 Or; if you have Ubuntu installed natively via WSL, then you can do `bash vagrant-smb-cleanup.sh` from your admin command prompt. That script will contain the same thing, but for bash...
 
-{% highlight bash %}
+```bash
 
 #!/bin/bash
 
@@ -62,7 +62,7 @@ do
   $NET_EXE share $share /DELETE
 done
 
-{% endhighlight %}
+```
 
 
 [Vagrant]: http://www.vagrantup.com

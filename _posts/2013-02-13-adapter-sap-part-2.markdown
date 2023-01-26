@@ -3,7 +3,7 @@ layout: post
 title: "Stateful RFC using the adapter framework"
 date: 2013-02-15 17:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Bridging between SAP and other systems using the adapter framework; Part 2"
@@ -25,7 +25,7 @@ So to manage a stateful sequence of RFC calls, then you need to use [RfcServiceL
 
 It is best illustrated with an example
 
-{% highlight xml %}
+```xml
 <service-collection xsi:type="java:com.adaptris.core.ServiceList">
  <service xsi:type="java:com.adaptris.core.sap.jco3.rfc.services.RfcServiceList">
   <rfc-connection xsi:type="java:com.adaptris.core.sap.jco3.rfc.RfcConnection">
@@ -107,7 +107,7 @@ It is best illustrated with an example
     <service xsi:type="java:com.adaptris.core.sap.jco3.rfc.services.StatefulSessionEnd" />
   </service>
 </service-collection>
-{% endhighlight %}
+```
 
 Here, we are calling the function `BAPI_COMPANYCODE_GETLIST` and then for each company id that is returned we will execute `BAPI_COMPANYCODE_GETDETAIL`. Each of those records will end up with the company details written out to `SampleQ1`.
 

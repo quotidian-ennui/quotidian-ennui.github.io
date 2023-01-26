@@ -3,7 +3,7 @@ layout: post
 title: "Stop overthinking it"
 comments: false
 tags: [development]
-categories: [development]
+#categories: [development]
 published: true
 description: ""
 keywords: ""

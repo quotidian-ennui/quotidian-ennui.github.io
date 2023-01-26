@@ -3,7 +3,7 @@ layout: post
 title: "Questions; there's a point"
 comments: false
 tags: [rant]
-categories: [rant]
+#categories: [rant]
 published: true
 description: "I have questions about your project; you should have done the thinking already."
 keywords: ""

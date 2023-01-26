@@ -3,7 +3,7 @@ layout: post
 title: "The 'developers are interchangeable' conundrum"
 comments: false
 tags: [development]
-categories: [development]
+#categories: [development]
 published: true
 description: "Interchangeable implies monoculture and homogeneity"
 keywords: ""

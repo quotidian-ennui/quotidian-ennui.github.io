@@ -3,7 +3,7 @@ layout: post
 title: "Dynamically switching XSLT processing engines"
 date: 2012-03-02 16:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Setting up the adapter to use both XSLT 1.0 and 2.0 in the same JVM"
@@ -19,16 +19,16 @@ What if you wanted to use Saxon and it's XSLT 2.0 engine on a per transform basi
 
 So you have an XSLT 2.0 stylesheet; for the sake of argument it starts with
 
-{% highlight xslt %}
+```xslt
 <xsl:stylesheet xmlns:dinos="dinosaur" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xs="http://www.w3.org/2001/XMLSchema" xpath-default-namespace="dinosaur"
   exclude-result-prefixes="xs xsl dinos" version="2.0">
 </xsl:stylesheet>
-{% endhighlight %}
+```
 
 Or perhaps you're using one of the new functions like _format-number_ or _format-date_; anyway, if you had a stylesheet like that it wouldn't work in the adapter by default. It would work if Saxon was the transformation engine, but you have other stylesheets that require Xalan/XSLT1.0. Once again we can use [jruby][] + [EmbeddedScriptingService][] or [ScriptingService][] to execute the transform for us. Not breaking a habit of a lifetime; I'll use EmbeddedScriptingService to illustrate what I mean; ScriptingService would work just as well if you wanted to refer to a ruby script on the filesystem.
 
-{% highlight xml %}
+```xml
 <service xsi:type="java:com.adaptris.core.services.EmbeddedScriptingService">
   <language>jruby</language>
   <script><![CDATA[
@@ -51,7 +51,7 @@ end
 ]]>
   </script>
 </service>
-{% endhighlight %}
+```
 
 Basically the service, runs the transform _../transforms/xslt-2.0/new-dinos.xsl_ using the saxon transform factory. Of course, performance might not be great as there will be no caching of the stylesheet or anything like that; but it's a good way to start migrating your transforms to Saxon and new XSLT 2.0 features if that's what you need to do.
 

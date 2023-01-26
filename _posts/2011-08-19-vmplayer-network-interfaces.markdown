@@ -4,7 +4,7 @@ title: "VMPlayer network interfaces with Private/Public Networking"
 date: 2011-08-19 08:58
 published: true
 comments: false
-categories: tech vmware
+#categories: [tech, vmware]
 tags: [tech, vmware]
 description: "Making VMPlayer Network interfaces part of the private network"
 keywords: "vmware, windows7"
@@ -21,9 +21,9 @@ Well, after a registry hack, the networking interfaces won't affect your public/
 
 You'll need regedit of course, browse to
 
-{% highlight text %}
+```text
 HKEY_LOCAL_MACHINE/SYSTEM/ControlSet001/Control/Class/{4D36E972-E325-11CE-BFC1-08002BE10318}
-{% endhighlight %}
+```
 
 At this point you'll see a list of 0000 to nnnn keys; go through each of them until you find the ones that say *\DosDevices\VMnet8* and *\DosDevices\VMnet1*. The names will depend on your environment and what devices you want to change, but I think they're generally going to be VMnet8 and VMnet1
 

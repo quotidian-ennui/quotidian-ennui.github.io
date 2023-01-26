@@ -3,7 +3,7 @@ layout: post
 title: "Docker image updates running K8S at home"
 comments: false
 tags: [tech,kubernetes,terraform]
-categories: [tech,kubernetes,terraform]
+#categories: [tech,kubernetes,terraform]
 published: true
 description: "Surely there exists an opensource tool that does this niche thing I want."
 keywords: ""

@@ -3,7 +3,7 @@ layout: post
 title: "Character encoding behaviour in the adapter"
 date: 2012-11-15 17:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Adapter behaviour and character encoding"
@@ -23,14 +23,14 @@ Below are a few of the ways in which you can control the character encoding for 
 
 All consumers have a message factory which can be configured; you will have seen it in the example XML. [DefaultMessageFactory](http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/DefaultMessageFactory.html) is the one you're most likely to be using, and this has the ability to assign a default character encoding against the underlying AdaptrisMessage object for all instances that it creates (other message factory implementations also have this behaviour). If you don't specify it, then it will use the JVM default for all String to byte (and vice-versa) operations.
 
-{% highlight xml %}
+```xml
 <consumer xsi:type="java:com.adaptris.core.fs.FsConsumer">
   ... boring configuration skipped.
   <message-factory xsi:type="java:com.adaptris.core.DefaultMessageFactory">
     <default-char-encoding>ISO-8859-2</default-char-encoding>
   </message-factory>
 </consumer>
-{% endhighlight %}
+```
 
 
 
@@ -38,7 +38,7 @@ All consumers have a message factory which can be configured; you will have seen
 
 So, you've written a transform; yours will be good, mine will look something like:
 
-{% highlight xml %}
+```xml
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
   xmlns:java="http://xml.apache.org/xslt/java" exclude-result-prefixes="java">
@@ -58,18 +58,18 @@ So, you've written a transform; yours will be good, mine will look something lik
   </xsl:template>
 
 </xsl:stylesheet>
-{% endhighlight %}
+```
 
 The details don't really matter, what matters is the fact that you've specified the output encoding in the stylesheet. What happens if this encoding doesn't match what's already specified in the AdaptrisMessage object? If the data contains characters that should be encoded differently between ISO-8859-1 and UTF-8 (such as £), then the resulting file will look a strange when opened up in a dumb editor (dumb editors are actually quite useful so they're only dumb in the same way that dumb terminals are dumb); or when parsed by the target backend  system.
 
 For [Flat-file Transform](http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/transform/FfTransformService.html) and [Xml Transform](http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/transform/XmlTransformService.html) services you can specify the output message encoding which sets the underlying character encoding for the AdaptrisMessage object before any write operations are done. For EDI style services, it continues to use the existing character encoding for the message as it is only performing a limited mark-up/mark-down of the data in question.
 
-{% highlight xml %}
+```xml
 <service xsi:type="java:com.adaptris.core.transform.XmlTransformService">
   <url>http://localhost/super-transform.xsl</url>
   <output-message-encoding>UTF-8</output-message-encoding>
 </service>
-{% endhighlight %}
+```
 
 The output message encoding can also be configured when you split a message by Xpath, or retrieve data from a database and insert it into an XML document, so check the javadocs for those services as well.
 
@@ -77,11 +77,11 @@ The output message encoding can also be configured when you split a message by X
 
 You might want to just change the character encoding to some arbitrary value for subsequent operations. You don't care about the contents of the message you just want to specify the character encoding to be some value other than what it is. If you don't specify an encoding, then it will cause the character encoding of the AdaptrisMessage to revert back to the platform default.
 
-{% highlight xml %}
+```xml
 <service xsi:type="java:com.adaptris.core.services.ChangeCharEncodingService">
   <char-encoding>ISO-8859-5</char-encoding>
 </service>
-{% endhighlight %}
+```
 
 
 ## Removing Byte order marks

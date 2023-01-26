@@ -3,7 +3,7 @@ layout: post
 title: "To Build or Not to Build"
 date: 2012-06-11 22:30
 comments: false
-categories: development rant
+#categories: [development, rant]
 tags: [development, rant]
 published: true
 description: "Why I think a build step is critical for project collaboration"
@@ -22,11 +22,11 @@ Fast feedback is useful and having a script _deploy.sh_ which does the same thin
 
 The build step is probably synonymous with the install step; it configures the application so that it can be run on your platform; it sorts out any dependencies you might need. After all installing new software on Linux is a breeze, you'll have done something like this countless times...
 
-{% highlight console %}
+```console
 [root@linux ~]# ./configure
 [root@linux ~]# make clean test
 [root@linux ~]# make install
-{% endhighlight %}
+```
 
 Why do you think GNU Autotools, autoconf and all that other stuff came about? Is your application so awesome that you can plough your own furrow and not build on the shoulders of giants? Your application might be some wunderbar paradigm shifting piece of awesomeness; but more often than not, it's just an application; _average_ just like the rest of us. You need to have the discipline to lower the support burden for your colleagues; some of this is documentation, but a lot of it is to having something that makes it easy for others to collaborate with you on your project.
 
@@ -40,10 +40,10 @@ I have a certain amount of sympathy for any sysadmin/deployment team; I feel sor
 
 Having a build step allows you to generate the runtime artefact with the correct runtime settings, drawing in all the correct dependencies and pre-requisites from a configuration file that you've filled out with information you've gotten from them.
 
-{% highlight console %}
+```console
 [deployer@linux ~]# hg clone -r TAG_NAME ssh://me@scm/project
 [deployer@linux ~]# ant -Dbuild.environment=production clean war
-{% endhighlight %}
+```
 
 The bare minimum of what you give your deploy team is something like the above; it should build you a deployable artefact, pre-configured for the production environment so that they can just drop into tomcat, WebsphereAS, JBoss or whatever. Better yet, set it up in hudson as a job; start using [flyway](http://flywaydb.org) to migrate your databases; it's then a one click deployment step.
 
