@@ -3,7 +3,7 @@ layout: post
 title: "JMS Part Two; tuning behaviour"
 date: 2012-10-19 17:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Second in series about the Adapter + JMS"
@@ -29,7 +29,7 @@ If the adapter is initiating a request and then waiting for a reply, then the JM
 
 So if you wanted to force replies to a given message to come back on *MyReplyToDestination* then the configuration you need is something similar to this :
 
-{% highlight xml %}
+```xml
 <service xsi:type="java:com.adaptris.core.ServiceList">
   <service xsi:type="java:com.adaptris.core.services.metadata.AddMetadataService">
     <metadata-element>
@@ -50,7 +50,7 @@ So if you wanted to force replies to a given message to come back on *MyReplyToD
   </service>
 </service>
 
-{% endhighlight %}
+```
 
 Conversely, if the adapter needs to reply to the JMSReplyTo Header, then within the same workflow, you can use [JmsReplyToDestination][]in the JMS Producer; this will cause it use JmsReplyTo header as the target destination.
 
@@ -64,7 +64,7 @@ By convention, the JMSPriority, JMSDeliveryMode, JMSExpiration are configured di
 * _JMSExpiration_ - this will be used to generate the correct TTL when producing the message. The format of this value should either be a long value (similar to System.currentTimeMillis(), the difference, measured in milliseconds, between the current time and midnight, January 1, 1970 UTC); or a string value in the date format `yyyy-MM-dd'T'HH:mm:ssZ`.
 
 
-{% highlight xml %}
+```xml
 <service xsi:type="java:com.adaptris.core.ServiceList">
   <service xsi:type="java:com.adaptris.core.services.metadata.AddMetadataService">
     <metadata-element>
@@ -102,17 +102,17 @@ By convention, the JMSPriority, JMSDeliveryMode, JMSExpiration are configured di
   </service>
 </service>
 
-{% endhighlight %}
+```
 
 [JMS Connections and the adapter]: {{site.baseurl}}/blog/2012/06/29/jms-connections-in-the-adapter/
-[MessageTypeTranslator]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/jms/MessageTypeTranslator.html 
+[MessageTypeTranslator]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/jms/MessageTypeTranslator.html
 [AutoConvertMessageTranslator]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/jms/AutoConvertMessageTranslator.html
 [javax.jms.Message]: http://docs.oracle.com/javaee/5/api/javax/jms/Message.html?is-external=true
 [TextMessage]: http://docs.oracle.com/javaee/5/api/javax/jms/TextMessage.html?is-external=true
 [TextMessageTranslator]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/jms/TextMessageTranslator.html
 [MapMessage]: http://docs.oracle.com/javaee/5/api/javax/jms/MapMessage.html
 [CorrelationIdSource]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/jms/CorrelationIdSource.html
-[NullCorrelationIdSource]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/jms/NullCorrelationIdSource.html 
-[JmsReplyToDestination]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/jms/JmsReplyToDestination.html 
+[NullCorrelationIdSource]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/jms/NullCorrelationIdSource.html
+[JmsReplyToDestination]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/jms/JmsReplyToDestination.html
 
 

@@ -3,7 +3,7 @@ layout: post
 title: "Migrating to MacOS for work"
 comments: false
 tags: [tech]
-categories: [tech]
+#categories: [tech]
 published: true
 description: "Some annoyances; a different kind of friction; ultimately a bit meh"
 keywords: "macos, windows"

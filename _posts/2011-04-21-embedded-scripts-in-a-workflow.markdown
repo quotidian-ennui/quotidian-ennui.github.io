@@ -3,7 +3,7 @@ layout: post
 title: "Embbeded scripts in a workflow"
 date: 2011-04-21 08:58
 published: true
-categories: adapter interlok
+#categories: [ adapter, interlok]
 tags: [adapter, interlok]
 description: "Using JSR223 languages in the adapter"
 keywords: "adapter, interlok, java, jruby, jsr223"
@@ -22,7 +22,7 @@ Anyway, using a scripting language like ruby (as implemented by via JRuby) you c
 
 Let's look at an example; first of all you'll need to download the jruby binary from [http://www.jruby.org]. Put the jar in to the adapter-lib directory and then, we'll just insert this service into our workflow.
 
-{% highlight xml %}
+```xml
 <service xsi:type="java:com.adaptris.core.services.EmbeddedScriptingService">
  <script><![CDATA[
 $message.addMetadata('documentReference', "D" + rand(9999999999).to_s().rjust(10, '0'));
@@ -35,7 +35,7 @@ $message.addMetadata('messageType', msg_types.at(msgtype_index));
 ]]></script>
  <language>jruby</language>
 </service>
-{% endhighlight %}
+```
 
 Here we're just adding 2 items of metadata, messageType and documentReference, randomly generated. This is a pretty powerful way of generating test data within the adapter and checking behaviour.
 

@@ -3,7 +3,7 @@ layout: post
 title: "Change is just change"
 comments: false
 tags: [general]
-categories: [general]
+#categories: [general]
 published: true
 description: "Plus ça change, plus c'est la même chose"
 keywords: ""

@@ -3,7 +3,7 @@ layout: post
 title: "Dynamic Environment Variables"
 comments: false
 tags: [tech]
-categories: [tech]
+#categories: [tech]
 published: true
 description: "I use direnv; I can't make up my mind about my preferred shell/platform combination"
 keywords: ""

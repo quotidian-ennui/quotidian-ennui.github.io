@@ -3,7 +3,7 @@ layout: post
 title: "Using WSL and Windows Git Bash interchangeably"
 comments: false
 tags: [development,tech]
-categories: [development,tech]
+#categories: [development,tech]
 published: true
 description: "Why not both, you shouldn't have to choose; in this instance choice is useful"
 keywords: ""

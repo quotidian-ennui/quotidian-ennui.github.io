@@ -3,7 +3,7 @@ layout: post
 title: "State of Integration"
 date: 2014-02-17 17:00
 comments: false
-categories: integration
+#categories: [integration]
 tags: [integration]
 published: true
 description: "There is nothing new under the sun; why is integration still harder than it should be"

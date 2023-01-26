@@ -3,7 +3,7 @@ layout: post
 title: "What goes before comes round again"
 date: 2016-05-25 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: ""

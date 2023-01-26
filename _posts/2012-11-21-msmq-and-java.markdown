@@ -3,7 +3,7 @@ layout: post
 title: "MSMQ and Java interoperability"
 date: 2012-11-21 08:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Bridging between MSMQ and java using the adapter framework"
@@ -38,12 +38,12 @@ You might not have direct control over the back-end application; so it is possib
 
 It's magic, so the conversion is not always accurate, results can be undefined if the object doesn't translate well into text; if not explicitly specified in the message-factory, then the platform default character encoding is used as the base character set for the converted String (probably Cp1252 if you're in Western Europe).
 
-{% highlight xml %}
+```xml
 <consumer xsi:type="java:com.adaptris.core.msmq.MsmqPollingConsumer">
   ... Existing configuration skipped
   <attempt-silent-conversion-to-string>true</attempt-silent-conversion-to-string>
 </consumer>
-{% endhighlight %}
+```
 
 Doing this will help deal with MSMQ messages that are the variant `VT_UI1 | VT_ARRAY` type (I always just refer to this as a byte array). For more information about character encoding in the adapter; I've [written about it previously.]({{ site.baseurl }}/blog/2012/11/15/adapter-and-character-encoding/)
 
@@ -51,18 +51,18 @@ Doing this will help deal with MSMQ messages that are the variant `VT_UI1 | VT_A
 
 Outgoing messages can be of two types; `VT_BSTR` or `VT_UI1 | VT_ARRAY`. You control the output via the [MessageFormatter][1]. [StringMessageFormat][] or [ByteArrayMessageFormat][] are the available message formats; the default being StringMessageFormat.
 
-{% highlight xml %}
+```xml
 <producer xsi:type="java:com.adaptris.core.msmq.StandardMsmqProducer">
    ...Existing Configuration skipped
    <message-formatter xsi:type="java:com.adaptris.core.msmq.ByteArrayMessageFormat"/>
 </producer>
-{% endhighlight %}
+```
 
 ## Mapping to and from MSMQ headers
 
 All messages on delivered via MSMQ have a set of properties associated with them; some or all of them can be mapped by using a list of [property mappers][PropertyMapper] If, for instance, you wanted add the _ArrivedTime_ as an item of metadata when you receive the message then you could configure that as part of the consumer.
 
-{% highlight xml %}
+```xml
 <consumer xsi:type="java:com.adaptris.core.msmq.MsmqPollingConsumer">
   ...Existing Configuration skipped
   <property-mapper xsi:type="java:com.adaptris.core.msmq.MetadataMapper">
@@ -70,24 +70,24 @@ All messages on delivered via MSMQ have a set of properties associated with them
     <metadata-key>msmqArrivedTimeMetadataKey</metadata-key>
   </property-mapper>
 </consumer>
-{% endhighlight %}
+```
 
 Similarly if you wanted to set the value of the _Label_ property to the AdaptrisMessage's unique-id when you send the data to MSMQ then you can do that as well.
 
-{% highlight xml %}
+```xml
 <producer xsi:type="java:com.adaptris.core.msmq.StandardMsmqProducer">
   ...Existing Configuration skipped
   <property-mapper xsi:type="java:com.adaptris.core.msmq.MessageIdMapper">
     <property-name>Label</property-name>
   </property-mapper>
 </producer>
-{% endhighlight %}
+```
 
 Some properties aren't byte arrays (like _CorrelationId_) so you may need to use the optional [ByteTranslator][2] element to translate those fields into strings.
 
 For instance, if you wanted to make the _Id_ property of the MSMQ Message the AdaptrisMessage unique-id then you would need to use a combination of [MessageIdMapper][] and a [ByteTranslator][] implementation to make that happen. In this example; we're turning the 20byte id into its hex representation, and we're also storing the _Id_ property as metadata under the key _msmqOriginalId_ (but base64 encoded).
 
-{% highlight xml %}
+```xml
 <consumer xsi:type="java:com.adaptris.core.msmq.MsmqPollingConsumer">
   ...Existing Configuration skipped
   <property-mapper xsi:type="java:com.adaptris.core.msmq.MessageIdMapper">
@@ -100,7 +100,7 @@ For instance, if you wanted to make the _Id_ property of the MSMQ Message the Ad
     <metadata-key>msmqOriginalId</metadata-key>
   </property-mapper>
 </consumer>
-{% endhighlight %}
+```
 
 The _Id_ property is "read-only" on the MSMQ Message so you won't be able to use the AdaptrisMessage's unique id as the Id property (it won't fit into the 20byte requirement for _CorrelationId_ either). Correlating messages between multiple technology stacks can cause its own particular set of issues and is a subject for another day.
 

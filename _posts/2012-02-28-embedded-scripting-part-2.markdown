@@ -3,7 +3,7 @@ layout: post
 title: "Embedded Scripting part 2"
 date: 2012-02-28 14:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Using a jruby script to re-format EDI messages"
@@ -23,7 +23,7 @@ I had intended to use _gsub_ to do a regular expression find and replace within 
 
 I've used java code everywhere rather than trying to use the ruby functionality provided by jruby; probably tons of better ways to do this, but my main goal is to avoid any encoding issues when inline type conversion takes place between ruby and java; those duck languages aren't all they're cracked up to be sometimes. Of course as it's interpreted you don't get any feedback of syntax errors until you try and send a message through the service (random ; littered all over the place is just the legacy of my C/C++ and java habits, I know I don't need them).
 
-{% highlight xml %}
+```xml
 <service xsi:type="java:com.adaptris.core.services.EmbeddedScriptingService">
   <language>jruby</language>
   <script><![CDATA[
@@ -49,7 +49,7 @@ end
 $message.setStringPayload(sb.toString);
 ]]></script>
 </service>
-{% endhighlight %}
+```
 
 There you have it, we have successfully dealt with a problem file without resorting to any custom services. The end result is a nicely formatted EDI file where previously I might have had to _tr '\205' '\135'_ the file in another process entirely.
 

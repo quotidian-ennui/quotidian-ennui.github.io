@@ -3,7 +3,7 @@ layout: post
 title: "Gradle plugin dependency hell"
 comments: false
 tags: [development,java]
-categories: [development,java]
+#categories: [development,java]
 published: true
 description: "DLL hell hasn't gone away; it's a bit like a cold, always coming back to bite you in ass"
 keywords: ""

@@ -3,7 +3,7 @@ layout: post
 title: "HR systems don’t work, they just make you worse"
 comments: false
 tags: [development]
-categories: [development]
+#categories: [development]
 published: true
 description: "Apologies to The Verve"
 keywords: ""

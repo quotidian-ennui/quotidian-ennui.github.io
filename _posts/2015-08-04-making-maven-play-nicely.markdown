@@ -3,7 +3,7 @@ layout: post
 title: "Making Maven play nicely"
 date: 2015-08-04 13:00
 comments: false
-categories: development java
+#categories: [development, java]
 tags: [development, java]
 published: true
 description: "Are Maven's opinionated conventions all that useful for any semi-complex build environment?"
@@ -23,7 +23,7 @@ The problem is two-fold.
 
 Because we have a custom ivy configuration; if we simply use an `<ibiblio>` repository in our _ivy-settings.xml_ then it will use the associated pom files by default (we are creating these for our own artefacts, because we want to play nice with others). This means that the ivy resolution phase never checks the associated ivy file, which means that we never find our custom ivy configurations giving you an unresolved dependency error.
 
-{% highlight console %}
+```console
 :: problems summary ::
 :::: WARNINGS
   ::::::::::::::::::::::::::::::::::::::::::::::
@@ -31,12 +31,12 @@ Because we have a custom ivy configuration; if we simply use an `<ibiblio>` repo
   ::::::::::::::::::::::::::::::::::::::::::::::
   :: com.adaptris#adp-core;3.0-SNAPSHOT: configuration not found in com.adaptris#adp-core;3.0-SNAPSHOT: 'examples'. It was required from com.adaptris#core-packaging;3.0-SNAPSHOT examples
   ::::::::::::::::::::::::::::::::::::::::::::::
-{% endhighlight %}
+```
 
 So we have configured our repositories so that ivy doesn't think it is an ibiblio resolver:
 
 
-{% highlight xml %}
+```xml
 <url name="snapshots" m2compatible="true" checkmodified="true" changingPattern=".*SNAPSHOT.*">
   <ivy pattern="${snapshots}/[organisation]/[module]/[revision]/ivy-[revision].xml"/>
   <artifact pattern="${snapshots}/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
@@ -47,11 +47,11 @@ So we have configured our repositories so that ivy doesn't think it is an ibibli
   <artifact pattern="${snapshots}/[organisation]/[module]/[type]s/[artifact]-[revision]-[classifier].[ext]"/>
   <artifact pattern="${snapshots}/[organisation]/[module]/[type]s/[artifact]-[revision]-[type].[ext]"/>
 </url>
-{% endhighlight %}
+```
 
 The 2nd part of the problem is down to Maven's intransigence when building snapshot artefacts and their interaction with Ivy. Timestamped artefacts are supported by ivy (but only if you accept the ibiblio default patterns), but it means that we have to effectively duplicate the repository inside the ivy settings file only this time we treat it as a normal ibiblio repository:
 
-{% highlight xml %}
+```xml
 <chain name="nexus-repo-resolver">
   <resolver ref="snapshots"/>
   <resolver ref="releases"/>
@@ -61,7 +61,7 @@ The 2nd part of the problem is down to Maven's intransigence when building snaps
   <ibiblio name="private" m2compatible="true" root="${nexus-private}"/>
   <ibiblio name="thirdparty" m2compatible="true" root="${thirdparty}"/>
 </chain>
-{% endhighlight %}
+```
 
 In the end; the flexibility of Ant+Ivy won out over the conventions of Maven. You think you're clever Maven, but you really aren't.
 

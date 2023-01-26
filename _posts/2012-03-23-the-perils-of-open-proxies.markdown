@@ -3,7 +3,7 @@ layout: post
 title: "The Perils Of Open Proxies"
 date: 2012-03-23 12:00
 comments: false
-categories: tech linux
+#categories: [tech, linux]
 tags: [tech, linux]
 published: true
 description: "I setup an open proxy by mistake, and used iptables to filter out rogue connections"
@@ -28,7 +28,7 @@ Of course, reconfiguring the VM so that it had a different external IP address w
 Logging is pretty powerful in apache, and what we really needed to do was to create a minimal access log that only contains the information we want.
 
 
-{% highlight apache %}
+```apache
 <VirtualHost 1.2.3.4:80>
   ErrorDocument 403 "403"
   LogLevel crit
@@ -37,11 +37,11 @@ Logging is pretty powerful in apache, and what we really needed to do was to cre
   CustomLog logs/access_log combined
 
 </VirtualHost>
-{% endhighlight %}
+```
 
 So here we are setting up some custom logging to logs/access-minimal which will only contain the IP address and HTTP status code; the output is below. Additionally to save bandwidth whenever a 403 status would be triggered, it just sends back "403" without any adornment.
 
-{% highlight text %}
+```text
 106.9.207.77 403
 59.124.31.178 403
 59.124.31.178 403
@@ -49,22 +49,22 @@ So here we are setting up some custom logging to logs/access-minimal which will 
 41.34.190.207 403
 180.76.5.171 200
 180.76.5.161 200
-{% endhighlight %}
+```
 
 ## Block the pesky proxy wannabes
 
 From here it's a pretty easy thing to parse using awk; you only need to tail the file and start adding IP addresses that have a 403 status code; here's a one liner that can do exactly that.
 
-{% highlight console %}
+```console
 tail -f /var/log/httpd/access-minimal.log|while read pi; do echo "$pi"|grep 403|gawk '{print $1}'|while read pi;do /sbin/iptables -I INPUT -s $pi -j DROP;done;done
-{% endhighlight %}
+```
 
 You've been modifying the httpd configuration file so you're able to get a bit of root shell action (probably using "screen":http://linux.die.net/man/1/screen). Personally, for some reason, I've always preferred to trigger my scripts via cron; so that's what I did; the script also has to have following features over the one-liner
 
 * Allow you to "never block" certain ip addresses (stored in /etc/httpd/conf/httpblock.ignored, 1 IP per line)
 * Only add IP addresses that aren't already in iptables (the reason for this is because I'm processing the entirety of access-minimal.log everytime the cronjob is triggered which is pure laziness on my part)
 
-{% highlight bash %}
+```bash
 #!/bin/bash
 
 HTTP_CONF_DIR="/etc/httpd/conf"
@@ -87,7 +87,7 @@ function dropForbidden() {
 }
 dropForbidden
 rm -f $TMPFILES
-{% endhighlight %}
+```
 
 The script has changed a fair bit since I first wrote it, so this is just a starting point; once in a while you would probably want to prune all the iptables entries that haven't had any hits in a while as those pesky script kiddies have gotten bored. You will want to make sure that logrotate is rotating the logfiles on a daily basis to start off with; and then onto a weekly basis once the amount of logging settles down.
 

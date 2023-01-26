@@ -3,7 +3,7 @@ layout: post
 title: "Sometimes you need to kick those decisions down the road"
 comments: false
 tags: [development]
-categories: [development]
+#categories: [development]
 published: true
 description: "Thinking pays off later; procrastination pays off right now..."
 keywords: ""

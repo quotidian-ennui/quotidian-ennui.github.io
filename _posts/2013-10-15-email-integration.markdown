@@ -3,7 +3,7 @@ layout: post
 title: "Integration via email is a feature of last resort"
 date: 2013-10-15 17:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Integration via email is a feature of last resort"
@@ -19,7 +19,7 @@ The Adapter can of course attach to either an IMAP or POP3 mailbox and collect m
 
 An example of an email message is shown below (server names and recipients have been changed to protect the guilty). In this case, the MIME Message contains 3 parts; 2 attachments (image003.jpg and image004.jpg) and a nested MIME part which is the actual body of the message, which contains both HTML and plain text. This is a classic outlook message in fact, where the sender has chosen to include some nonsense graphic (or two) as part of their signature.
 
-{% highlight text %}
+```text
 
 Delivery-date: Thu, 10 Oct 2013 10:36:53 +0100
 Received: from mta.nobody.com ([10.9.8.7]:61409 helo=mta.somebody.com)
@@ -105,13 +105,13 @@ Content-Transfer-Encoding: base64
 
 --_005_AA217B98DF7BEB479FEA1BAF75D31ADBA57C11mtanobodycom_--
 
-{% endhighlight %}
+```
 
 We don't actually care about the images, or even the HTML part of the message, we only care about text/plain part of the MIME message; _Hello World_. If we were to process that mail message using [DefaultMailConsumer][] then it would generate at least 2 messages; which isn't useful. In situations like this I end up using [RawMailConsumer][] and process the raw data within the Adapter directly.
 
 In order to extract "Hello World" without the surrounding MIME nonsense can be done by using the [MimePartSelector][] service multiple times; as in the following example.
 
-{% highlight xml %}
+```xml
 <service xsi:type="java:com.adaptris.core.services.mime.MimePartSelector">
   <selector xsi:type="java:com.adaptris.mail.SelectByPosition">
     <position>0</position>
@@ -152,7 +152,7 @@ __PAYLOAD__
   </selector>
 </service>
 
-{% endhighlight %}
+```
 
 The main problem with handling nested MIME parts is that the JavaMail API doesn't play nicely if the message isn't considered complete (previous versions of JavaMail would throw an exception, the current version doesn't appear to, it just behaves somewhat erratically); The headers aren't considered part of the data, so MimePartSelector either discards them or preserves them as metadata. What we need to do is we recreate the minimum set of headers that are required for making the message RFC2045 compliant each time that we finish using [MimePartSelector][]. So to describe the above adapter configuration in sequence :
 

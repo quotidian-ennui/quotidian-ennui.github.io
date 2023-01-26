@@ -3,7 +3,7 @@ layout: post
 title: "Maintenance cost vs Development cost"
 date: 2015-05-22 13:00
 comments: false
-categories: integration interlok
+#categories: [integration, interlok]
 tags: [integration, interlok]
 published: true
 description: "The cost of a new integration is outweighed by the cost of maintainence"

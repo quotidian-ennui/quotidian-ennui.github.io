@@ -3,7 +3,7 @@ layout: post
 title: "Diversity of Perspective"
 comments: false
 tags: [development]
-categories: [development]
+#categories: [development]
 published: true
 description: "If you're the smartest person in the room; you need to find a different room"
 keywords: ""

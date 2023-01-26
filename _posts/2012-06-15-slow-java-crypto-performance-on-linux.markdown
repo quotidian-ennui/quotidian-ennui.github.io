@@ -3,7 +3,7 @@ layout: post
 title: "Slow Java Crypto Performance on Linux"
 date: 2012-06-15 17:00
 comments: false
-categories: java linux
+#categories: [java, linux]
 tags: [java, linux]
 published: true
 description: "Slow SecureRandom is always annoying; I just wish Oracle would fix their documentation"
@@ -31,7 +31,7 @@ There are 3 easy fixes to the problem; some of which make the machine a bit less
 
 We checked `${java.home}/jre/lib/security/java.security`, and as always the securerandom.source property points to file:/dev/urandom. The notes in the file itself says that the NativePRNG will use /dev/urandom; however, it lies, lying like a [Gregor MacGregor](http://en.wikipedia.org/wiki/Gregor_MacGregor) as [Bug 6202721](http://bugs.sun.com/view_bug.do?bug_id=6202721) will testify; file:/dev/urandom is treated as magic, and it ends up using /dev/random *regardless*. That's pretty frustrating; it's not the fact that it's magic and it points to /dev/random, it's the fact that the lazy fools haven't even updated the documentation; it's been like that, for what, 8 years, and they haven't modified the stupid _java.security_ documentation. Still, all you really have to do is to make the URI *not magic* anymore.
 
-{% highlight properties %}
+```properties
 #
 # Select the source of seed data for SecureRandom. By default an
 # attempt is made to use the entropy gathering device specified by
@@ -48,7 +48,7 @@ We checked `${java.home}/jre/lib/security/java.security`, and as always the secu
 #
 # securerandom.source=file:/dev/urandom
 securerandom.source=file:/dev/./urandom
-{% endhighlight %}
+```
 
 There, your java installation is patched up, and now ready for some not so random crypto action.
 
@@ -57,12 +57,12 @@ There, your java installation is patched up, and now ready for some not so rando
 
 As */proc/sys/kernel/random/entropy_avail* is always reporting an extremely low value; /dev/random is genuinely an issue, so we would be better off installing *rng-tools* and using _rngd_ to feed the kernel random device. On most CentOS machines rng-tools is probably installed, but likely won't have been started as part of the initscripts. The configuration itself is extremely straight forward, as it's a single program with minimal configuration.
 
-{% highlight console %}
+```console
 [root@linux ~]# yum install rng-tools
 [root@linux ~]# echo 'EXTRAOPTIONS="-i -o /dev/random -r /dev/urandom -t 10 -W 2048"' > /etc/sysconfig/rngd
 [root@linux ~]# chkconfig rngd on
 [root@linux ~]# service rngd restart
-{% endhighlight %}
+```
 
 The man page for rngd is pretty comprehensive so you can check that for the exact meanings for each parameter. The only thing that is a must is the -i flag as your source device (/dev/urandom) isn't going to FIPS compliant and you don't want rngd to terminate unexpectedly.
 

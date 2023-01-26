@@ -4,7 +4,7 @@ title: "Adventures in Hyper-V"
 date: 2011-07-22 08:52
 comments: false
 published: true
-categories: tech hyper-v
+#categories: [tech, hyper-v]
 tags: [tech, hyper-v]
 description: "Connecting to a remote hyper-v server without a domain"
 keywords: "hyper-v"

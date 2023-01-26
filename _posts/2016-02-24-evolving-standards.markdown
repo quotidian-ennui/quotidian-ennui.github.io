@@ -3,7 +3,7 @@ layout: post
 title: "The pain of evolving standards"
 date: 2016-02-24 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: ""

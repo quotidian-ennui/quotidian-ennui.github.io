@@ -3,7 +3,7 @@ layout: post
 title: "Vagrant + Hyper-V (Windows 10 anniversary)"
 date: 2016-08-17 17:00
 comments: false
-categories: tech hyper-v
+#categories: [tech, hyper-v]
 tags: [tech, hyper-v]
 published: true
 description: "Making Vagrant play nicely with Hyper-V; that can be a bit of a ballache"
@@ -15,19 +15,19 @@ Well, my personal laptop has been upgraded to Windows 10 Anniversary; it's a dua
 
 <!-- more -->
 
-VirtualBox has long been the default provider for Vagrant and if you search for boxes on [Atlas][], they're the ones that are most popular. Hyper-V is supported, but there aren't as many boxes around. This then is a distilled how-to for getting a box up and running with NAT on Hyper-V. For brevity, I've just distilled the raw commands with no explanation as to why I'm doing things as I've done them; they just worked for me. 
+VirtualBox has long been the default provider for Vagrant and if you search for boxes on [Atlas][], they're the ones that are most popular. Hyper-V is supported, but there aren't as many boxes around. This then is a distilled how-to for getting a box up and running with NAT on Hyper-V. For brevity, I've just distilled the raw commands with no explanation as to why I'm doing things as I've done them; they just worked for me.
 
 ## Create a NAT switch
 
 Once you have the Hyper-V role enabled; then you need to add a virtual switch, so use powershell to do that (run as Administrator naturally) rather than the Hyper-V manager UI.
 
-{% highlight powershell %}
+```powershell
 
 New-VMSwitch –SwitchName "NATSwitch" –SwitchType Internal
 New-NetIPAddress –IPAddress 172.21.21.1 -PrefixLength 24 -InterfaceAlias "vEthernet (NATSwitch)"
 New-NetNat –Name MyNATnetwork –InternalIPInterfaceAddressPrefix 172.21.21.0/24
 
-{% endhighlight %}
+```
 
 It does some stuff, but eventually you have a switch that is NAT enabled, and your IP Address is 172.21.21.1 for the network card associated with the switch. The source was [http://www.thomasmaurer.ch/2016/05/set-up-a-hyper-v-virtual-switch-using-a-nat-network/](http://www.thomasmaurer.ch/2016/05/set-up-a-hyper-v-virtual-switch-using-a-nat-network/).
 
@@ -35,7 +35,7 @@ It does some stuff, but eventually you have a switch that is NAT enabled, and yo
 
 Our production machines are all CentOS or variants of, so I like to stick with what I know. There aren't that many CentOS 7 boxes available, so I used `serveit/centos-7` which works well enough.
 
-{% highlight text %}
+```text
 
 Vagrant.configure(2) do |config|
   config.vm.box = "serveit/centos-7"
@@ -51,11 +51,11 @@ Vagrant.configure(2) do |config|
   end
 end
 
-{% endhighlight %}
+```
 
 Once you run `vagrant up`, it's up, and you can `vagrant ssh` to it; but it may well have defaulted to IPV6; which probably isn't all the useful for you.
 
-{% highlight text %}
+```text
     default: IP: fe80::215:5dff:fe48:5307
 ==> default: Waiting for machine to boot. This may take a few minutes...
     default: SSH address: fe80::215:5dff:fe48:5307:22
@@ -85,14 +85,14 @@ host.
 As another option, you can manually specify an IP for the machine
 to mount from using the `smb_host` option to the synced folder.
 
-{% endhighlight %}
+```
 
 
 ### Fiddling the network card.
 
 So, now we need to fix up the network card (easy enough to do) with a fixed IP Address.
 
-{% highlight text %}
+```text
 
 [root@centos7 ~]# cat /etc/sysconfig/network-scripts/ifcfg-eth0
 TYPE=Ethernet
@@ -104,7 +104,7 @@ GATEWAY=172.21.21.1
 DNS1=8.8.8.8
 [root@centos7 ~]#
 
-{% endhighlight %}
+```
 
 After that, a `vagrant halt` followed by a `vagrant` up will fix up the IP addresses nicely.
 
@@ -113,7 +113,7 @@ After that, a `vagrant halt` followed by a `vagrant` up will fix up the IP addre
 
 If you're using the `serveit/centos-7` image then it may fail to mount whatever shared folders you've specified with some error or other. To cut a long story short, because it's a minimal image, it doesn't come with cifs-utils; Get that via yum (because you have NAT right) and you'll be able to mount whatever shares you need in your vagrant file, and voila you have a provisioned CentOS-7 machine.
 
-{% highlight text %}
+```text
 Bringing machine 'default' up with 'hyperv' provider...
 ==> default: Verifying Hyper-V is enabled...
 ==> default: Starting the machine...
@@ -139,7 +139,7 @@ Bringing machine 'default' up with 'hyperv' provider...
     default: C:/Users/lchan/.ant => /home/vagrant/.ant
 ==> default: Machine already provisioned. Run `vagrant provision` or use the `--provision`
 ==> default: flag to force provisioning. Provisioners marked to run always will still run.
-{% endhighlight %}
+```
 
 
 [HPCC Systems]: http://www.hpccsystems.com

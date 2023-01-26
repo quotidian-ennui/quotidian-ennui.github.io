@@ -3,7 +3,7 @@ layout: post
 title: "What's the point of unit-tests"
 comments: false
 tags: [development,interlok]
-categories: [development,interlok]
+#categories: [development,interlok]
 published: true
 description: "Unit tests are like QA, backups and disaster recovery; you don't need it until you need it"
 keywords: ""

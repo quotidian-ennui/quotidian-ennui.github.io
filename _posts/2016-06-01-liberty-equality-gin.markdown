@@ -3,7 +3,7 @@ layout: post
 title: "Liberté, égalité, and French Gin"
 date: 2016-06-01 13:00
 comments: false
-categories: random
+#categories: [random]
 tags: [random]
 published: true
 description: ""
