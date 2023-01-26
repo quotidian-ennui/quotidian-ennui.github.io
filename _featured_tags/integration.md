@@ -1,9 +1,9 @@
 ---
+# Featured tags need to have either the `list` or `grid` layout (PRO only).
 layout: list
 title: Integration
 slug: integration
-menu: true
-order: 2
 description: >
-  Integration isn't always easy but it's never hard
+    Integration isn't always easy but it's never hard;
+    sometimes I have useful things to say about integration.
 ---
