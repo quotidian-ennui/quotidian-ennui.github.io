@@ -55,7 +55,7 @@ menu:
     url:               /tag/development/
   - title:             Integration
     url:               /tag/integration/
-  - title:             About
+  - title:             About Me
     url:               /about/
 
 favicon: /favicon.ico
