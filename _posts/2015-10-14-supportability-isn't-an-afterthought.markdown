@@ -3,7 +3,7 @@ layout: post
 title: "Supportability isn't an afterthought"
 # date: 2015-10-14 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: ""

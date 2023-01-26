@@ -3,7 +3,7 @@ layout: post
 title: "Network issues with Ubuntu 22.04 on a Mac Mini"
 comments: false
 tags: [tech, ubuntu]
-categories: [tech, ubuntu]
+#categories: [tech, ubuntu]
 published: true
 description: "Obscure 13 year old bugs and regressions"
 keywords: ""

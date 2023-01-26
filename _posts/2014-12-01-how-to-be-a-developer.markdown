@@ -3,7 +3,7 @@ layout: post
 title: "How To Be a Developer"
 date: 2014-12-01 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: "The things you do to become a better developer"

@@ -3,7 +3,7 @@ layout: post
 title: "Javadocs with UML diagrams"
 comments: false
 tags: [development,java]
-categories: [development,java]
+#categories: [development,java]
 published: true
 description: "Pictures make people think you care about documentation!"
 keywords: ""

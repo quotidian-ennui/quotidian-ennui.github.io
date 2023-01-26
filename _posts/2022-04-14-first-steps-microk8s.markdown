@@ -3,7 +3,7 @@ layout: post
 title: "First steps in microk8s"
 comments: false
 tags: [tech,kubernetes]
-categories: [tech,kubernetes]
+#categories: [tech,kubernetes]
 published: true
 description: "It hides the magic, and I hate not seeing the magic"
 keywords: ""

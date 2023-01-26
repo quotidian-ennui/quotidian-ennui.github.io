@@ -3,7 +3,7 @@ layout: post
 title: "What is integration"
 date: 2014-02-17 17:00
 comments: true
-categories: integration
+#categories: [integration]
 tags: [integration]
 published: true
 description: "What is integration; explaining what I do to my father"

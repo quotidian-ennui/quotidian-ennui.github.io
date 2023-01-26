@@ -3,7 +3,7 @@ layout: post
 title: "Handling BAPI errors using the Adapter Framework"
 date: 2013-03-01 17:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Bridging between SAP and other systems using the adapter framework; part 3"
@@ -29,7 +29,7 @@ Errors could happen during the processing of the message; it's all well and good
 
 As always, examples are worth a thousand words.
 
-{% highlight xml %}
+```xml
 <message-error-handler xsi:type="java:com.adaptris.core.StandardProcessingExceptionHandler">
   <processing-exception-service xsi:type="java:com.adaptris.core.ServiceList">
     <service xsi:type="java:com.adaptris.core.services.exception.ExceptionReportService">
@@ -64,11 +64,11 @@ As always, examples are worth a thousand words.
     </service>
   </processing-exception-service>
 </message-error-handler>
-{% endhighlight %}
+```
 
 So if the exception that is raised is a JCoRuntimeException then the following block of XML will be inserted under the `//OUTPUT` node. The default-exception-mapping is what is used when an explicit match for an exception can't be found, so in the case of a `ServiceException` it would generate a `RETURN` element with an `ID` of `ADAPTER_EXCEPTION`.
 
-{% highlight xml %}
+```xml
 <RETURN>
   <TYPE>A</TYPE>
   <ID>JCO_EXCEPTION</ID>
@@ -84,7 +84,7 @@ So if the exception that is raised is a JCoRuntimeException then the following b
   <ROW>0</ROW>
   <SYSTEM/>
 </RETURN>
-{% endhighlight %}
+```
 
 Remember that the error handling chain can be configured at a number of levels, adapter wide, channel wide, or on an individual workflow basis; you can compose complicated behaviour in a very simple way.
 

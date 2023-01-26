@@ -3,7 +3,7 @@ layout: post
 title: "Integration is like town planning"
 date: 2014-03-27 17:00
 comments: false
-categories: integration
+#categories: [integration]
 tags: [integration]
 published: true
 description: "Integration is a bit like town planning; you're bringing a lot of different things together"

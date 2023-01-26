@@ -3,7 +3,7 @@ layout: post
 title: "git flow release"
 date: 2017-09-07 12:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: "Bastardising git flow for release automation"
@@ -21,7 +21,7 @@ Sadly though, when we do a `git flow release finish`, things aren't that simple 
 
 First of all, we add a new function to _git-flow-common_ that generates the merge message (available as a <a href="{{ site.baseurl}}/artifacts/gfc_diff.txt" target="_blank">diff</a>).
 
-{% highlight bash %}
+```bash
 #
 # gitflow_render_merge_message
 #
@@ -38,14 +38,14 @@ gitflow_render_merge_message() {
     echo "$msg"
   fi
 }
-{% endhighlight %}
+```
 
 
 ## git-flow-release
 
 Then we need to patch the `cmd_finish` function in _git-flow-release_ so that when a merge is attempted on both the `master` and `develop` branches (so it may be 2 places you make some changes). In the end it'll look something like this (available as a <a href="{{ site.baseurl}}/artifacts/gfr_diff.txt" target="_blank">diff</a>) :
 
-{% highlight bash %}
+```bash
 
  # try to merge into master
  # in case a previous attempt to finish this release branch has failed,
@@ -72,16 +72,16 @@ Then we need to patch the `cmd_finish` function in _git-flow-release_ so that wh
          fi
  fi
 
-{% endhighlight %}
+```
 
 
 ## .gitconfig
 
 Finally you need to modify your local git config so that you define the merge message :
 
-{% highlight bash %}
+```bash
 
 [gitflow "merge"]
         message = Automated Merge of \\'$src_branch\\' into \\'$dst_branch\\'.
 
-{% endhighlight %}
+```

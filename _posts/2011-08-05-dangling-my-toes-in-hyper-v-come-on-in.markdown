@@ -4,7 +4,7 @@ title: "Dangling my toes in Hyper-V; come on in"
 date: 2011-08-05 11:46
 published: true
 comments: false
-categories: tech hyper-v
+#categories: [tech, hyper-v]
 tags: [tech, hyper-v]
 description: "Rebuilding integration services on Centos 5 for a kernel that isn't running"
 keywords: "hyper-v, centos, linux"
@@ -23,10 +23,10 @@ Firstly, disable the integration services, reboot into the new kernel, recompile
 
 GNU/Linux being what it is, you can spoof the kernel release by making sure an equivalent script 'uname' is on the PATH first; here's a script that spoofs the kernel release (there are infinitely better ways to do this; this is just one); I just put it in a directory called fake_uname
 
-{% highlight bash %}
+```bash
 #/bin/bash
 # This is just to query the RPM database and find out the latest kernel.
-# It makes use of the fact that rpm -q kernel seems to put the "latest" version 
+# It makes use of the fact that rpm -q kernel seems to put the "latest" version
 # at the bottom of the output. That might not be reliable so YMMV
 function show_latest_kernel
 {
@@ -44,15 +44,15 @@ case $1 in
         exec /bin/uname $1
         ;;
 esac
-{% endhighlight %}
+```
 
 After that it's just a case of
 
-{% highlight bash %}
+```bash
 export PATH=./fake_uname:$PATH
 make
 make install
-{% endhighlight %}
+```
 
 Voila, we have enabled the Hyper-V Linux integration services 2.1 for a kernel that isn't currently running; just don't forget to delete the backup images in /boot once you're happy things are working.
 

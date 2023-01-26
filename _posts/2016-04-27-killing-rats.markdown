@@ -3,7 +3,7 @@ layout: post
 title: "Killing a rat is easier with an air rifle than an AK-47"
 date: 2016-04-27 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: ""

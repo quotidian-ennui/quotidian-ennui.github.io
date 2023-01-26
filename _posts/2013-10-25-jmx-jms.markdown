@@ -3,7 +3,7 @@ layout: post
 title: "Controlling the adapter via JMX"
 date: 2013-10-25 17:00
 comments: false
-categories: adapter interlok java
+#categories: [adapter, interlok, java]
 tags: [adapter, interlok, java]
 published: true
 description: "How we control our adapters within the Cirrus community"
@@ -21,7 +21,7 @@ Most of our communities interact using JMS, and the adapter initiates the outbou
 
 Adaptris are moving towards having a formal repository where artefacts can be downloaded by our more technically minded customers (along with any publicly available dependencies). This makes installing this component quite easy, you just have to declare a runtime dependency on it in your dependency manager of choice; make sure it knows about our SNAPSHOT repository which is `http://development.adaptris.net/nexus/content/repositories/snapshots` and download the artefacts. As long time [Apache ANT][] users, we use [Apache Ivy][] to manage our dependencies for basic java projects.
 
-{% highlight xml %}
+```xml
 <ivysettings>
   <settings defaultResolver="chain-resolver"/>
   <resolvers>
@@ -30,18 +30,18 @@ Adaptris are moving towards having a formal repository where artefacts can be do
     </chain>
   </resolvers>
 </ivysettings>
-{% endhighlight %}
+```
 
-{% highlight xml %}
+```xml
 <ivy-module version="2.0">
   <dependencies>
     <dependency org="com.adaptris" name="adp-jmx-jms" conf="runtime->runtime" rev="3.0-SNAPSHOT" changing="true"/>
     <exclude org="commons-logging"/>
   </dependencies>
 </ivy-module>
-{% endhighlight %}
+```
 
-{% highlight xml %}
+```xml
 
 <target name="download" depends="get-ivy">
   <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
@@ -50,11 +50,11 @@ Adaptris are moving towards having a formal repository where artefacts can be do
   <ivy:retrieve pattern="${target.lib.dir}/[artifact].[ext]" conf="runtime" type="jar,zip,bundle"/>
 </target>
 
-{% endhighlight %}
+```
 
 Perhaps you're using [Apache Maven][]; if you're cool then perhaps your tool of choice is [Gradle][]. I default to using [Apache ANT][] for builds because it's freeform; [Gradle][] would be my second choice. You just need to make sure your dependency manager understands a Maven 2.x repository. Once you've declared your dependency and downloaded the required artefacts and dependencies then you're ready to configure the adapter's `bootstrap.properties` file to enable JMX over JMS. We use `activemq` and `sonicmq` to differentiate between the two different JMS providers.
 
-{% highlight properties %}
+```properties
 
 adapterConfigUrl=file://localhost//path/to/my/adapter.xml
 jmxserviceurl=service:jmx:sonicmq:///tcp://SonicMQ_BrokerHost:2506?type=Topic&destination=MyAdapterTopic&brokerUser=Administrator&brokerPassword=Administrator
@@ -65,7 +65,7 @@ jmxserviceurl=service:jmx:sonicmq:///tcp://SonicMQ_BrokerHost:2506?type=Topic&de
 #jmxserviceurl.env.type=Topic
 #jmxserviceurl.env.destination=MyAdapterTopic
 
-{% endhighlight %}
+```
 
 As well as specifying all the possible options in the query-portion of the JMXServiceURL, you can specify them as part of the the initial environment for the JMXConnectorServer implementation; The only caveat is that if the environment property `JMXConnector#CREDENTIALS` is set, then that takes precedence (this means that the username / password combination you type into jconsole is acknowledged and used). Various tuning parameters are available such as timeout, and for SonicMQ backup brokers and the like (the javadocs are a separate artefact that can be downloaded, and always worth a read).
 

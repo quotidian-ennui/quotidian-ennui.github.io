@@ -3,7 +3,7 @@ layout: post
 title: "TriggeredChannel has it's uses"
 date: 2013-10-11 17:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "A TriggeredChannel is one that requires an external trigger"
@@ -21,7 +21,7 @@ There are some subtle differences between a [TriggeredChannel][] and a normal ch
 
 If for instance, an adapter is running on a remote machine, and you don't have the capability to login to the filesystem and retry failed messages then you could use a TriggeredChannel to copy all the files from the _bad_ directory into a _retry_ directory so that the [FailedMessageRetrier][] is triggered. This is quite a marginal use case; if you have the type of failure where messages can be automatically retried without manual intervention then a normal [RetryMessageErrorHandler][] will probably be a better bet. We'll make the trigger a message on a JMS Topic; any message received on the topic _retry-failed-messages_ will start the channel, files will be copied from the bad directory to the retry directory and then the channel will stop.
 
-{% highlight xml %}
+```xml
 <channel xsi:type="java:com.adaptris.core.triggered.TriggeredChannel">
   <unique-id>RETRY_FAILED_MESSAGES</unique-id>
   <trigger>
@@ -57,7 +57,7 @@ If for instance, an adapter is running on a remote machine, and you don't have t
     </workflow>
   </workflow-list>
 </channel>
-{% endhighlight %}
+```
 
 [TriggeredChannel]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/triggered/TriggeredChannel.html
 [AdaptrisPollingConsumer]: http://development.adaptris.net/javadocs/v2-snapshot/com/adaptris/core/AdaptrisPollingConsumer.html

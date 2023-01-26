@@ -3,7 +3,7 @@ layout: post
 title: "What makes you an expert developer?"
 date: 2013-02-28 17:00
 comments: false
-categories: development rant
+#categories: [development, rant]
 tags: [development, rant]
 published: true
 description: "Are you an expert developer if you've had n years experience?"

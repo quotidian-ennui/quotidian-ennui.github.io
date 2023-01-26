@@ -3,7 +3,7 @@ layout: post
 title: "Using Kind to sandbox Kubernetes"
 comments: false
 tags: [tech,kubernetes]
-categories: [tech,kubernetes]
+#categories: [tech,kubernetes]
 published: true
 description: "Better for sandboxes, fewer opinions, less magic"
 keywords: ""

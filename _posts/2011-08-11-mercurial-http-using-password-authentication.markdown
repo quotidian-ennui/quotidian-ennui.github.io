@@ -4,7 +4,7 @@ title: "Mercurial / HTTP using Password Authentication"
 date: 2011-08-11 08:58
 published: true
 comments: false
-categories: tech development scm
+#categories: [tech, development, scm]
 tags: [tech, development, scm]
 description: "Setting up apache with mercurial with password authentication"
 keywords: "mercurial, http, dvcs, apache, linux, centos"
@@ -29,7 +29,7 @@ Having done all of this though, you might want to secure the apache server with 
 * Modify hgweb.cgi to refer to hgweb.config (full path) it's obvious where it needs to go.
 * Modify virtual host (or create a new one, or whatever)
 
-{% highlight apache %}
+```apache
 
 <VirtualHost *:80>
   ServerName mercurial
@@ -51,25 +51,25 @@ Having done all of this though, you might want to secure the apache server with 
     Require valid-user
   </Location>
 </VirtualHost>
-{% endhighlight %}
+```
 
 * Create / clone a repo from somewhere (into /var/www/mercurial if you like)
 * Modify hgweb.config to add in a path for your repository; there's other things you can do here, like infer all the repositories based on a root directory, but we're going to keep it simple.
 
-{% highlight ini %}
+```ini
 [paths]
 awesome_code = /var/www/mercurial/awesome_code
-{% endhighlight %}
+```
 
 * Create the users file (that's your AuthUserFile from the virtual host location directory above)
 
-{% highlight console %}
+```console
 htdigest -c hgusers "Mercurial repositories" trex
-{% endhighlight %}
+```
 
 * You'll need to change the ''.hg/hgrc'' file for each repository and add in various bits and bobs for the repository. This can be done in hgweb.config if you want the contact details to be inherited by all repositories that you're making available
 
-{% highlight ini %}
+```ini
 [web]
 # (shows up when you browse to the web page only)
 contact = T. Rex
@@ -79,11 +79,11 @@ description = My Awesome code
 push_ssl = false
 # (use * for all users, otherwise only Mr Rex can push changes)
 allow_push = trex
-{% endhighlight %}
+```
 
 After all of that, restarting apache is a snap, and you should be able to point your browser to the apache installation and view the repository. You can also clone the thing now, and push changes.
 
-{% highlight console %}
+```console
 $ hg clone http://192.168.1.1/hg-web/awesome_code
 http authorization required
 realm: Mercurial repositories
@@ -105,7 +105,7 @@ remote: adding changesets
 remote: adding manifests
 remote: adding file changes
 remote: added 1 changesets with 1 changes to 1 files
-{% endhighlight %}
+```
 
 
 [http://hginit.com]: http://hginit.com

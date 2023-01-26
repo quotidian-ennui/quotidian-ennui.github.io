@@ -3,7 +3,7 @@ layout: post
 title: "Upgrading to Hyper-V 2012"
 date: 2012-12-07 17:00
 comments: false
-categories: tech hyper-v
+#categories: [tech, hyper-v]
 tags: [tech, hyper-v]
 published: true
 description: "Upgrading from Hyper-V 2008 to Hyper-V 2012"

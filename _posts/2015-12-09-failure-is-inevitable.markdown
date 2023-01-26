@@ -3,7 +3,7 @@ layout: post
 title: "Failure is inevitable; suffering is optional"
 date: 2015-12-09 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: ""

@@ -3,7 +3,7 @@ layout: post
 title: "What to do when your vision hits the buffers of reality"
 # date: 2015-10-28 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: ""

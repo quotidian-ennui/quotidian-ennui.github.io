@@ -3,7 +3,7 @@ layout: post
 title: "Unison on Centos 7"
 date: 2015-01-28 13:00
 comments: false
-categories:  tech linux
+#categories:  [tech, linux]
 tags: [tech, linux]
 published: true
 description: "Why isn't Unison in the EPEL repository for CentOS 7"
@@ -17,21 +17,21 @@ I generally use [unison][] to keep my work environment on various machines in sy
 
 Compiling unison from scratch is quite simple, install the latest version of ocaml, and then just run ``make`` having downloaded the source distribution for unison;  which is exactly what I did. However, initial attempts to synchronize always failed.
 
-{% highlight text %}
+```text
 Dumping archives to ~/unison.dump on both hosts
 Finished dumping archives
 Fatal error: Internal error: New archives are not identical.
 Retaining original archives.  Please run Unison again to bring them up to date.
-{% endhighlight %}
+```
 
 
 If you are using the [pre-compiled Windows binaries][windows-unison] then you're at 2.40.x which uses ocaml 3.12; the latest version of ocaml is 4.x (which is what you get when you ``yum install ocaml`` on CentOS 7) and they tend to give different results depending on what you're doing (the why isn't important, life is too short). What you need to do is to download ocaml 3.12 from source and install it.
 
-{% highlight console %}
+```console
 ./configure
 make world.opt
 make install
-{% endhighlight %}
+```
 
 After that, rebuild unison once again.
 

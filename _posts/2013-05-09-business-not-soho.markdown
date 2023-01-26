@@ -3,7 +3,7 @@ layout: post
 title: "The benefits of an business class router"
 date: 2013-05-08 17:00
 comments: false
-categories: tech
+#categories: [tech]
 tags: [tech]
 published: true
 description: "The consumer router you've got is rubbish if you actually need to work from home"
@@ -16,8 +16,8 @@ I was pretty much one of the first 10 ADSL installations in Reading; I was with 
 <!-- more -->
 
 Anyway this story isn't about my woes with BT infinity, it's more to do with the amusement factor I have with so-called consumer devices. When the engineer left I went to speedtest.net and tested the speed. It was the new 80/20 infinity, or rather 60/9 in my case. This was running with the HH3 and their modem with a wired ethernet connection to my laptop. For the first few days at least I was going to leave it like this, but the HH3 is virtually useless, it doesn't give me the management features that I want or the WiFi range. I don't get Wifi in the spare bedroom because it's diagonally opposite the study on the ground floor.
- 
-I made the investment to buy a [Draytek Vigor 2850vn](http://www.draytek.co.uk/products/vigor2850.html) a while ago. I've been using it with my existing ADSL connection (it supports ADSL/VDSL/Ethernet WAN/3G via USB) and it's been rock solid with uptime measured in weeks and months rather than the random reboots every day that I had been getting with the HH2 and other sundry other ADSL modems. 
+
+I made the investment to buy a [Draytek Vigor 2850vn](http://www.draytek.co.uk/products/vigor2850.html) a while ago. I've been using it with my existing ADSL connection (it supports ADSL/VDSL/Ethernet WAN/3G via USB) and it's been rock solid with uptime measured in weeks and months rather than the random reboots every day that I had been getting with the HH2 and other sundry other ADSL modems.
 
 As expected, soon enough, my wife started complaining that the WiFi signal wasn't working well enough in the kitchen so I had to fire up the Draytek and set about the VDSL configuration. First of all I disabled all the QoS settings on my router (it has a lot of things you can tweak and tinker with); I'm a big fan of it supporting multiple SSIDs, so I can have a public WiFi network that can't talk to the internal network (more about that another day).
 

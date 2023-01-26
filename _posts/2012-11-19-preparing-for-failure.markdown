@@ -3,7 +3,7 @@ layout: post
 title: "Preparing for failure"
 date: 2012-11-19 09:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: "Mitigating project failure conditions"
@@ -19,7 +19,7 @@ I was watching the [BBC Science Club series](http://www.bbc.co.uk/programmes/p00
 
 As a thought experiment, think of all the states where your project will be considered a success, and then think of all the states where your project can be considered a failure. My bet is that there are many more states where the project is going to be considered a failure. If all those outcomes have an equal probability, then we're in a situation where your project is _probably going to fail_.
 
-All of that is pretty depressing, but I'm not advocating that you give up and go live on the beach instead (nice though that would be). We just have to learn how to make the failure conditions less probable and increase the likelihood of success. 
+All of that is pretty depressing, but I'm not advocating that you give up and go live on the beach instead (nice though that would be). We just have to learn how to make the failure conditions less probable and increase the likelihood of success.
 
-More on some of the techniques we use another day. 
+More on some of the techniques we use another day.
 

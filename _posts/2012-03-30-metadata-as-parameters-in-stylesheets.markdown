@@ -3,7 +3,7 @@ layout: post
 title: "Metadata as Parameters to Stylesheets"
 date: 2012-03-30 14:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "How to pass parameters into a stylesheet when you're using an adapter"
@@ -21,7 +21,7 @@ Since 2.5.0 (a very long time ago now) the XML Transform service has had the abi
 
 First of all we need to have an XML Transform that requires parameters; this is probably the most complex transform that you'll ever see me write. Honestly, *it's just data*.
 
-{% highlight xml %}
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
   <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
@@ -34,7 +34,7 @@ First of all we need to have an XML Transform that requires parameters; this is 
     </Root>
   </xsl:template>
 </xsl:stylesheet>
-{% endhighlight %}
+```
 
 Then we need to configure our adapter to
 
@@ -43,7 +43,7 @@ Then we need to configure our adapter to
 
 In this example, I have for simplicity, used [StaticIdentitySequenceNumberService][] to generate the sequence number. You could also opt to use [MetadataIdentitySequenceNumberService][] instead.
 
-{% highlight xml %}
+```xml
   <service xsi:type="java:com.adaptris.core.services.jdbc.StaticIdentitySequenceNumberService">
     <connection xsi:type="java:com.adaptris.core.jdbc.JdbcConnection">
       <driver-imp>com.mysql.jdbc.Driver</driver-imp>
@@ -58,7 +58,7 @@ In this example, I have for simplicity, used [StaticIdentitySequenceNumberServic
     <url>../transforms/transform-with-param.xsl</url>
     <use-metadata-as-stylesheet-parameters>true</use-metadata-as-stylesheet-parameters>
   </service>
-{% endhighlight %}
+```
 
 If you have used the stock [StaticIdentitySequenceNumberService][] then you will find that the table contains the _next number in the sequence_. That's intentional and by design.
 

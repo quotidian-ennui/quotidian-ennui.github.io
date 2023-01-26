@@ -3,7 +3,7 @@ layout: post
 title: "Project Management Tools"
 date: 2012-05-25 13:00
 comments: false
-categories: development
+#categories: [development]
 tags: [development]
 published: true
 description: "Why we settled on redmine as our project management tool"
@@ -27,7 +27,7 @@ In the end; there was Redmine, we used it for a month; and we actually found our
 
 Ultimately it comes down to this, developers treat the source code/check-in messages as the documentation. We don't really want to write more documentation or update a website with something that we've just written already. So being able to put as my checkin message
 
-{% highlight text %}
+```text
 redmineID #9876 and redmineID #9875
 
 SLF4JBridgeHandler.install() is now called if the system property
@@ -35,7 +35,7 @@ jul.log4j.bridge is set to true. Explicitly added org.slf4j api with
 a scope of provided so that it is not included in the jars in the
 distribution.
 This fixes #9876
-{% endhighlight %}
+```
 
 and having this update both issue numbers with that comment, and _change the state of issue 9876 so that it is 90% complete_ means that a lot of the drudgery that helps to keep the project managers happy is automatically done for you and means we can get on with something more interesting instead.
 

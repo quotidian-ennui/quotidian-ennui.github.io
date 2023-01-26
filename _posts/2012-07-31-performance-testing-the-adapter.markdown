@@ -3,7 +3,7 @@ layout: post
 title: "Performance testing the adapter"
 date: 2012-07-31 21:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Performance Metrics for the adapter"
@@ -20,13 +20,13 @@ The development team recently re-ran the tests and we thought we could publish s
 
 I consider all of these metrics relative; the actual numbers will vary from installation to installation. Our test plaform was a Dell LX502 laptop (local Sonic+Adapter) talking to an Intel Core 2 Duo (E6750) connected via a 100Mbps switch; the size of message was about 3k. It was basically done with some old hardware we had lying around in the labs; no shiny hardware for us.
 
-{% highlight text %}
+```text
 Performance Statistics   10:39:00 - 10:42:00
 Tag                                                  Avg(ms)         Min         Max     Std Dev       Count
 PtpProducer.produce()                                    3.5           1         310         6.0       10000
 PoolingWorkflow(PoolingSonicConfig)                      4.8           2         312         6.2       10000
 PoolingWorkflow.sendMessageLifecycleEvent()              0.7           0           7         0.6       10000
-{% endhighlight %}
+```
 
 * _PtpProducer.produce()_ metric gives the time taken to physically call _QueueProducer#send(Destination)_ which will involve sending all the bits across the network.
 * _PoolingWorkflow.sendMessageLifecycleEvent()_ is the time on average it takes to send the message lifecycle event associated with each message.
@@ -34,13 +34,13 @@ PoolingWorkflow.sendMessageLifecycleEvent()              0.7           0        
 
 As we can see, there is an overhead to sending the message lifecycle event; by default it is turned on, but you can easily turn it off by marking each workflow with send-events=false. If we do that, then the numbers change.
 
-{% highlight text %}
+```text
 Performance Statistics   11:06:00 - 11:09:00
 Tag                                                  Avg(ms)         Min         Max     Std Dev       Count
 PtpProducer.produce()                                    3.1           1         308         9.1       10000
 PoolingWorkflow(PoolingSonicConfigSendNoEvents)          3.3           1         309         9.1       10000
 PoolingWorkflow.sendMessageLifecycleEvent()              0.0           0           8         0.1       10000
-{% endhighlight %}
+```
 
 Using the adapter in its very simplest form adds an overhead of approximately 0.3 milliseconds to do a glorified JMS copy. We would be able to get some more performance gains by doing JVM tuning and using other configuration options; most of the time though, the adapter *isn't* your bottleneck.
 

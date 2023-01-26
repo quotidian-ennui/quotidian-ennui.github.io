@@ -3,7 +3,7 @@ layout: post
 title: "Character set woes"
 date: 2015-01-30 13:00
 comments: false
-categories: adapter interlok
+#categories: [adapter, interlok]
 tags: [adapter, interlok]
 published: true
 description: "Applications not respecting character sets"
@@ -21,7 +21,7 @@ Given a document that is encoded in ISO-8859-1; the beta character ß is encoded
 
 If workflow in question treats messages as ISO-8859-1; then you need to do a find and replace of the UTF-8 characters and replace them with the equivalent ISO-8859-1 character.
 
-{% highlight xml %}
+```xml
 <service xsi:type="java:com.adaptris.core.services.findreplace.FindAndReplaceService">
   <find-replace-pairs>
     <key-value-pair>
@@ -33,7 +33,7 @@ If workflow in question treats messages as ISO-8859-1; then you need to do a fin
   <replace-first-only>false</replace-first-only>
 </service>
 
-{% endhighlight %}
+```
 
 In situations like this though you still have to eyeball the file in question, and then use something like [a UTF-8 table][utf8] to compare the duff values against another character set; a editor that can toggle between hex and text display is very useful as well.
 
