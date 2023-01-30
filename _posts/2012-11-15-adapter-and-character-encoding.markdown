@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "Adapter behaviour and character encoding"
 keywords: "java, adapter, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 Working with different character encodings is almost fun. I do get asked a lot about this kind of thing; my transform doesn't work, or this EDI document doesn't parse properly (I suppose the customer thinks that diacritics are allowed in the UNOA character set?); I like to say that the adapter only knows as much about encoding as you do; everything is configurable so your choices (or tacit acceptance of the defaults) will have a huge impact on how the adapter behaves.

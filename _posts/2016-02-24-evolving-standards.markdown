@@ -8,6 +8,7 @@ tags: [development]
 published: true
 description: ""
 keywords: "development"
+excerpt_separator: <!-- more -->
 ---
 
 I’ve recently had the pleasure of being involved in the aftermath of a penetration test on a fairly low-key web based application (it was government sponsored; and they quite rightly wanted to test the application for vulnerabilities) during the trial phase and subsequently trying to deal with the recommendations. Some of the previous penetration tests that we’ve undergone seemed quite amateurish in comparison to this one; the disclosures, where appropriate, were very detailed and comprehensive.

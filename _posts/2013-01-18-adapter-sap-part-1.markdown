@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "Bridging between SAP and other systems using the adapter framework; Part 1"
 keywords: "java, adapter, sap, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 SAP R/3 is used in a lot of enterprises and so having to integrate with SAP R/3 is something that we familiar with. The adapter has a broad range of support for SAP R/3; we can send and receive IDocs if you are trading documents electronically, or we can invoke arbitrary RFCs/BAPI functions within SAP R/3 if IDocs aren't your thing.

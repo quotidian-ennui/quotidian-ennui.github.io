@@ -7,7 +7,7 @@ comments: false
 tags: [adapter, interlok]
 published: true
 description: "Performance Metrics for the adapter"
-
+excerpt_separator: <!-- more -->
 ---
 
 One of the things that we're always asked is to provide some performance metrics for the adapter. This is always something I'm loathe to do. Raw performance numbers are almost always meaningless in the real world; it depends on too many things, the complexity of your environment, the quality of the network, what type of processing that you're actually doing.

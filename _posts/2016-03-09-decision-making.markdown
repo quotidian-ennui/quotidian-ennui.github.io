@@ -8,6 +8,7 @@ tags: [development]
 published: true
 description: ""
 keywords: "development"
+excerpt_separator: <!-- more -->
 ---
 
 Every decision involves an element of risk; you might lose your job and not be able to pay back that mortgage that you've signed up for. The cascading effects of that are hard to imagine, so you may naturally veer away from the hard decisions but you can't articulate why. Some decisions need to be emotionally led; but others aren't or shouldn't be.

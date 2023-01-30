@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "Figuring out an obscure jetty error in the adapter"
 keywords: "java, adapter, jetty, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 Recently our integrations team have been deploying some HTTPS enabled adapters to service some customers who wanted to POST requests into our hub infrastructure. Interestingly they encountered a problem which they came to me with. Basically, during testing with one particular customer they found that there was excessive continuous logging which ended up raising a red flag via some our file system monitoring processes (I did have a little chuckle at their work-around initially).

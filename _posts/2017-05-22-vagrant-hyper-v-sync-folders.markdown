@@ -9,9 +9,12 @@ published: true
 description: "Issues mounting local folders in vagrant"
 keywords: "hyper-v, vagrant, linux"
 header-img: img/banner_broken-plane-2.jpg
+excerpt_separator: <!-- more -->
 ---
 
 One of the things that [Vagrant][] (in Hyper-V mode) does if you sync folders with your linux machine is to attempt to mount them via SMB. This can lead to a few problems; you can work through them, but it's always easier to cut and paste from someone else's pain right?
+
+<!-- more -->
 
 ## Multiple IP Addresses
 

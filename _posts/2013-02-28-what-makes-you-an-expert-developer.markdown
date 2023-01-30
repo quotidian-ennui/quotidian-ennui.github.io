@@ -8,7 +8,7 @@ tags: [development, rant]
 published: true
 description: "Are you an expert developer if you've had n years experience?"
 keywords: "development, recruitment"
-
+excerpt_separator: <!-- more -->
 ---
 
 I re-watched groundhog day quite recently; it is still a work of genius but it got me to thinking about the subtext of the film and how it relates to software development.

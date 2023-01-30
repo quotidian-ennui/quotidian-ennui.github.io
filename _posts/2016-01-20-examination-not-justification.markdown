@@ -8,6 +8,7 @@ tags: [development]
 published: true
 description: "The unexamined life is not worth living - Socrates via Plato."
 keywords: "development"
+excerpt_separator: <!-- more -->
 ---
 
 Everyone has a gut feeling about things; we seem to be hard wired to make snap judgements about events and things. Evolutionary biologists would probably say that this harks back to when we were hunter-gatherers and had to rapidly make a judgement as to whether something was a threat or not.

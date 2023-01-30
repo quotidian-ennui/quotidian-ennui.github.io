@@ -8,7 +8,7 @@ tags: [development]
 published: true
 description: "Why we settled on redmine as our project management tool"
 keywords: "redmine, centos"
-
+excerpt_separator: <!-- more -->
 ---
 
 Our main development management tool is [Redmine](http://www.redmine.org). It has been since December 2010. We tried a lot of tools before settling on redmine. It was the only one that we ended up going back to and using. If, after a month of trying to use something, you end up not using it, then either you're too set in your ways, or the tool isn't good enough. Our journey to settling on redmine as our web based project management tool is a long and chequered one, and it all started in 2010.

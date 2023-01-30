@@ -8,9 +8,12 @@ published: true
 title: "e.printStackTrace() as JSON"
 description: "Sometimes you don't want to hide the stacktrace"
 keywords: "interlok"
+excerpt_separator: <!-- more -->
 ---
 
 Let's suppose that you have an Interlok instance servicing HTTP requests and the data being transferred around is JSON messages. In the event that an exception happens what would normally happen is an exception is printed in the log file and a HTTP 500 error returned back to the client. What if we want to send more information such as the stack trace back to the caller as a JSON message.
+
+<!-- more -->
 
 When an exception is thrown during processing; then 3 things happen
 

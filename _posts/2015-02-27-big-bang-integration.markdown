@@ -9,6 +9,7 @@ published: true
 description: "Integration isn't a big bang deployment exercise."
 keywords: "integration"
 header-img: img/banner_wings.jpg
+excerpt_separator: <!-- more -->
 ---
 
 The kind of project I love is the kind that is small in scope; you have a tricky piece of integration that you can't do with your current piece of software. It starts off small, but when you see the business value, you start using the software more and more. We had exactly this kind of project about 10 years ago. The customer put our software in place, and the first time we hear from them again was Jan 2015. Their license had expired. They had never upgraded; they'd never raised any support calls; our software had been working quite happily in the background extracting and sending all their documents. For me; this is great advert for Interlok. It just works.

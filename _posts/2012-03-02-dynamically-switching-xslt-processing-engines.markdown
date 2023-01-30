@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "Setting up the adapter to use both XSLT 1.0 and 2.0 in the same JVM"
 keywords: "adapter, xslt, jruby, jsr223, java, saxon, xalan, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 At the moment, for legacy reasons, the adapter ships with Xalan as the XSLT transformation engine. There are still a lot of stylesheets out that that won't work with XSLT 2.0. If your environment is XSLT2.0 only then our recommendation has always been to switch the default transformer factory to something like [Saxon][] using the appropriate JVM system property on the commandline : `-Djavax.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl` but this makes all the transforms use saxon as the XSLT processing engine.

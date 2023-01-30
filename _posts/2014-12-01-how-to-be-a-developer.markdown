@@ -8,7 +8,7 @@ tags: [development]
 published: true
 description: "The things you do to become a better developer"
 keywords: "development, self-learning"
-
+excerpt_separator: <!-- more -->
 ---
 
 I've been doing development now for a long time; I enjoy it, and it's something that I'm good at; that statement could easily be switched around, I'm good at it, so I enjoy it. Regardless of how it is now, it was still something that I had to learn how to be good at it. For me it was always about acquiring a set of skills and a methodology for approaching a problem. These are the things where simple things like having been taught how to learn can help. I learnt Modula-2 at university; of less use than COBOL in the real world; but it taught me how to learn a new language, and I've applied that knowledge everywhere I've worked. The skillset that you acquire through your career will be quite varied but the methodology is always invariably the same.

@@ -8,7 +8,7 @@ published: true
 tags: [tech, development, scm]
 description: "Setting up mercurial with apache https"
 keywords: "mercurial, https, dvcs, apache, linux"
-
+excerpt_separator: <!-- more -->
 ---
 
 You care about being compliant with various regulatory regimes that say you can't ever remember private 172.16.x.x IP addresses and say them out loud (or write them down); and yet they will happily use Winzip to password protect a zip file with an easy to remember password (sometimes to maintain "compatibility" they use encryption that can be extracted by earlier versions).

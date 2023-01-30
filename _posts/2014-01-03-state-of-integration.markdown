@@ -8,7 +8,7 @@ tags: [integration]
 published: true
 description: "There is nothing new under the sun; why is integration still harder than it should be"
 keywords: "integration"
-
+excerpt_separator: <!-- more -->
 ---
 
 Sometimes I look at the state of integration and I think that things could be so much better. We've effectively been doing it since the Berlin airlift. By now you'd hope that things would have settled down and the ability to do integration would simply be a commodity and I would be out of a job. I'm not and that says more about each new generation of programmers than it does about me.

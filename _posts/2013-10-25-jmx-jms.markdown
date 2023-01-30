@@ -8,7 +8,7 @@ tags: [adapter, interlok, java]
 published: true
 description: "How we control our adapters within the Cirrus community"
 keywords: "JMS, JMX, java"
-
+excerpt_separator: <!-- more -->
 ---
 
 The adapter has supported remote JMX via JMXMP for a while; which means you can connect to an adapter via jconsole, or other tools. The only problem with the reference implementation (e.g. `service:jmx:jmxmp://localhost:5555`) that people tend to use is that it isn't terribly useful if you're managing a community, where the various IT policies aren't going to let unfettered access through their firewall to the adapter; some of our smaller customers they don't even have an IT dept., and talking the business admin through how they need to modify inbound NAT on whatever router it is they're using is not for the faint-hearted (and basically you end up being their IT dept. which is another sorry state of affairs).

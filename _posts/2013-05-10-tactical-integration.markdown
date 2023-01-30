@@ -8,7 +8,7 @@ tags: [integration]
 published: true
 description: "Integration isn't a top-down all or nothing proposition"
 keywords: "integration"
-
+excerpt_separator: <!-- more -->
 ---
 
 Once a business is established then some things become entrenched; business processes, the interaction between core systems and what have you; some things do change really quickly and often (like requirements). It will take time for you to replace some of the systems that you have in place, but you need them integrated now.

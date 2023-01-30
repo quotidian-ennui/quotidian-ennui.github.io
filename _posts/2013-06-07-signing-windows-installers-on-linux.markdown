@@ -8,7 +8,7 @@ tags: [development]
 published: true
 description: "Quick Dirty how to sign a windows installer on linux"
 keywords: "windows linux authenticode"
-
+excerpt_separator: <!-- more -->
 ---
 
 One of the things that's happened with Windows 8/2012 is that you need to sign your installers or a big fat warning will present itself to the user when they click on it. I'm not exactly sure how having a signed installer protects the user as certifying authorities will sign any old certificate. Anyhow, with the release of 2.9.0 the installer supported Windows 8/2012 without having to run it in compatibility mode; but the warning still presents itself to the user on startup. With the release of 2.9.1 (now in beta) we're going to sign our installers. Hopefully no more warnings when you start the installer (other than UAC prompts).

@@ -8,6 +8,7 @@ tags: [random]
 published: true
 description: ""
 keywords: ""
+excerpt_separator: <!-- more -->
 ---
 
 Citadelle: it's a French gin; goes well with both lemons or lime. Apparently it's just your preference; you are free to choose. The choice here is liberating when it comes to gin; in the UK we may not be used to having the freedom to choose your path. You're restricted by class, restricted by your family, restricted by your own outlook on life.

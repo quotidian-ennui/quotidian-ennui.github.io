@@ -8,7 +8,7 @@ tags: [integration]
 published: true
 description: "Getting the mix of integration ingredients right"
 keywords: "integration management"
-
+excerpt_separator: <!-- more -->
 ---
 
 In celebration of International Women's Day (8th March 2013), I think a reference to computing pioneer Admiral Grace Hopper is in order. I believe she said that programming was like planning a dinner; that's a neat way of mapping the act of programming into something everyday. After all, as a programmer, most of the time you aren't inventing new algorithms[^1] you're just joining up existing third party libraries and API's in a different way; making a new recipe out of the same ingredients.

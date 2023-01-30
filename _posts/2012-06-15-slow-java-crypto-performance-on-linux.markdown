@@ -8,7 +8,7 @@ tags: [java, linux]
 published: true
 description: "Slow SecureRandom is always annoying; I just wish Oracle would fix their documentation"
 keywords: "java, centos, SecureRandom"
-
+excerpt_separator: <!-- more -->
 ---
 
 I've had a new virtual server (CentOS 6.x) commissioned to run as a [jenkins](http://jenkins-ci.org) slave. After installing all the pre-requisites on the box and configuring various build properties; I started a standard build of the framework on the machine. The build works, but it's extremely slow.

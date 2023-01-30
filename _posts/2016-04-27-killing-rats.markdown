@@ -6,6 +6,7 @@ comments: false
 #categories: [development]
 tags: [development]
 published: true
+excerpt_separator: <!-- more -->
 description: ""
 keywords: "development"
 ---

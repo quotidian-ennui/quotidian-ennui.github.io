@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "JMS Connections, error handling and their variations"
 keywords: "java, adapter, jms, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 JMS is the messaging platform that the adapter is _almost always_ deployed against. Getting the adapter to work in a consistent way with a number of JMS Providers; some of which aren't as _compliant_ as others; has been key goal of ours for a long time. We're at the stage where I'm happy that the features provided by the adapter allow us to work in a consistent manner with almost any JMS Provider.
