@@ -7,7 +7,7 @@ published: true
 tags: [adapter, interlok]
 description: "Using JSR223 languages in the adapter"
 keywords: "adapter, interlok, java, jruby, jsr223"
-
+excerpt_separator: <!-- more -->
 ---
 
 Let's take a look at some of the features that are available in the Adapter; today we're going focus on scripting language support.

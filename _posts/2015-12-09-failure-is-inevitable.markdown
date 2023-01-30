@@ -8,6 +8,7 @@ tags: [development]
 published: true
 description: ""
 keywords: "development"
+excerpt_separator: <!-- more -->
 ---
 
 It's a similar story every time; you bootstrap a product or start a project and you're optimistic that this time you'll be doing it right; you've learnt the lessons of previous failed projects that you've been involved in and you're convinced that this time it will all run smoothly and things will turn out swimmingly.

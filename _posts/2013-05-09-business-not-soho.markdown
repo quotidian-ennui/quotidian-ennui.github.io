@@ -8,7 +8,7 @@ tags: [tech]
 published: true
 description: "The consumer router you've got is rubbish if you actually need to work from home"
 keywords: "tech, vdsl"
-
+excerpt_separator: <!-- more -->
 ---
 
 I was pretty much one of the first 10 ADSL installations in Reading; I was with BT back then (waaaay back in 2001), and I have stayed with them, during all that time I've only had 1 week's outage and they've been pretty reliable. What has irked me is that my local exchange has been fibre-enabled since 2011; it's only now that I've been able to get BT Infinity (installed for 2 weeks now). The nice engineer came round and disabled all my phone sockets bar the one in the study. The reasons for this I'm sure are quite technically sound I'm not a telecoms engineer; he said you can only run the infinity modem off the master socket (I don't have power near that socket); he moved the master socket to the office, which incidentally meant that all the other sockets have been disabled.

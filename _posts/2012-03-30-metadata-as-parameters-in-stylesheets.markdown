@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "How to pass parameters into a stylesheet when you're using an adapter"
 keywords: "adapter, xslt, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 I'm never really been all that interested in data manipulation; one of my stock phrases is _it's just data_[^1]. From an integration perspective I might never understand the business semantics around each field in your data file. The critical part of our work is to make sure that your data gets out of _System A_, and gets to _System B_ in the right format. For me, the interesting part is always understanding the esoteric limitations or complexities around the communications protocol rather than the data formatting itself. This probably goes back to messing around with protocol analyzers and gender benders (not that kind; the kind that you fit to an RS232 port) when I first started.

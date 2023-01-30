@@ -8,7 +8,7 @@ tags: [tech, development, scm]
 published: true
 description: "Tidying up after yourself when you screw things up in mercurial"
 keywords: "mercurial"
-
+excerpt_separator: <!-- more -->
 ---
 
 Our source code management tool of choice is [Mercurial](http://mercurial.selenic.com); which is a python based DVCS. We switched back in 2009 once we'd gotten fed up with CVS. There are still a few internal projects using CVS, but these days almost all the developers are using mercurial. People always ask why we never moved to subversion and generally my answer has always been  _because it's not *significantly* better than CVS_. Yes it _is_ better, it might even be CVS done right (not that this is a good advertisement for subversion); but ultimately, I need to use it on the plane or during a proof of concept with no external network access and collaborative development has to take place.

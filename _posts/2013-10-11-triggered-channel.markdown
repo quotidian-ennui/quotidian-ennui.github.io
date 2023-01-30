@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "A TriggeredChannel is one that requires an external trigger"
 keywords: "java, adapter, sap, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 I haven't posted for a while, I can see that my last post was in June; the summer holidays must have been quite exciting (or frenetic); can't remember now. Anyway, this post is about something that isn't really used in the adapter; which is [TriggeredChannel][]. It is a channel where the workflows are only started when an external event occurs; hence the name. Once the trigger is received; workflows are started, the channel waits for the workflows to do their thing, and then stops them afterwards and is then ready for the next trigger.

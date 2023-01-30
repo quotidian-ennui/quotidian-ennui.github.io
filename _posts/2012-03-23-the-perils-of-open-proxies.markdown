@@ -8,7 +8,7 @@ tags: [tech, linux]
 published: true
 description: "I setup an open proxy by mistake, and used iptables to filter out rogue connections"
 keywords: "apache, linux, proxy"
-
+excerpt_separator: <!-- more -->
 ---
 
 Once upon a time, a very long ago now, about last Friday, I was provisioning some new VM images kindly provided to me by our infrastructure team. Apparently I have my own dedicated ESX server (admittedly running on some old hardware they had lying around) with which to play around to my heart's content. That environment is intended to be a replacement for this server; but truth be told I haven't had time to migrate all the services running on this machine over. In fact I'm currently having trouble making hudson run the unit tests.

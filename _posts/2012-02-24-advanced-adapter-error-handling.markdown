@@ -9,7 +9,7 @@ tags: [adapter, interlok]
 published: true
 description: "Setting up the adapter for multiple ways of handling errors"
 keywords: "adapter, java, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 As we all know error handling within the adapter can be configured at the workflow, channel or adapter level. Most of the time we just write the original file out to something that can't fail (well, unlikely to fail in the context of things) like the file system.

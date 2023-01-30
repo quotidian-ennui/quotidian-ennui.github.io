@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "Second in series about the Adapter + JMS"
 keywords: "java, adapter, jms, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 JMS is the bread and butter of the adapter; it's been supported even since it was first released. We use JMS as the backbone of all our community deployments; we aren't picky about the vendor, so long as it supports JMS 1.0 then the adapter will quite happily work with it. I've written previously about [JMS Connections and the adapter][]. Most of time, it _just works_; the problems that you might be having will be configuration based because the default behaviour _just aren't suitable for your environment_.

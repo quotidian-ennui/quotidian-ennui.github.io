@@ -9,6 +9,7 @@ published: true
 description: "Are Maven's opinionated conventions all that useful for any semi-complex build environment?"
 keywords: "java, maven, ant"
 header-img: img/banner_broken-plane.jpg
+excerpt_separator: <!-- more -->
 ---
 
 We use [Apache Ivy][] as our dependency management tool of choice; backed by an installation of [Sonatype Nexus][]. Recently, due to a restructure of some internal projects we're using Maven to publish (some) snapshot artefacts into our nexus repository and then referencing them when the time comes to generate our nightly downloads. You'd think this would be a relatively simple thing to do, but it was really much harder than it should have been.

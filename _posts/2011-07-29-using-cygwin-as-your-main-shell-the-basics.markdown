@@ -8,10 +8,12 @@ published: true
 tags: [tech]
 description: "Setting up Cygwin so that the permissions play nice with other windows programs"
 keywords: "cygwin, java"
+excerpt_separator: <!-- more -->
 ---
 
 I use Cygwin all the time, if it wasn't for Microsoft Outlook I would have probably given up the Windows platform a long time ago. That there isn't a PIM out there that is as good as Outlook is a really damning statement in some ways, Outlook isn't that good if you don't have an Exchange environment. No, Google mail + calendar is NOT THAT GOOD.
 
+<!-- more -->
 Again, I'm digressing, it's not going to turn into a rant about usability of Thunderbird / Evolution / Apple Mail  (which I thought was truly abysmal on OSX 10.5) vs Outlook.
 
 Cygwin means that all my scripting can be done in bash, and thus portable between environments; because our production environments are almost always RHEL. So, I live in the bash shell all the time, but there are times when I still like to use cmd.exe to do things. I have found that the Cygwin security model doesn't seem to play that nicely with the NTFS user permissions. I can access things fine in cygwin/bash but I can't delete them or they're not visible when I come to try and work on them in the command prompt (oddly, mostly other windows programs seem fine) .

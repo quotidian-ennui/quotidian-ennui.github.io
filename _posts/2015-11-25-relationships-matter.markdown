@@ -8,6 +8,7 @@ tags: [development]
 published: true
 description: ""
 keywords: "development"
+excerpt_separator: <!-- more -->
 ---
 
 Failing quickly is a popular opinion especially when it comes to start-ups. If you fail quickly you won't have spent much time or burnt much money in failure. For me though, the key lesson is not to fail quickly or fail often, but to understand when to pull the plug and stop throwing good money after bad. The escalation of commitment in something is precisely the behaviour that failing quicker is trying to avoid.

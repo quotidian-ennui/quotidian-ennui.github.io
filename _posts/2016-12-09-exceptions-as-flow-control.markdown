@@ -8,12 +8,14 @@ published: true
 title: "Using Exceptions for Flow Control"
 description: "GOTOs are back, or perhaps they never went away."
 keywords: "interlok"
+excerpt_separator: <!-- more -->
 ---
-
 
 If you search for the phrase "exceptions as flow control" then most of the top hits are about how bad it is and how you shouldn't. I don't disagree with that point, exceptions should be unexpected, so you shouldn't really be treating them as an expectation. Put it another way, exceptions are, in essence, GOTO statements; everyone knows that GOTOs are bad.
 
 ![goto](https://imgs.xkcd.com/comics/goto.png)
+
+<!-- more -->
 
 We recently had to integrate with an API that would provide us with all the new orders created by the application so that we can forward them to the supplier. In the event that there were more than a certain  amount; a `next_page_url` tag would be present in the returned JSON. There were a couple of issues with the behaviour that we batted around internally, but ultimately things and well... reasons[^1]. The way things work is all perfectly fine, but it isn't really designed for machine driven interaction (it seems to be a thing for API designers to think that ultimately there's someone looking at a screen and clicking on things).
 

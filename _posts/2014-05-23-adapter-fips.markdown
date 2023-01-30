@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "Using FIPS certified algorithms with Interlok"
 keywords: "integration, FIPS"
-
+excerpt_separator: <!-- more -->
 ---
 
 FIPS compliance is all the rage in some sectors. Our formal statement has always been that Interlok can be configured to be as FIPS compliant as the underlying JVM. All encryption/SSL duties are delegated to the JCE and JSSE layers respectively. Failure to support FIPS algorithms isn't normally a product issue, it's a java virtual machine configuration issue.

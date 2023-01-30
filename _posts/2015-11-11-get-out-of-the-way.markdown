@@ -8,6 +8,7 @@ tags: [development]
 published: true
 description: ""
 keywords: "development"
+excerpt_separator: <!-- more -->
 ---
 
 It's very easy to get in your own way. You have the vision, you know what you need to execute on that vision. However, it's too much work for you to handle alone, so it's up to your team to deliver on that. You're going to be quite frustrated at times and believe that you're better placed to deliver certain aspects of it. So you opt to get involved at the coal-face and handle certain parts of the deliverable yourself. Is it because you want something interesting to do, want to retain your technical edge or is it because you don't trust your team.

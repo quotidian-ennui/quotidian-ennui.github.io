@@ -8,7 +8,7 @@ tags: [adapter, interlok, integration]
 published: true
 description: "We replaced an entire mainframe with a couple of adapters; here's what happened."
 keywords: "java, adapter, integration, ONRPC, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 Back in 2011 we needed to replace a legacy mainframe system for a customer. They were in effect acting as a Value Added Network (VAN) in a small industry and needed to completely replace legacy hardware and out of support software; essentially they were trading two types of data, EDI (X12) and a proprietary flat file format. Enough time has passed now that I can blog about it fairly objectively and use it as a case study for how we achieved the deadlines and transitioned this community to a cloud enabled platform. Our strategy for migration had to cope with no documentation and the lack of a test infrastructure for the community.

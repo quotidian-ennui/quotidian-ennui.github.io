@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "Bridging between MSMQ and java using the adapter framework"
 keywords: "java, adapter, msmq, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 Microsoft Message Queueing is a pretty good way of allowing applications running on different servers to communicate in a failsafe manner; it's baked directly into all recent versions of Windows and has extensive API support via Visual Studio. However, all your applications are going to be running on the Windows platform and this can cause issues if your technology stack spans multiple platforms. Bridging between MSMQ and other platforms like a java based ESB might be causing you a bit of a headache.

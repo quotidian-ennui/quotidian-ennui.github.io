@@ -8,8 +8,7 @@ comments: false
 tags: [adapter, interlok]
 description: "Setting up the adapter with Perf4J"
 keywords: "adapter, java, perf4j, log4j"
-
-
+excerpt_separator: <!-- more -->
 ---
 What's the most important thing when performance tuning the adapter; it's information, having a gut feeling about where the adapter is slow is all well and good, but you'll need to prove it. After all premature optimization is the root of all evil.
 

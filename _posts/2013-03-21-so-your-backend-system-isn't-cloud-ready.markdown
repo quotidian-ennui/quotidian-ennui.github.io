@@ -8,7 +8,7 @@ tags: [adapter, interlok, integration]
 published: true
 description: "Your backend system isn't cloud-ready, that's not a big deal if you have an adapter."
 keywords: "java, adapter, http, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 In our brave new cloud-based world a lot of integration happens over the web via HTTP; for a lot of scenarios, a full WS stack that uses SOAP+UDDI+WSDL is complete overkill and a timesink. Sometimes you just want to send some data around and get a response; this is where the adapter can fit into your integration landscape and help you get things done[^1].

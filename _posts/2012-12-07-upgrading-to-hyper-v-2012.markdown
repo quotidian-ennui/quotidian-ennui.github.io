@@ -8,7 +8,7 @@ tags: [tech, hyper-v]
 published: true
 description: "Upgrading from Hyper-V 2008 to Hyper-V 2012"
 keywords: "hyper-v"
-
+excerpt_separator: <!-- more -->
 ---
 
 Hyper-V 2012 has been out for a while now; I finally took the plunge and upgraded my lab infrastructure at home[^1]. Given that all my test containers are virtualised in Hyper-V 2008 already; it should just be a case of moving the images around to free up a host machine so that the hosts can be upgraded in sequence. Ultimately it was painless, but time consuming; a large part of it was copying gigabytes of data around my network.
