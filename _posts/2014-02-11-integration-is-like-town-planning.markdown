@@ -8,7 +8,7 @@ tags: [integration]
 published: true
 description: "Integration is a bit like town planning; you're bringing a lot of different things together"
 keywords: "integration"
-
+excerpt_separator: <!-- more -->
 ---
 
 I've said that what we do is a combination of [house-building and town-planning]({{ site.baseurl }}/blog/2014/02/17/what-is-integration/). Town planning sounds easy, stick some houses in, join them up with a road and voila: a new town. I haven't spoken to any good town planners but I can imagine that it's not that simple. You have to know what makes a community work; have the big picture, map out the roads, organise the bus-stops, know where the sewage system runs and know how all these things will impact the community. _A city is not an accident but the result of coherent visions and aims_[^1]

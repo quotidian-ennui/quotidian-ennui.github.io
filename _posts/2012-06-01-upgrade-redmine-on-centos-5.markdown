@@ -9,7 +9,7 @@ tags: [tech, development, linux]
 published: true
 description: "Brief notes on upgrading redmine from 1.1.2 to 1.4 on CentOS 5"
 keywords: "redmine, centos"
-
+excerpt_separator: <!-- more -->
 ---
 
 Recently we upgraded redmine from 1.1.2 to 1.4.2. It was an activity that I had planned for a long time, but as usual things get in the way of doing that. Redmine, perhaps ruby on rails makes that easy for you, has a very well documented path for upgrades so the upgrade itself didn't take very long, about half an hour. Of course I had run through the process already on a different machine to make sure we weren't going to hit any odd snags due to the platform / ruby versions or whatever.

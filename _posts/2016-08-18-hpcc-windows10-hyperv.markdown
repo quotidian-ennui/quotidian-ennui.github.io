@@ -8,6 +8,7 @@ published: true
 title: "Virtualbox isn't the only tool in the box"
 description: "Running HPCC systems Virtualbox image under Hyper-V"
 keywords: "hyper-v, hpcc, ubuntu"
+excerpt_separator: <!-- more -->
 header-img: img/banner-knives.jpg
 ---
 

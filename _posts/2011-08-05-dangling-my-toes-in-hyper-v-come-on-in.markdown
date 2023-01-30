@@ -8,7 +8,7 @@ comments: false
 tags: [tech, hyper-v]
 description: "Rebuilding integration services on Centos 5 for a kernel that isn't running"
 keywords: "hyper-v, centos, linux"
-
+excerpt_separator: <!-- more -->
 ---
 
 A quick update this week; I updated the kernel on one of my CentOS 5.6 images and rebooted; it wouldn't boot as it couldn't find any LVM volumes. At least you can always reboot into a previous kernel.

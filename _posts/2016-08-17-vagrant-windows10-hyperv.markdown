@@ -9,6 +9,7 @@ published: true
 description: "Making Vagrant play nicely with Hyper-V; that can be a bit of a ballache"
 keywords: "hyper-v, vagrant, linux"
 header-img: img/banner_broken-plane-2.jpg
+excerpt_separator: <!-- more -->
 ---
 
 Well, my personal laptop has been upgraded to Windows 10 Anniversary; it's a dual SSD + HD affair, an Asus NX501-JW which hasn't been affected by the other "SSD+HD" bricking issues that have been in the tech news. Anyway, either I, or Microsoft during the upgrade, uninstalled Virtualbox, which I had been using to run an [HPCC Systems][] environment amongst other things. In the end, the chance to run Docker natively, and Linux shell natively via Hyper-V persuaded me that I should try and get [Vagrant][] to play nice to Hyper-V; this then is an afternoon of fun and games.

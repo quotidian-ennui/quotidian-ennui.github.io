@@ -8,7 +8,7 @@ tags: [development]
 published: true
 description: "Mitigating project failure conditions"
 keywords: "management"
-
+excerpt_separator: <!-- more -->
 ---
 
 It often occurs to me that a fair number of project managers are inordinately optimistic when it comes to managing the delivery of a project. Given the number of high-profile failures reported in the media, and their own experience, you'd think that we would have learnt to temper our optimism with a healthy dose of realism. Seems not.

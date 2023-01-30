@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "Bridging between SAP and other systems using the adapter framework; part 3"
 keywords: "java, adapter, sap, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 So, this is yet another blog post about executing BAPI functions in SAP using the Adapter Framework; one day I will get bored with writing about SAP, but right now, it's on the top of the heap. Today's post is around error handling and reporting; any monkey can make something work, but handling error conditions gracefully is often a stumbling block that can trip you up during integration.

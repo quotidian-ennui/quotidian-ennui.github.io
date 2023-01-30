@@ -9,6 +9,7 @@ published: true
 description: "Why isn't Unison in the EPEL repository for CentOS 7"
 keywords: "linux, centos, unison"
 header-img: img/banner_field.jpg
+excerpt_separator: <!-- more -->
 ---
 
 I generally use [unison][] to keep my work environment on various machines in sync. I use it like a poor man's Dropbox in effect; call me old fashioned but I don't tend to use any cloud storage provider for security reasons. Unison means that it is trivial for me to move between my main development environment and other platforms, but as a project it appears to be unloved. I've recently installed a couple of instances of CentOS 7 in my test lab, and unison isn't provided; it's not in in the epel repository either.

@@ -8,7 +8,7 @@ tags: [tech, linux]
 published: true
 description: "How I setup CentOS 6"
 keywords: "linux, centos"
-
+excerpt_separator: <!-- more -->
 ---
 
 The infrastructure team that we have at Adaptris is great; but sometimes when they setup a new vm image for me, there's some things that are not quite right. I guess it's because I'm a very particular kind of guy when it comes to how machines are setup. I thought that I'd write about how the development machines are setup. They're setup *just so* which means that I can get working on them straight away[^1].

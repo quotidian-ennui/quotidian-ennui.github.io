@@ -9,6 +9,7 @@ published: true
 description: "Applications not respecting character sets"
 keywords: "integration, character encoding"
 header-img: img/banner_crane.jpg
+excerpt_separator: <!-- more -->
 ---
 
 Character encoding can be the bane of your life when you're doing integration. It's all fine and dandy when you're dealing with the US-ASCII character set, but it all goes wrong when you start dealing with internationalised data. Even worse, there are situations where the source data is a mix of 2 different character encodings and you get 2 different byte representations for the same character. This is down to the source application not respecting encoding properly; screwing it all up.

@@ -8,7 +8,7 @@ comments: false
 tags: [tech, development, scm]
 description: "Setting up apache with mercurial with password authentication"
 keywords: "mercurial, http, dvcs, apache, linux, centos"
-
+excerpt_separator: <!-- more -->
 ---
 
 Generally speaking,  we host our mercurial repositories using SSH; sometimes of course, we need to do it via HTTP because we don't want to give external contractors SSH access because who knows what damage they can do with a terminal (anyone who's seen someone do rm -rf * in /etc knows what I'm talking about). It's bad enough they damage the contents of the repository with their inability to read a good primer site like [http://hginit.com][] (you know who you are).

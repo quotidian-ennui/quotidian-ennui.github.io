@@ -8,7 +8,7 @@ comments: false
 tags: [tech, vmware]
 description: "Making VMPlayer Network interfaces part of the private network"
 keywords: "vmware, windows7"
-
+excerpt_separator: <!-- more -->
 ---
 
 One of the things that you'll find with VMPlayer is that the network interfaces aren't registered properly with Windows (Vista or 7) which means that you're always in the Public zone, so your firewall is always turned on (that's right, you have a firewall don't you).

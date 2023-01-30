@@ -8,6 +8,7 @@ tags: [development]
 published: true
 description: ""
 keywords: "development"
+excerpt_separator: <!-- more -->
 ---
 
 These days we're consumed with the new; always looking to get rid of the old in favour of something that's newer, brighter and shinier. It's very obvious with consumer electronics and the built in obsolescence that comes with almost every single product on the market. The pace of change, Moore's law, all support this kind of behaviour; my watch has more computing power in it, most likely, than the ZX Spectrum that was my first computer.

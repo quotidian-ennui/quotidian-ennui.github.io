@@ -8,7 +8,7 @@ published: true
 tags: [tech, hyper-v]
 description: "Connecting to a remote hyper-v server without a domain"
 keywords: "hyper-v"
-
+excerpt_separator: <!-- more -->
 ---
 
 I've always been a fan of virtualising my development environment; nothing quite like carrying around a 220Gb disk image of Windows 2003 + SAP R/3 and writing a new SAP connector when you're on the road. Recently though, I've been getting less than stellar performance from vmplayer / vmserver; so I wanted to switch to a Type 1 hypervisor…

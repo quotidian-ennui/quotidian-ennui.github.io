@@ -7,7 +7,7 @@ comments: false
 tags: [development, rant]
 published: true
 description: "Why I think a build step is critical for project collaboration"
-
+excerpt_separator: <!-- more -->
 ---
 
 I started doing Assembly, then C, dabbled in COBOL for a while so I've always had to have a build/compile step as of my development workflow. Working with Java hasn't been anything different, you use ant or maven to compile your source files and then run your tests. Lately I've been reading more and more about people _hating_ java and their myriad reasons for that. I don't think I have anything to add around that subject other than more invective so I shan't. I happen to know few languages and I just choose the best one for the job at hand, _just do the work_. Java has it's idiosyncrasies, but if your reason for hating java is that until recently you couldn't do a switch statement with Strings; you shouldn't hate java, you should hate yourself for being a programmer _who likes switch statements_ ;).

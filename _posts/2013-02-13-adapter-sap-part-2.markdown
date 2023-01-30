@@ -8,7 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "Bridging between SAP and other systems using the adapter framework; Part 2"
 keywords: "java, adapter, sap, integration, interlok"
-
+excerpt_separator: <!-- more -->
 ---
 
 Last time I wrote about how easy it was to execute an [arbitrary BAPI using the adapter framework]({{ site.baseurl }}/blog/2013/01/18/adapter-sap-part-1) and get meaningful results back as XML. At the simplest level, that's pretty much all you really need to integrate with SAP. Unless...

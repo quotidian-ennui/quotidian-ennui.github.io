@@ -8,6 +8,7 @@ tags: [adapter, interlok]
 published: true
 description: "Using a jruby script to re-format EDI messages"
 keywords: "adapter, jruby, jsr223, edi, interlok"
+excerpt_separator: <!-- more -->
 
 ---
 

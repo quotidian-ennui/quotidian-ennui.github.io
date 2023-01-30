@@ -8,6 +8,7 @@ tags: [development]
 published: true
 description: ""
 keywords: "development"
+excerpt_separator: <!-- more -->
 ---
 
 You have a vision that is pretty clear to the technical team and you're all working towards that goal. The business has bought into the vision previously and they've given you the mandate to work on the vision and goal. The next thing that is bound to happen is that the market direction changes or market research shows some different problems that need solving.

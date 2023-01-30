@@ -8,7 +8,7 @@ tags: [tech]
 published: true
 description: "My daughter going to bypass my safety filters; that doesn't mean I shouldn't at least try."
 keywords: "windows linux squid proxy wpad dhcpd"
-
+excerpt_separator: <!-- more -->
 ---
 
 I have a daughter; in the near future she's going to start browsing and terrorizing the web at large. One of the things that's been at the back of my mind is how I'm going to handle that. I don't subscribe to the notion of ISP level filtering; not because I think it's a bad idea (it might not be a bad idea, but it's sure to be implemented terribly), but because I don't think that I should abrogate my parental responsibilities in that fashion. The other thing of course, is that my daughter will (eventually) be able to bypass any security; that's not an if, it's a when; when she can do that, then good on her; I think I'd have to trust her by then. In the meantime though, it's time to start locking down the network...

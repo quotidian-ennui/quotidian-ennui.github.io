@@ -9,6 +9,7 @@ published: true
 description: "The cost of a new integration is outweighed by the cost of maintainence"
 keywords: "integration, interlok"
 header-img: img/banner_crane.jpg
+excerpt_separator: <!-- more -->
 ---
 
 When we first started building Interlok we had a very clear design goal; it's about the lowering the cost of maintenance as opposed to lowering the cost of new development. It's simply a happy by-product of our design goals that the cost of integrating a new system is lowered as well. When faced with a classic integration problem; whether or not it's customer facing or just integrating various back-end systems; once you have the process up, running and in production; the maintenance of that integration is going to be the major cost factor.

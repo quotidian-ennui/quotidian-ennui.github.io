@@ -8,7 +8,7 @@ tags: [development]
 published: true
 description: "Setting the foundations for project success"
 keywords: "team development management"
-
+excerpt_separator: <!-- more -->
 ---
 
 So, we've ascertained that projects are more likely to fail than succeed; but somehow we succeed a lot of the time. There are some general principles that I apply when delivering any project which I've found makes everyone a lot happier; the team, the business stakeholders, and me. A word of warning; anecdotal evidence is not science, no matter what some alternative therapists would have you believe; I'm not a PMP and I don't have any qualifications from the PMI. All of this might just be hokum and inapplicable outside of my experience.

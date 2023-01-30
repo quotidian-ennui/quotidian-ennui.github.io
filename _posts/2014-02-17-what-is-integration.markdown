@@ -8,7 +8,7 @@ tags: [integration]
 published: true
 description: "What is integration; explaining what I do to my father"
 keywords: "integration"
-
+excerpt_separator: <!-- more -->
 ---
 
 I often get asked what it is that I do; by my father, by family friends, other people who might not be in IT. Einstein says *If you can't explain it to a six year old, you don't understand it yourself*; so here goes: Our software makes sure that the curtains between business and economy class are in the right place on the plane. Our software enables telecoms companies to provision new telephone lines / new mobile numbers. Our software makes sure your car gets serviced on time. That's pretty glib; it's not just our software; but none of those things could happen without our software. Ultimately though, what we do is a combination of house-building and town planning.

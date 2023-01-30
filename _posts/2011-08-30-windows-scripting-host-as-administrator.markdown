@@ -8,7 +8,7 @@ published: true
 tags: [tech]
 description: "Starting WSH scripts with elevated credentials"
 keywords: "windows7, vmware, wsh, uac"
-
+excerpt_separator: <!-- more -->
 ---
 
 If you're like me then perhaps you often don't want your network interfaces to be enabled all the time. You might not have a hardware switch to turn off your wireless and going to Network and Sharing -> Change Adapter Settings right click enable / disable seems like such a chore especially when my default group policy means that you're prompted for your password each time.
