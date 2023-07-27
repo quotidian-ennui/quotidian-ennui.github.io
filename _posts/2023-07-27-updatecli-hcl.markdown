@@ -110,6 +110,7 @@ if [[ "$currentVersion" != "$detectedVersion" ]]; then
     updateString="\"$detectedVersion\""
     "$HCLEDIT" attribute set 'plugin.aws.version' "$updateString" -f "${TFLINT}" -u
   fi
+fi
 ```
 
 Since `hclq` only works on stdin and stdout you need to do a bit more redirecting but it's fundamentally the same: `hclq get plugin.aws.version` will do the right thing, as will `hqlq set "plugin.aws.version" "$detectedVersion"` (updateString wraps the variable in quotes which is required by hcledit but not by hclq).
