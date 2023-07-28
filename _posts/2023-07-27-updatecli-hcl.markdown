@@ -72,14 +72,13 @@ Our target needs to use the shell plugin with a couple of caveats that we'll go 
       shell: bash
       command: ./scripts/tflint-update.sh terraform
       environments:
-        - name: HCLEDIT_DIR
-          value: '{{ '{{' }} requiredEnv "HCLEDIT_DIR" }}'
+        - name: PATH
+
 ```
 
 - updatecli _knows_ that we're on windows, so the default shell is powershell. We need to change the shell because `bash` is the lowest common factor on all machines[^1].
 - Because of how updatecli executes the command; bash _loses_ its environment (and by that token its path), which means on windows/git+bash it is the default `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:.`
-    - Since we've lost the path, the script can't know where `hcledit` is; we force an environment variable to be defined so that we can derive it.
-    - I could have installed hcledit into `/usr/local/bin` but I'm on Windows and I don't tend to install things directly into the git+bash environment
+    - That means if hcledit is installed in in the path like `\scoop\shims` you need to pass in your current PATH as the environment
 
 ## The shell script
 
@@ -98,7 +97,10 @@ set -eo pipefail
 
 basedir=$(dirname "$0")/..
 TFLINT="${basedir}/${1}/.tflint.hcl"
-HCLEDIT="$HCLEDIT_DIR/hcledit"
+HCLEDIT="hcledit"
+if [[ ! -z "$HCLEDIT_DIR" ]]; then
+  HCLEDIT="$HCLEDIT_DIR/hcledit"
+fi
 currentVersion=$("$HCLEDIT" attribute get plugin.aws.version -f "${TFLINT}" | sed -e "s/\"//g")
 detectedVersion=$(echo "$2" | sed -e "s/^[[:blank:]]*//" -e "s/[[:blank:]]*$//")
 
