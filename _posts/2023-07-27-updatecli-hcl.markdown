@@ -16,7 +16,7 @@ I rely a lot on dependabot to keep my projects up to date; however, there are so
 
 One of the things you will have in any terraform project is a `.tflint.hcl` file that contains your configuration for tflint. The rulesets defined by tflint are useful in giving you a degree of confidence about your terraform resources; I don't find `terraform validate` that useful, the various plugins you can get for your favourite editor can replace it. The configuration is essentially HCL which is no surprise.
 
-Out of the box updatecli doesn't support HCL (true as of 0.54; though it probably should) and I was wondering how I would update tflint's configuration with newer rulesets. My colleague was using the file plugin with regular expressions to handle updates and that has been working well enough, provided the `version` directive was underneath the `source` directive (because `("github.com\/terraform-linters\/tflint-ruleset-aws"\s+version\s+=\s+)"(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)"` just doesn't fill me with joy). It works and once things are provably working you have more important fish to fry most of the time.
+Out of the box updatecli doesn't support HCL (true as of 0.54; though it probably should)[^1] and I was wondering how I would update tflint's configuration with newer rulesets. My colleague was using the file plugin with regular expressions to handle updates and that has been working well enough, provided the `version` directive was underneath the `source` directive (because `("github.com\/terraform-linters\/tflint-ruleset-aws"\s+version\s+=\s+)"(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)"` just doesn't fill me with joy). It works and once things are provably working you have more important fish to fry most of the time.
 
 I got a little too fixated on doing some kind of HCL->JSON(or yaml)->HCL round trip so i could use a transformation tool like jq or jslt. This proved to be a bit of a blind alley (I can get tunnel vision about how it's always a data-format-problem). Taking a step back, after a slack huddle (and colleagues using different search terms), two tools were mentioned: [hclq](https://hclq.sh) & [hcledit](https://github.com/minamijoyo/hcledit). Both will absolutely work for what I wanted, and my initial PR used hclq, but subsequently changed to hcledit since hclq is a project that is dead (the author is no longer actively maintaining it).
 
@@ -76,7 +76,7 @@ Our target needs to use the shell plugin with a couple of caveats that we'll go 
 
 ```
 
-- updatecli _knows_ that we're on windows, so the default shell is powershell. We need to change the shell because `bash` is the lowest common factor on all machines[^1].
+- updatecli _knows_ that we're on windows, so the default shell is powershell. We need to change the shell because `bash` is the highest common factor on all machines[^2].
 - Because of how updatecli executes the command; bash _loses_ its environment (and by that token its path), which means on windows/git+bash it is the default `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:.`
     - That means if hcledit is installed in in the path like `\scoop\shims` you need to pass in your current PATH as the environment
 
@@ -139,4 +139,37 @@ Updating ./scripts/../terraform/.tflint.hcl
 ```
 
 
-[^1]: or lowest common denominator if you don't like technical correctness
+## updatecli 0.55(.1)+ (edit 2023-07-31)
+
+Updatecli was updated over the weekend which includes [this PR](https://github.com/updatecli/updatecli/pull/1424); this supports precisely the scenario described. This means that the configuration is now much simpler, no shell scripts required.
+
+```yaml
+name: tflint-aws-rulset
+
+sources:
+  aws-ruleset:
+    name: Check tflint AWS Ruleset
+    kind: githubrelease
+    spec:
+      owner: terraform-linters
+      repository: tflint-ruleset-aws
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      versionfilter:
+        kind: semver
+    transformers:
+      - trimPrefix: "v"
+
+targets:
+  update-tflint.hcl:
+    name: update tflint configuration
+    kind: hcl
+    sourceid: aws-ruleset
+    spec:
+      files:
+        - tf-bootstrap/.tflint.hcl
+        - terraform/.tflint.hcl
+      path: plugin.aws.version
+```
+
+[^1]: the eagle eyed will have noticed that updatecli 0.55 does support HCL for exactly this scenario
+[^2]: or lowest common denominator if you don't like technical correctness
