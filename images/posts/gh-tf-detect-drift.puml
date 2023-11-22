@@ -1,0 +1,36 @@
+@startuml
+skinparam sequenceMessageAlign center
+hide unlinked
+title Detecting Terraform Drift
+participant "terraform.yml" as terraform #peru
+participant "tf-drift.yml" as drift #powderblue
+
+[o-> terraform: github event
+activate terraform #peru
+  terraform->terraform: setup & configure
+  terraform->terraform: 'terraform-plan'
+  terraform->drift: 'post-tf-plan' repo-dispatch
+  activate drift #PowderBlue
+  opt
+    terraform->terraform: 'terraform approval gate'
+    terraform->terraform: 'terraform-apply'
+  end opt
+destroy terraform
+opt on_schedule
+  note over drift #PowderBlue
+    use hashfiles(terraform/*.tf) as
+    the key to search for in the issue
+    body
+  end note
+  drift->drift: hashfiles terraform/**.tf
+  drift->drift: find existing issue
+  alt has_changes & no open issue with hash
+    drift->o?: new issue
+  else has_changes & open issue with hash
+    drift->o?: update existing issue
+  else no_changes & open issue with hash
+    drift->o?: close existing issue
+  end alt
+  destroy drift
+end group
+@enduml
