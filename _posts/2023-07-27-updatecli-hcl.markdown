@@ -153,7 +153,7 @@ sources:
     spec:
       owner: terraform-linters
       repository: tflint-ruleset-aws
-      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      token: '{{ '{{' }} requiredEnv "GITHUB_TOKEN" }}'
       versionfilter:
         kind: semver
     transformers:
