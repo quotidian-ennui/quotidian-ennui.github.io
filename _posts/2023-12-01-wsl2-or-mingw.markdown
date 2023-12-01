@@ -10,7 +10,7 @@ keywords: ""
 excerpt_separator: <!-- more -->
 ---
 
-Spotify gives you __Wrapped__; I make myself do some introspection and examine my life rather than wondering why my top artist (categorisation error?) was Joseph Haydn during the year. In reviewing my development toolchain; I've realised that I've been using a variation of the same thing (git+bash on Windows with [Scoop][]) for far too long. It's time to shake things up a bit not least because I've started doing a lot more with things like Node & Python rather than Java. My experience under Windows is that it's manageable, but i'm fighting against the tooling rather than getting shit done. WSL2 is obviously the answer to the question that I'm asking, but it means a full migration of all development into the WSL2 filesystem for performance reasons. Generating this blog under WSL2, on the Windows filesystem takes _over a a minute_ but only takes _3 seconds_ if the files are in the native WSL2 VHD.
+Spotify gives you __Wrapped__; I make myself do some introspection and examine my life rather than wondering why my top artist (categorisation error[^1]?) was Joseph Haydn during the year. In reviewing my development toolchain; I've realised that I've been using a variation of the same thing (git+bash on Windows with [Scoop][]) for far too long. It's time to shake things up a bit not least because I've started doing a lot more with things like Node & Python rather than Java. My experience under Windows is that it's manageable, but i'm fighting against the tooling rather than getting shit done. WSL2 is obviously the answer to the question that I'm asking, but it means a full migration of all development into the WSL2 filesystem for performance reasons. Generating this blog under WSL2, on the Windows filesystem takes _over a a minute_ but only takes _3 seconds_ if the files are in the native WSL2 VHD.
 
 <!-- more -->
 
@@ -145,3 +145,4 @@ I still use [Scoop][] on windows so my mingw+git bash toolchain is still stable.
 
 [updatecli]: https://updatecli.io
 [Scoop]: https://scoop.sh/
+[^1]: If your most listened to song was 'Chain Reaction' performed by Diana Ross; is your favourite artist the Bee Gees? I think not.
