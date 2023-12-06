@@ -22,7 +22,8 @@ I'll admit a few things here, I don't think any of this is in any way 'special' 
 2. My Windows Java instances are managed by sdkman running on wingit bash (I don't run java via powershell/cmd)
 3. My primary desktop has multiple disks
     - I'm using reparse points as symbolic links (so C:/Users/lewin/.gradle is a symbolic link to D:/storage/.gradle as my NVME drive is smaller than my SSD)
-4. WSL/Ubuntu is mounted as W:/; it's an unused drive letter.
+4. My automount location is / (i.e. /mnt/c is not a thing)[^1]
+5. WSL/Ubuntu is mounted as a network drive `W:/`.
 
 ## Problem Statement
 
@@ -51,9 +52,9 @@ bsh ❯ jar -tvf ./plugins/gradle/lib/gradle.jar | grep proxy
  26348 Fri Nov 30 00:00:00 GMT 1979 org/jetbrains/plugins/gradle/tooling/proxy/Main.class
 ```
 
-I don't know (I have my suspicions), and I don't care; I can continue using Visual Studio Code since it works well enough and keep having everything inside WSL2; Or... we just treat IntelliJ as _special_; ignore its WSL support and make sure we synchronize things between NTFS & ext4.
+I don't know for sure (I have my suspicions[^1]), and I don't care; I can continue using Visual Studio Code since it works well enough and keep having everything inside WSL2; Or... we just treat IntelliJ as _special_; ignore its WSL support and make sure we synchronize things between NTFS & ext4.
 
-Clearly we're in yet another fight with the tooling.
+Clearly we're in yet another fight with the tooling. I like things how I like them, and you're making assumptions that you shouldn't be making. Making the assumptions is one thing, but not documenting them is always a real pain in the ass.
 
 ## Enter Mutagen
 
@@ -138,8 +139,11 @@ sync_"$ACTION"
 
 ## Summary
 
- I'm sure that at some point the problem will just go away. There's still friction but I can manage it if I really do need to use IntelliJ; I'm trying to avoid it for this very reason. No doubt there is some arcane invocation to make this work but the tooling isn't worth fighting for.
+- If you have changed the mount point for your Windows filesystem, then you need to make a symbolic link between that and `/mnt` for IntelliJ to be happy.
+- It's not the fault of IntelliJ that accessing files over `//wsl$` is so slow; javac is somewhat IO bound so it's just not useful.
+- I made IntelliJ dance to my spin on WSL2; well done me, I guess.
 
->[mutagen][] has been acquired by Docker; I have no idea what's in the future for it. They have a paid for subscription which I'm not using; other tools are available.
+> [mutagen][] has been acquired by Docker; I have no idea what's in the future for it. They have a paid for subscription which I'm not using; other tools are available.
 
 [mutagen]: https://mutagen.io/
+[^1]: If you didn't realise as soon as I mentioned it; it's this. I prefer `/c` over `/mnt/c`. JetBrains have made a dirty assumption and not for the first time. I symlink shimmed it, but it's too bloody slow to be usable anyway.
