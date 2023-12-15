@@ -6,6 +6,10 @@ OS_NAME:=`uname -o | tr '[:upper:]' '[:lower:]'`
 @help:
   just --list --list-prefix "  "
 
+# Install deps
+@install:
+  bundle install
+
 # jekyll serve --drafts
 @serve: check_env
   bundle exec jekyll serve --drafts
