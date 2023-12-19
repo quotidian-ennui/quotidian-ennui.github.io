@@ -23,7 +23,7 @@ There are choices here to auto-provision laptops if you're an organisational ent
 
 ![its not worth it](https://imgs.xkcd.com/comics/is_it_worth_the_time.png)
 
-With the obligatory reference to XKCD done; with the framework laptop I hope to be able to extend out past 3 years by being able to replace the mainboard / battery etc. as needs be for longevity. It's taken ~1 day for the manual windows nonsense, which equates to lets say ~2hours per year.
+That's the obligatory reference to XKCD done; with the framework laptop I hope to be able to extend out past 3 years by being able to replace the mainboard / battery etc. as needs be for longevity. It's taken ~1 day for the manual windows nonsense, which equates to lets say ~2hours per year.
 
 - Remove all the shitty default programs that don't interest me (_Solitaire Connection_ anyone?) that seem to keep coming back from time to time; I'm pretty sure that I could probably group policy this out of existence but I never wanted to be a Windows admin.
 - Install Microsoft Office and try and make it use my O365 account rather than my MS personal account (there's a bunch of reasons why I have 2 accounts).
