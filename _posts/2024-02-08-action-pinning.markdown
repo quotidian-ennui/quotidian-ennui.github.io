@@ -14,7 +14,7 @@ So, supply chain attacks are all the rage; and by all the rage I mean it's a thi
 
 <!-- more -->
 
-Pinning is relatively straightforward, I just make sure that I'm already on a strict semantic version of the action (i.e. `@v4.1.1` not `@v4`) and then I just use `npx pin-github-action -i "build.yml" -c " {ref}"` which will do the right thing and modify the action reference to the hash. Afterwards I use `prettier -w "build.yml"` just to have things consistent.  If you aren't already on a semantic version then you can just use `gh release list --repo actions/checkout --exclude-drafts --exclude-pre-releases | awk '{print $1}' | sort -rV | head -n 1`[^1] to get the latest release. You're running in github so you have access to dependabot so use that to keep your actions up to date.
+Pinning is relatively straightforward, I just make sure that I'm already on a strict semantic version of the action (i.e. `@v4.1.1` not `@v4`) and then I just use `npx pin-github-action -i "build.yml" -c " {ref}"` which will do the right thing and modify the action reference to the hash. Afterwards I use `prettier -w "build.yml"` just to have things consistent.  If you aren't already on a semantic version then you can just use `gh release list --repo "actions/checkout" --exclude-drafts --exclude-pre-releases --json "tagName" -q ".[].tagName" | sort -rV | head -n 1`[^1] to get the latest release. You're running in github so you have access to dependabot so use that to keep your actions up to date.
 
 ## Consequences of pinning
 
