@@ -16,7 +16,7 @@ I was reading some [git hints & tips](https://blog.gitbutler.com/git-tips-and-tr
 
 ## .gitconfig
 
-The contents of my `.gitconfig` are as follows:
+The contents of my `.gitconfig` is as follows:
 
 ```
 [user]
