@@ -60,7 +60,7 @@ locals {
     working_copy_iphone = {
       ssh_key = "ssh-rsa AAAAB3N..."
     }
-    framework_windows = {
+    framework_ubuntu = {
       ssh_key = "ssh-ed25519 AAAAC3NzaC1l..."
     }
     framework_windows = {
