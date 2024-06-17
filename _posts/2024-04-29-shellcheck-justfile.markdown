@@ -47,4 +47,6 @@ cd /tmp && rm -f justfile-*
 
 It will fail on the first shellcheck failure, and the name of the file emitted by shellcheck gives you the recipe name that didn't pass linting. I find that I need to disable _SC2194_ and _SC2050_ quite a lot because I often use just variables (so {% raw %}`case "{{ var }}" in...` {% endraw %}) which shellcheck will treat as constants, and complain at you.
 
-I've now wrapped that snippet into a [user-justfile](https://just.systems/man/en/chapter_68.html) along with some other tasks that I find generically useful in almost all my development projects (like wrapping git-semver to figure out what the next version should be).
+I've now wrapped that snippet into a [user-justfile](https://just.systems/man/en/chapter_73.html)[^1] along with some other tasks that I find generically useful in almost all my development projects (like wrapping git-semver to figure out what the next version should be).
+
+[^1]: [tomodachi94](https://github.com/tomodachi94) helpfully raised a PR on this blog since the just manual URLs aren't stable, they change when new sections are added; this means if you go somewhere quite random, scroll through the manual until you find _Global and User Justfiles_.
