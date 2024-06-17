@@ -45,7 +45,7 @@ cd /tmp && rm -f justfile-*
 - format the script with `shfmt`
 - run shellcheck on the output
 
-It will fail on the first shellcheck failure, and the name of the file emitted by shellcheck gives you the recipe name that didn't pass linting. I find that I need to disable _SC2194_ and _SC2050_ quite a lot because I often use just variables (so `case "{{ var }}" in...`) which shellcheck will treat as constants, and complain at you.
+It will fail on the first shellcheck failure, and the name of the file emitted by shellcheck gives you the recipe name that didn't pass linting. I find that I need to disable _SC2194_ and _SC2050_ quite a lot because I often use just variables (so {% raw %}`case "{{ var }}" in...` {% endraw %}) which shellcheck will treat as constants, and complain at you.
 
 I've now wrapped that snippet into a [user-justfile](https://just.systems/man/en/chapter_73.html)[^1] along with some other tasks that I find generically useful in almost all my development projects (like wrapping git-semver to figure out what the next version should be).
 
