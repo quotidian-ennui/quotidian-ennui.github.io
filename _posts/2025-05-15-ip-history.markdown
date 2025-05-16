@@ -10,7 +10,7 @@ keywords: ""
 excerpt_separator: <!-- more -->
 ---
 
-I've been with BT Broadband since pretty much its inception; it hasn't been awful, and I've never been a fan of the race to the bottom. I remember the old Alcatel frog modem and all the joys that entailed; one of the things that I've never bothered with is having a fixed IP Address; didn't really see the point what with VPNs and all that. However, recently, for work purposes they wanted to have a whitelist of IP Addresses that could access no-functional testing services.
+I've been with BT Broadband since pretty much its inception; it hasn't been awful, and I've never been a fan of the race to the bottom. I remember the old Alcatel frog modem and all the joys that entailed; one of the things that I've never bothered with is having a fixed IP Address; didn't really see the point what with VPNs and all that. However, recently, for work purposes they wanted to have a whitelist of IP Addresses that could access non-functional testing services.
 
 <!-- more -->
 
@@ -151,4 +151,4 @@ main() {
 }
 ```
 
-In reality the only bash function that's interesting is `action_check` (and it's execution chain); I know that the IP address history will be marginally broken if I'm in the office (but I'm generally a remote worker), and if they start tunnelling all traffic via the VPN (if they started doing that, then I wouldn't have to whitelist my IP address).
+In reality the only bash function that's interesting is `action_check` (and its execution chain); I know that the IP address history will be marginally broken if I'm in the office (but I'm generally a remote worker), and if they start tunnelling all traffic via the VPN (if they started doing that, then I wouldn't have to whitelist my IP address).
