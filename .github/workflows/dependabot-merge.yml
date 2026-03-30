@@ -1,0 +1,31 @@
+name: dependabot-merge
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  dependabot-merge:
+    permissions:
+      contents: write
+      pull-requests: write
+    if: |
+      github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find associated PR
+        uses: jwalton/gh-find-current-pr@89ee5799558265a1e0e31fab792ebb4ee91c016b # v1.3.3
+        id: findpr
+        with:
+          github-token: ${{ github.token }}
+          state: open
+          sha: ${{ github.event.pull_request.head.sha || github.event.workflow_run.head_sha || github.sha }}
+      - name: merge-if-built
+        continue-on-error: true
+        uses: fastify/github-action-merge-dependabot@1b2ed42db8f9d81a46bac83adedfc03eb5149dff # v3.11.2
+        with:
+          pr-number: ${{ steps.findpr.outputs.pr }}
+          target: minor
